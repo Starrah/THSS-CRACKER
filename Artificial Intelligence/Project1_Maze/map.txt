@@ -1,0 +1,7 @@
+O O O O O O O
+O M S S S O S
+O T S M S S O
+M M O O O S O
+O T O O T S M
+M M M M M M M
+O S S T O O E
