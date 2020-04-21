@@ -44,16 +44,16 @@ class DuelQNetwork(nn.Module):
             s = torch.tensor(s, device=self.device, dtype=torch.float)
         s.to(self.device)
         h = self.model(s.cuda())
-        V = self.out1(h)
-        A = self.out2(h)
-        logits = V.expand_as(A) + (A - A.mean(1).expand_as(A))
+        out1 = self.out1(h)
+        out2 = self.out2(h)
+        logits = out2.expand_as(out1) + (out1 - out1.mean(1, keepdim=True).expand_as(out1))
         return logits
 
 
 class DQN(object):
-    def __init__(self, layer_num, batch_size=32, state_num=115, action_num=20, device='cpu', memory_capacity=320,
+    def __init__(self, layer_num, batch_size=32, state_num=115, action_num=20, device='cpu', memory_capacity=1000000,
                  update_freq=100
-                 , eps=0.95, gamma=0.9, lr=0.01, Dueling=None):
+                 , eps=0.1, gamma=0.9, lr=0.0001, Dueling=None):
         self.batch_size = batch_size
         if not Dueling:
             self.online_net = QNetwork(layer_num, state_num, action_num, device).to(device)
@@ -72,10 +72,10 @@ class DQN(object):
 
     def choose_action(self, s):
         s = Variable(torch.unsqueeze(torch.FloatTensor(s), 0))
-        if np.random.uniform() < self.eps:
+        if np.random.uniform() > self.eps:
             logits = self.online_net.forward(s)
             action = torch.argmax(logits)
-        else:  # random
+        else:
             action = np.random.randint(0, self.action_num)
         return action
 
@@ -83,12 +83,10 @@ class DQN(object):
         trans = np.hstack((s, [a, r], next_s))
 
         i = self.memory_pts % self.memory_capacity
-        # save the info_this_step into memory
         self.memory[i, :] = trans
         self.memory_pts += 1
 
     def learn(self):
-        # target parameter update
         if self.learn_step % self.update_freq == 0:
             self.target_net.load_state_dict(self.online_net.state_dict())
         self.learn_step += 1
@@ -102,11 +100,10 @@ class DQN(object):
         batch_a = Variable(torch.LongTensor(batch_memory[:, self.state_num:self.state_num + 1].astype(int))).cuda()
         batch_r = Variable(torch.FloatTensor(batch_memory[:, self.state_num + 1:self.state_num + 2])).cuda()
         batch_next_s = Variable(torch.FloatTensor(batch_memory[:, -self.state_num:])).cuda()
-        # q_eval w.r.t the action in experience
-        q_eval = self.online_net(batch_s).gather(1, batch_a)  # shape (batch, 1)
-        q_next = self.target_net(batch_next_s).detach()  # detach from graph, don't backpropagate
+        q_eval = self.online_net(batch_s).gather(1, batch_a)
+        q_next = self.target_net(batch_next_s).detach()
 
-        q_target = batch_r + self.gamma * q_next.max(1)[0].unsqueeze(1)  # shape (batch, 1)
+        q_target = batch_r + self.gamma * q_next.max(1)[0].unsqueeze(1)
         loss = self.loss(q_eval, q_target)
         self.optimizer.zero_grad()
         loss.backward()
@@ -117,20 +114,18 @@ class DQN(object):
 
 class DoubleDQN(DQN):
 
-    def __init__(self, layer_num, batch_size=32, state_num=115, action_num=20, device='cpu', memory_capacity=320,
+    def __init__(self, layer_num, batch_size=32, state_num=115, action_num=20, device='cpu', memory_capacity=1000000,
                  update_freq=100
-                 , eps=0.95, gamma=0.9, lr=0.01):
+                 , eps=0.1, gamma=0.9, lr=0.0001):
         super(DoubleDQN, self).__init__(layer_num, batch_size, state_num, action_num, device, memory_capacity,
                                         update_freq
                                         , eps, gamma, lr)
 
     def learn(self):
-        # target parameter update
         if self.learn_step % self.update_freq == 0:
             self.target_net.load_state_dict(self.online_net.state_dict())
         self.learn_step += 1
 
-        # by random , choose the row's number from memory_capacity , total row's number is batch_size(32)
         sample_index = np.random.choice(self.memory_capacity, self.batch_size)
         batch_memory = self.memory[sample_index, :]
 
@@ -141,17 +136,15 @@ class DoubleDQN(DQN):
         batch_r = Variable(torch.FloatTensor(batch_memory[:, self.state_num + 1:self.state_num + 2])).cuda()
         batch_next_s = Variable(torch.FloatTensor(batch_memory[:, -self.state_num:])).cuda()
 
-        # q_eval w.r.t the action in experience
-        q_eval = self.online_net(batch_s).gather(1, batch_a)  # shape (batch, 1)
+        q_eval = self.online_net(batch_s).gather(1, batch_a)
 
         q_eval_test = self.online_net(batch_s)
-        # argmax axis = 0 means column , 1 means row
-        # we choose the max acion value , the action is column , so axis = 1
         q_argmax = torch.argmax(q_eval_test, axis=1)
 
         q_next = self.target_net(batch_next_s).detach()
 
         q_update = torch.zeros((self.batch_size, 1))
+
         for i in range(self.batch_size):
             q_update[i] = q_next[i, q_argmax[i]]
 
@@ -170,12 +163,11 @@ class DoubleDQN(DQN):
 
 class DuelingDQN(DQN):
 
-    def __init__(self, layer_num, batch_size=32, state_num=115, action_num=20, device='cpu', memory_capacity=320,
+    def __init__(self, layer_num, batch_size=32, state_num=115, action_num=20, device='cpu', memory_capacity=1000000,
                  update_freq=100
-                 , eps=0.95, gamma=0.9, lr=0.01):
-        self.online_net = QNetwork(layer_num, state_num, action_num, device).to(device)
-        self.target_net = QNetwork(layer_num, state_num, action_num, device).to(device)
+                 , eps=0.1, gamma=0.9, lr=0.0001):
+        self.online_net = DuelQNetwork(layer_num, state_num, action_num, device).to(device)
+        self.target_net = DuelQNetwork(layer_num, state_num, action_num, device).to(device)
         super(DuelingDQN, self).__init__(layer_num, batch_size, state_num, action_num, device, memory_capacity,
                                          update_freq
-                                         , eps, gamma, lr)
-
+                                         , eps, gamma, lr, True)
