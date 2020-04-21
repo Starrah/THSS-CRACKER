@@ -138,7 +138,7 @@ class DoubleDQN(DQN):
 
         q_eval = self.online_net(batch_s).gather(1, batch_a)
 
-        q_eval_test = self.online_net(batch_s)
+        q_eval_test = self.online_net(batch_next_s)
         q_argmax = torch.argmax(q_eval_test, axis=1)
 
         q_next = self.target_net(batch_next_s).detach()
