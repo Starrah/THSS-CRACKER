@@ -1,0 +1,1 @@
+python carve.py -i demo/tower.png
