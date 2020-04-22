@@ -1,5 +1,6 @@
 # 流媒体实验报告
-本项目原仓库 https://github.com/LosMerengues07/myRTP
+作者：王世杰
+本项目原仓库 https://github.com/LosMerengues07/myRTP 请到原仓库获取测试数据。
 ### 1. TASK1简介
 
 task1在给定代码基础上完善并完成RTP协议以及客户端与服务端，实现传输图片流并播放的功能，实现后界面如下：
