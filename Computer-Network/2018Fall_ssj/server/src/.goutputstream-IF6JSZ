@@ -1,0 +1,12 @@
+server: server.o utils.o 
+	gcc -lpthread -g utils.o server.o -o server
+server.o: server.c
+	gcc -lpthread -c -g server.c -o server.o
+utils.o: utils.c
+	gcc -c -g utils.c -o utils.o
+
+.PHONY:clean
+clean:
+	rm -rf *.o
+
+

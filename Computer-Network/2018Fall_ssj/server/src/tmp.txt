@@ -1,0 +1,15 @@
+drwxrwxrwt 10 root root 4096 11月 20 22:43 .
+drwxr-xr-x 25 root root 4096 11月  9 19:40 ..
+-rw-------  1 ssj  ssj     0 11月 20 22:42 config-err-wzAAgA
+-rw-rw-rw-  1 ssj  ssj     5 11月 20 22:42 fcitx-qimpanel:0.pid
+srw-------  1 ssj  ssj     0 11月 20 22:42 fcitx-socket-:0
+drwxrwxrwt  2 root root 4096 11月 20 22:42 .font-unix
+drwxrwxrwt  2 root root 4096 11月 20 22:42 .ICE-unix
+drwx------  2 ssj  ssj  4096 11月 20 22:42 iconcache-j0Sm03
+drwx------  3 root root 4096 11月 20 22:42 systemd-private-78a6ed082d6b4735ae579081d70b1c67-colord.service-DlGElk
+drwx------  3 root root 4096 11月 20 22:42 systemd-private-78a6ed082d6b4735ae579081d70b1c67-rtkit-daemon.service-2wVgL4
+drwxrwxrwt  2 root root 4096 11月 20 22:42 .Test-unix
+-rw-rw-r--  1 ssj  ssj     0 11月 20 22:42 unity_support_test.1
+-r--r--r--  1 root root   11 11月 20 22:42 .X0-lock
+drwxrwxrwt  2 root root 4096 11月 20 22:42 .X11-unix
+drwxrwxrwt  2 root root 4096 11月 20 22:42 .XIM-unix
