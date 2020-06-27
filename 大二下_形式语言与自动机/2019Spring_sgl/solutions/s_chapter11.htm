@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0060)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter11.htm -->
+<!-- saved from url=(0054)http://www-db.stanford.edu/~ullman/ialcsols/sol11.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 11</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter11.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2002-01-23T01:39:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:47:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>1148</o:Words>
+  <o:Characters>6544</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>54</o:Lines>
+  <o:Paragraphs>13</o:Paragraphs>
+  <o:CharactersWithSpaces>8036</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: Wingdings;
+}
+@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0cm
+}
+UL {
+	MARGIN-BOTTOM: 0cm
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 11</SPAN></H2>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<H2><A name=sol111></A><SPAN lang=EN-US>Solutions for Section 11.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 11.1.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The problem is in <B>NP</B>. We need only to 
+test whether the expression is true when all variables are true (a 
+polynomial-time, deterministic step) and then guess and check some other 
+assignment. Notice that if an expression is not true when all variables are 
+true, then it is surely not in TRUE-SAT. </SPAN></P>
+<P><SPAN lang=EN-US>The complement of TRUE-SAT consists of all inputs that are 
+not well-formed expressions, inputs that are well-formed expressions but that 
+are false when all variables are true, and well-formed expressions that are true 
+only when all variables are true. We shall show TRUE-SAT is NP-complete, so it 
+is unlikely that the complement is in <B>NP</B>. </SPAN></P>
+<P><SPAN lang=EN-US>To show TRUE-SAT is NP-complete, we reduce SAT to it. 
+Suppose we are given an expression <I>E</I> with variables <I>x1, x2,..., 
+xn</I>. Convert <I>E</I> to <I>E'</I> as follows: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>First, test if <I>E</I> is true when all variables are true. If so, 
+  we know <I>E</I> is satisfiable, and so convert it to a specific expression 
+  <I>x+y</I> that we know is in TRUE-SAT. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>Otherwise, let <I>E' = E + x1x2...xn</I>, surely a polynomial-time 
+  reduction. Surely <I>E'</I> is true when all variables are true. If <I>E</I> 
+  is in SAT, then it is satisfied by some truth assignment other all all-true, 
+  because we tested all-true and found <I>E</I> to be false. Thus, <I>E'</I> is 
+  in TRUE-SAT. Conversely, if <I>E'</I> is in TRUE-SAT, then since 
+  <I>x1x2...xn</I> is true only for the all-true assignment, <I>E</I> must be 
+  satisfiable. </SPAN></LI></OL>
+<H3><SPAN lang=EN-US>Exercise 11.1.2</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>There are three things to show. The language 
+is in <B>NP</B>, in co-<B>NP</B>, and not in <B>P</B>. </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level1 lfo6; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>To show the language is in <B>NP</B>, guess <I>z</I>, compute 
+  <I>f(z)</I> deterministically in polynomial time, and test whether <I>f(z) = 
+  x</I>. When the guess of <I>z</I> is correct, we have <I>f^{-1}(x)</I>. 
+  Compare it with <I>y</I>, and accept the pair <I>(x,y)</I> if <I>z &lt; y</I>. 
+  </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level1 lfo6; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>To show the language to be in co-<B>NP</B>, we have to show the 
+  complement --- the set of inputs that are not of the form <I>(x,y)</I>, where 
+  <I>f^{-1}(x) &lt; y</I>, is in <B>NP</B>. It is easy to check for ill-formed 
+  inputs, so the hard part is checking whether <I>f^{-1}(x) &gt;= y</I>. 
+  However, the trick from part (1) works. Guess <I>z</I>, compute <I>f(z)</I>, 
+  test if <I>f(z) = x</I>, and then test if <I>z &gt;= y</I>. If both tests are 
+  met, then we have established that <I>f^{-1}(x) &gt;= y</I>, so <I>(x,y)</I> 
+  is in the complement language. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level1 lfo6; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>Finally, we must show that the language is not in <B>P</B>. We can 
+  show that if it were in <B>P</B>, then with <I>n</I> tests for membership in 
+  the language, we could binary-search to find the exact value of 
+  <I>f^{-1}(x)</I>. If one test takes time that is polynomial in <I>n</I>, then 
+  <I>n</I> times that amount is also polynomial in <I>n</I>. Start by testing 
+  the pair <I>(x,2^{n-1})</I>, i.e., the rough midpoint in the range of 
+  <I>n</I>-bit integers. If the answer is ``yes,'' next test <I>(x,2^{n-2})</I>; 
+  if the answer is ``no,'' test <I>(x,3*2^{n-2})</I> next. In this manner, we 
+  can establish one bit of <I>f^{-1}(x)</I> at each test, and after <I>n</I> 
+  tests, we know <I>f^{-1}(x)</I> exactly. </SPAN></LI></OL>
+<P style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 style="MARGIN-LEFT: 36pt"><A name=sol113></A><SPAN lang=EN-US>Solutions for 
+Section 11.3</SPAN></H2>
+<H3 style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US>Exercise 11.3.2</SPAN></H3>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+lang=EN-US>Suppose <I>M</I> is a TM with polynomial space bound <I>p(n)</I>, and 
+<I>w</I> is an input to <I>M</I> of length <I>n</I>. We must show how to take 
+<I>M</I> and <I>w</I>, and write down, in polynomial time, a regular expression 
+<I>E</I> that is Sigma* if and only if <I>M</I> does not accept <I>w</I>. 
+</SPAN></P>
+<P style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US>Technically, this construction 
+reduces <I>L(M)</I> to the complement of the set in question, that is, to the 
+set of regular expressions that are not equivalent to Sigma*. However, an easy 
+consequence of Theorem 11.4 is that, since a deterministic, polynomial-time TM 
+can be made to halt, <B>PS</B> is closed under complementation; just change the 
+accepting states to halting, but nonaccepting states, add an accepting state, 
+and make every halting, nonaccepting state transfer to that accepting state 
+instead of halting immediately. Thus, we could assume that <I>M</I> is actually 
+a TM for the complement of the language <I>L</I> in <B>PS</B> in question. Then, 
+we are actually reducing <I>L</I> to the language of regular expressions 
+equivalent to Sigma*, as requested. </SPAN></P>
+<P style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US>To construct regular expression 
+<I>E</I>, we shall write <I>E = F + G + H</I>, where the three subexpressions 
+<I>E, F</I>, and <I>H</I> define sequences of ID's of <I>M</I> that do not 
+``start right,'' ``move right,'' and ``finish right,'' respectively. Think of an 
+accepting computation of <I>M</I> as a sequence of symbols that are the 
+concatenation of ID's of <I>M</I>, each preceeded by a special marker symbol #. 
+The alphabet Sigma for <I>E</I> will be # plus all the tape and state symbols of 
+<I>M</I>, which we can assume without loss of generality are disjoint. Each ID 
+is exactly <I>p(n)+1</I> symbols long, since it includes the state and exactly 
+<I>p(n)</I> tape symbols, even if many at the end are blank. </SPAN></P>
+<OL type=1 start=3>
+  <OL type=1>
+    <LI class=MsoNormal 
+    style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level2 lfo6; tab-stops: list 72.0pt"><I><SPAN 
+    lang=EN-US>H</SPAN></I><SPAN lang=EN-US>: Finishes wrong. <I>M</I> fails to 
+    accept if the sequence has no accepting ID. Thus, let <I>H = (Sigma - 
+    Qf)*</I>, where <I>Qf</I> is the set of accepting states of <I>M</I>. 
+</SPAN>
+    <LI class=MsoNormal 
+    style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level2 lfo6; tab-stops: list 72.0pt"><I><SPAN 
+    lang=EN-US>F</SPAN></I><SPAN lang=EN-US>: Starts wrong. Any string in which 
+    the first <I>p(n)+2</I> symbols are not #, <I>q_0</I> (the start state), 
+    <I>w</I>, and <I>p(n) - n</I> blanks, is not the beginning of an accepting 
+    computation, and so should be in <I>L(E)</I>. We can write <I>F</I> as the 
+    sum of the terms: </SPAN>
+    <UL type=square>
+      <LI class=MsoNormal 
+      style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level3 lfo6; tab-stops: list 108.0pt"><I><SPAN 
+      lang=EN-US>(Sigma-{#})Sigma*</SPAN></I><SPAN lang=EN-US>, i.e., all 
+      strings that do not begin with #. </SPAN>
+      <LI class=MsoNormal 
+      style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level3 lfo6; tab-stops: list 108.0pt"><I><SPAN 
+      lang=EN-US>Sigma(Sigma-{q_0})Sigma*</SPAN></I><SPAN lang=EN-US>, i.e., all 
+      strings that do not have <I>q_0</I> as their second symbol. </SPAN>
+      <LI class=MsoNormal 
+      style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level3 lfo6; tab-stops: list 108.0pt"><I><SPAN 
+      lang=EN-US>Sigma^{i+1}(Sigma-{a_i})Sigma*</SPAN></I><SPAN lang=EN-US>, 
+      where <I>a_i</I> is the <I>i</I>th position of <I>w</I>. Note 
+      <I>Sigma^k</I> stands for Sigma written <I>k</I> times, but this 
+      expression takes only polynomial time to write. </SPAN>
+      <LI class=MsoNormal 
+      style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level3 lfo6; tab-stops: list 108.0pt"><I><SPAN 
+      lang=EN-US>Sigma^{i}(Sigma-{B})Sigma*</SPAN></I><SPAN lang=EN-US>, for all 
+      <I>n+3 &lt;= i &lt;= p(n)+1</I>. Here, <I>B</I> represents the blank, and 
+      this expression covers all strings that fail to have a blank where the 
+      first ID must have one. Note that these terms require us to write Sigma as 
+      many as <I>p(n)+1</I> times, but that still takes only polynomial time. 
+      Also, there are polynomially many terms, so the total work is polynomial. 
+      </SPAN>
+      <LI class=MsoNormal 
+      style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level3 lfo6; tab-stops: list 108.0pt"><I><SPAN 
+      lang=EN-US>(Sigma + epsilon)^{p(n)+1}</SPAN></I><SPAN lang=EN-US>. This 
+      term covers all strings that are shorter than <I>p(n)+2</I> symbols, and 
+      therefore cannot have an initial ID, regardless of the symbols found 
+      there. As in the previous set of terms, the time taken to write this term 
+      is large, but polynomial. </SPAN></LI></UL>
+    <LI class=MsoNormal 
+    style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l1 level2 lfo6; tab-stops: list 72.0pt"><I><SPAN 
+    lang=EN-US>G</SPAN></I><SPAN lang=EN-US>: moves wrong. We need to capture 
+    all strings that have some point at which symbols separated by distance 
+    roughly <I>p(n)</I> do not reflect a move of <I>M</I>. The idea is similar 
+    to that used in Cook's theorem (Theorem 10.9). Each position of an ID is 
+    determined by the symbol at that position in the previous ID and the two 
+    neighboring positions. Thus, <I>G</I> is the sum of terms 
+    <I>(Sigma*)UVW(Sigma^{p(n)})X(Sigma*)</I>, where <I>U, V, W, X</I> are four 
+    symbols of Sigma such that if <I>UVW</I> were three consecutive symbols of 
+    an ID of <I>M</I> (<I>U</I> may be # if the ID is just beginning, and 
+    <I>W</I> may be # if the ID is ending), then <I>X</I> would <B>not</B> be 
+    the symbol in the same position as <I>V</I> in the next ID. For example, if 
+    none of <I>U, V, W</I> are a state, then <I>X</I> could be any symbol but 
+    <I>V</I>. Again, we can write this large expression in polynomial time, even 
+    though it requires us to write Sigma <I>p(n)</I> times. </SPAN></LI></OL></OL>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+lang=EN-US>If <I>M</I> accepts <I>w</I>, then there is some accepting 
+computation, and the string representing that computation fails to match any of 
+the regular expressions described above. Thus, <I>E != Sigma*</I>. However, any 
+string that is not an accepting computation of <I>M</I> on <I>w</I> will surely 
+fail meet one of the conditions ``starts wrong,'' ``moves wrong,'' or ``finished 
+wrong,'' and therefore will be in <I>L(E)</I>. Thus, if <I>M</I> does not accept 
+<I>w</I>, then <I>E = Sigma*</I>. </SPAN></P>
+<P style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 style="MARGIN-LEFT: 36pt"><A name=sol115></A><SPAN lang=EN-US>Solutions for 
+Section 11.5</SPAN></H2>
+<H3 style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US>Exercise 11.5.1(a)</SPAN></H3>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+lang=EN-US>A simple way to to observe that 9 - 11 = -2, and -2 modulo 13 is 11, 
+since 13 -2 = 11. Or, we may treat the subtraction as addition of a negative 
+number, say that -11 modulo 13 is 2, and 9 + 2 modulo 13 is 11. </SPAN></P>
+<H3 style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US>Exercise 11.5.1(c)</SPAN></H3>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+lang=EN-US>We need to compute the inverse of 8 modulo 13. Exploring the 
+possibilities, from 2 to 12, we find that 8*5 = 40, which is 1 modulo 13. Thus, 
+1/8 = 5 modulo 13, and 5/8 = 5*5 = 25 = 12 modulo 13. Thus, 5/8 = 12. 
+</SPAN></P>
+<H3 style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US>Exercise 11.5.3(a)</SPAN></H3>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+lang=EN-US>From the table of Fig. 11.9, we see that 2*2 = 4, 3*3 = 2, 4*4 = 2, 
+5*5 = 4, and 6*6 = 1. We also know that 1*1 = 1. Thus, 1, 2, and 4 are the 
+quadratic residues modulo 7. </SPAN></P>
+<P style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A></SPAN></P></DIV></BODY></HTML>

@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter6.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol6.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./s_chapter6.files/filelist.xml">
+<title>Introduction to Automata Theory, Languages, and Computation: Solutions
+for Chapter 6</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>nold</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2002-01-23T01:43:00Z</o:Created>
+  <o:LastSaved>2003-11-26T13:32:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>875</o:Words>
+  <o:Characters>4992</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>41</o:Lines>
+  <o:Paragraphs>9</o:Paragraphs>
+  <o:CharactersWithSpaces>6130</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{margin-right:0cm;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:"Times New Roman";}
+pre
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:"Courier New";}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:5524318;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1254251558 -2110325956 -653741538 -801453688 -176264980 -1820548992 -312547470 -1659890276 1789699026 893022932;}
+@list l1
+	{mso-list-id:380784935;
+	mso-list-type:hybrid;
+	mso-list-template-ids:533242364 -398195666 -1522618500 -928104948 -603263244 -955616024 1385841914 2056578550 -1232061844 -738921348;}
+@list l2
+	{mso-list-id:541132660;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1426851322 -1296133910 -114421896 -1439276000 -2005494446 -795591048 -622064610 631378430 -1138561624 100162148;}
+@list l2:level1
+	{mso-level-start-at:14;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3
+	{mso-list-id:866724488;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-962165476 613727506 -712088954 437656042 -1403494440 2083563360 -1091435084 573625486 91129406 -1958996330;}
+@list l4
+	{mso-list-id:1055423805;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1161676082 -2127905240 -1621447956 -1553588810 701293720 1638988808 1615245926 2142699452 -1933406770 -1667076382;}
+@list l5
+	{mso-list-id:1157573437;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-621612134 -363670736 1641464022 1355856096 -56220568 -257904460 -1843078794 698364226 621198122 -1072950530;}
+@list l5:level1
+	{mso-level-start-at:12;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l6
+	{mso-list-id:1339578751;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1422001588 187186886 2071774856 -694904722 812545164 -1624369128 -1587373678 -448770566 156658290 504651072;}
+@list l6:level1
+	{mso-level-start-at:6;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7
+	{mso-list-id:1403067546;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-792270296 -1353159774 -1712788156 -885623132 189198858 84981536 -67094854 -618509292 18136628 1369971900;}
+@list l8
+	{mso-list-id:1417939134;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1222170984 699680078 543481774 -733683934 -1512117802 994848718 1202912216 672844344 1240524654 135455412;}
+@list l8:level1
+	{mso-level-start-at:2;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l9
+	{mso-list-id:1529636469;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-671563152 -1210307380 -117278400 478190060 1513026648 -2083347862 1846833436 -1633774564 1826788752 550819470;}
+@list l9:level1
+	{mso-level-start-at:10;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l10
+	{mso-list-id:1713454187;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1078113608 946128620 -1087890408 293883808 191365268 1818385810 985688624 192057946 65858784 -588613840;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:1924293821;
+	mso-list-type:hybrid;
+	mso-list-template-ids:181406876 952909502 1637768616 -2018069452 -1656204952 -1804452246 -806833660 -841597678 1622727520 1898187600;}
+@list l11:level1
+	{mso-level-start-at:13;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor="#e0f7f0" lang=ZH-CN link=blue vlink=blue style='tab-interval:
+21.0pt'>
+
+<div class=Section1>
+
+<div align=center>
+
+<table border=0 cellpadding=0 style='mso-cellspacing:1.5pt;mso-padding-alt:
+ 0cm 0cm 0cm 0cm'>
+ <tr>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:24.0pt'>Introduction to Automata Theory, Languages, and
+  Computation</span><span lang=EN-US> </span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h2 align=center style='text-align:center'><a name=top></a><span lang=EN-US>Solutions
+for Chapter 6</span></h2>
+
+<p><span lang=EN-US>&nbsp;</span></p>
+
+<h2><a name=sol61></a><span lang=EN-US>Solutions for Section 6.1</span></h2>
+
+<h3><span lang=EN-US>Exercise 6.1.1(a)</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>In what follows, <i>e</i> stands for
+epsilon, the empty string, and <i>Z</i> stands for the initial symbol, <i>Z_0</i>.
+</span></p>
+
+<pre><span lang=EN-US>(q,01,Z) |- (q,1,XZ) |- (q,e,XZ) |- (p,e,Z)</span></pre><pre><span
+lang=EN-US><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>|- (p,1,Z)<span style="mso-spacerun: yes">&nbsp; </span>|- (p,e,e)</span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>&nbsp;</span></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=sol62></a><span lang=EN-US>Solutions for Section 6.2</span></h2>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.2.1(a)</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>We shall accept by empty stack. Symbol <i>X</i> will be used to
+count the 0's on the input. In state <i>q</i>, the start state, where we have
+seen no 1's, we add an <i>X</i> to the stack for each 0 seen. The first <i>X</i>
+replaces <i>Z_0</i>, the start symbol. When we see a 1, we go to state <i>p</i>,
+and then only pop the stack, one <i>X</i> for each input 1. Formally, the PDA
+is <i>({q,p},{0,1},{X,Z_0},delta,q,Z_0)</i>. The rules: </span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,0,Z_0)
+     = {(q,X)}</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,0,X)
+     = {(q,XX)}</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,1,X)
+     = {(p,epsilon)}</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(p,1,X)
+     = {(p,epsilon)}</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.2.2(a)</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Begin in start state <i>q0</i>, with start symbol <i>Z_0</i>, and
+immediately guess whether to check for: </span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list 36.0pt'><i><span lang=EN-US>i=j=0</span></i><span
+     lang=EN-US> (state <i>q1</i>). </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list 36.0pt'><i><span lang=EN-US>i=j&gt;0</span></i><span
+     lang=EN-US> (state <i>q2</i>). </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list 36.0pt'><i><span lang=EN-US>j=k</span></i><span
+     lang=EN-US> (state <i>q3</i>). </span></li>
+</ol>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>We shall accept by final state; as seen below, the accepting states
+are <i>q1</i> and <i>q3</i>. The rules, and their explanations (again, <i>e</i>
+stands for epsilon): </span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q0,e,Z_0)
+     = {(q1,Z_0), (q2,Z_0), (q3,Z_0), (q4,Z_0)}</span></i><span lang=EN-US>,
+     the initial guess. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q1,c,Z_0)
+     = {(q1,Z_0)}</span></i><span lang=EN-US>. In case (1), we assume there are
+     no <i>a</i>'s or <i>b</i>'s, and we consume all <i>c</i>'s. State <i>q1</i>
+     will be one of our accepting states. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q2,a,Z_0)
+     = {(q2,XZ_0)}</span></i><span lang=EN-US>, and <i>delta(q2,a,X) =
+     {(q2,XX)}</i>. These rules begin case (2). We use <i>X</i> to count the
+     number of <i>a</i>'s read from the input, staying in state <i>q2</i>. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q2,b,X)
+     = delta(q4,b,X) = {(q4,e)}</span></i><span lang=EN-US>. When <i>b</i>'s
+     are seen, we go to state <i>q4</i> and pop <i>X</i>'s against the <i>b</i>'s.
+     </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q4,e,Z_0)
+     = {(q1,Z_0)}</span></i><span lang=EN-US>. If we reach the bottom-of-stack
+     marker in state <i>q4</i>, we have seen an equal number of <i>a</i>'s and <i>b</i>'s.
+     We go spontaneously to state <i>q1</i>, which will accept and consume all <i>c</i>'s,
+     while continuing to accept. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q3,a,Z_0)
+     = {(q3,Z_0)}</span></i><span lang=EN-US>. This rule begins case (3). We
+     consume all <i>a</i>'s from the input. Since <i>j=k=0</i> is possible,
+     state <i>q3</i> must be an accepting state. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q3,b,Z_0)
+     = {(q5,XZ_0)}</span></i><span lang=EN-US>. When <i>b</i>'s arrive, we
+     start counting them and go to state <i>q5</i>, which is not an accepting
+     state. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q5,b,X)
+     = {(q5,XX)}</span></i><span lang=EN-US>. We continue counting <i>b</i>'s. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q5,c,X)
+     = delta(q6,c,X) = {(q6,e)}</span></i><span lang=EN-US>. When <i>c</i>'s
+     arrive, we go to state <i>q6</i> and match the <i>c</i>'s against the <i>b</i>'s.
+     </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l10 level1 lfo3;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q6,e,Z_0)
+     = {(q3,e)}</span></i><span lang=EN-US>. When the bottom-of-stack marker is
+     exposed in state <i>q6</i>, we have seen an equal number of <i>b</i>'s and
+     <i>c</i>'s. We spontaneously accept in state <i>q3</i>, but we pop the
+     stack so we cannot accept after reading more <i>a</i>'s. </span></li>
+</ul>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.2.4</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Introduce a new state <i>q</i>, which becomes the initial state. On
+input epsilon and the start symbol of <i>P</i>, the new PDA has a choice of popping
+the stack (thus accepting epsilon), or going to the start state of <i>P</i>. </span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.2.5(a)</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>We again use <i>e</i> to represent epsilon. </span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><i><span
+lang=EN-US>(q0,bab,Z_0) |- (q2,ab,BZ_0) |- (q3,b,Z_0) |- (q1,b,AZ_0) |-
+(q1,e,Z_0) |- (q0,e,Z_0) |- (f,e,e)</span></i><span lang=EN-US> </span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.2.8</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Suppose that there is a rule that <i>(p,X1X2...Xk)</i> is a choice
+in <i>delta(q,a,Z)</i>. We create <i>k-2</i> new states <i>r1,r2,...,r{k-2}</i>
+that simulate this rule but do so by adding one symbol at a time to the stack.
+That is, replace <i>(p,X1X2...Xk)</i> in the rule by <i>(r{k-2},X{k-1}Xk</i>.
+Then create new rules <i>delta(r{k-2},e,X{k-1}) = {(r{k-1},X{k-2}X{k-1})}</i>,
+and so on, down to <i>delta(r2,e,X3) = {(r1,X2X3)}</i> and <i>delta(r1,X2) =
+{(p,X1X2)}</i>. </span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>&nbsp;</span></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=sol63></a><span lang=EN-US>Solutions for Section 6.3</span></h2>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.3.1</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><i><span
+lang=EN-US>({q},{0,1),{0,1,A,S},delta,q,S)</span></i><span lang=EN-US> where <i>delta</i>
+is defined by: </span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo4;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,e,S)
+     = {(q,0S1), (q,A)}</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo4;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,e,A)
+     = {(q,1A0), (q,S), (q,e)}</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo4;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,0,0)
+     = {(q,e)}</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo4;tab-stops:list 36.0pt'><i><span lang=EN-US>delta(q,1,1)
+     = {(q,e)}</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>In the above, <i>e</i> represents the empty string. </span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.3.3</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>In the following, <i>S</i> is the start symbol, <i>e</i> stands for
+the empty string, and <i>Z</i> is used in place of <i>Z_0</i>. </span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l7 level1 lfo5;tab-stops:list 36.0pt'><i><span lang=EN-US>S -&gt;
+     [qZq] | [qZp]</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='margin-left:36.0pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>The following four productions come from rule (1). </span></p>
+
+<ol start=2 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l8 level1 lfo6;tab-stops:list 36.0pt'><i><span lang=EN-US>[qZq]
+     -&gt; 1[qXq][qZq]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l8 level1 lfo6;tab-stops:list 36.0pt'><i><span lang=EN-US>[qZq]
+     -&gt; 1[qXp][pZq]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l8 level1 lfo6;tab-stops:list 36.0pt'><i><span lang=EN-US>[qZp]
+     -&gt; 1[qXq][qZp]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l8 level1 lfo6;tab-stops:list 36.0pt'><i><span lang=EN-US>[qZp]
+     -&gt; 1[qXp][pZp]</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='margin-left:36.0pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>The following four productions come from rule (2). </span></p>
+
+<ol start=6 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo7;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXq]
+     -&gt; 1[qXq][qXq]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo7;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXq]
+     -&gt; 1[qXp][pXq]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo7;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXp]
+     -&gt; 1[qXq][qXp]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo7;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXp]
+     -&gt; 1[qXp][pXp]</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='margin-left:36.0pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>The following two productions come from rule (3). </span></p>
+
+<ol start=10 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l9 level1 lfo8;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXq]
+     -&gt; 0[pXq]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l9 level1 lfo8;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXp]
+     -&gt; 0[pXp]</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='margin-left:36.0pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>The following production comes from rule (4). </span></p>
+
+<ol start=12 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l5 level1 lfo9;tab-stops:list 36.0pt'><i><span lang=EN-US>[qXq]
+     -&gt; e</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='margin-left:36.0pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>The following production comes from rule (5). </span></p>
+
+<ol start=13 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l11 level1 lfo10;tab-stops:list 36.0pt'><i><span lang=EN-US>[pXp]
+     -&gt; 1</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<p style='margin-left:36.0pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>The following two productions come from rule (6). </span></p>
+
+<ol start=14 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo11;tab-stops:list 36.0pt'><i><span lang=EN-US>[pZq]
+     -&gt; 0[qZq]</span></i><span lang=EN-US> </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo11;tab-stops:list 36.0pt'><i><span lang=EN-US>[pZp]
+     -&gt; 0[qZp]</span></i><span lang=EN-US> </span></li>
+</ol>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.3.6</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Convert <i>P</i> to a CFG, and then convert the CFG to a PDA, using the
+two constructions given in Section 6.3. The result is a one-state PDA
+equivalent to <i>P</i>. </span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>&nbsp;</span></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=sol64></a><span lang=EN-US>Solutions for Section 6.4</span></h2>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.4.1(b)</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Not a DPDA. For example, rules (3) and (4) give a choice, when in
+state <i>q</i>, with 1 as the next input symbol, and with <i>X</i> on top of
+the stack, of either using the 1 (making no other change) or making a move on
+epsilon input that pops the stack and going to state <i>p</i>. </span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.4.3(a)</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Suppose a DPDA <i>P</i> accepts both <i>w</i> and <i>wx</i> by empty
+stack, where <i>x</i> is not epsilon (i.e., <i>N(P)</i> does not have the
+prefix property). Then <i>(q_0,wx,Z_0) |-* (q,x,epsilon)</i> for some state <i>q</i>,
+where <i>q_0</i> and <i>Z_0</i> are the start state and symbol of <i>P</i>. It
+is not possible that <i>(q,x,epsilon) |-* (p,epsilon,epsilon)</i> for some
+state <i>p</i>, because we know <i>x</i> is not epsilon, and a PDA cannot have
+a move with an empty stack. This observation contradicts the assumption that <i>wx</i>
+is in <i>N(P)</i>. </span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Exercise 6.4.3(c)</span></h3>
+
+<p class=MsoNormal style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>Modify <i>P'</i> in the following ways to create DPDA <i>P</i>: </span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo12;tab-stops:list 36.0pt'><span lang=EN-US>Add a new
+     start state and a new start symbol. <i>P</i>, with this state and symbol,
+     pushes the start symbol of <i>P'</i> on top of the stack and goes to the
+     start state of <i>P'</i>. The purpose of the new start symbol is to make
+     sure <i>P</i> doesn't accidentally accept by empty stack. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo12;tab-stops:list 36.0pt'><span lang=EN-US>Add a new
+     ``popping state'' to <i>P</i>. In this state, <i>P</i> pops every symbol
+     it sees on the stack, using epsilon input. </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo12;tab-stops:list 36.0pt'><span lang=EN-US>If <i>P'</i>
+     enters an accepting state, <i>P</i> enters the popping state instead. </span></li>
+</ol>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US>As long as <i>L(P')</i> has the prefix property, then any string
+that <i>P'</i> accepts by final state, <i>P</i> will accept by empty stack. </span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US><a href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return
+to Home</a></span></p>
+
+</div>
+
+</body>
+
+</html>

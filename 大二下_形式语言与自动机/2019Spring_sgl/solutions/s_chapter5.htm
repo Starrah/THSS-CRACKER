@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter5.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol5.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 5</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter5.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>4</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2002-01-23T01:43:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:26:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>538</o:Words>
+  <o:Characters>3070</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>25</o:Lines>
+  <o:Paragraphs>6</o:Paragraphs>
+  <o:CharactersWithSpaces>3770</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+PRE {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Courier New"; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0cm
+}
+UL {
+	MARGIN-BOTTOM: 0cm
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 5</SPAN></H2>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<P><SPAN lang=EN-US>Revised 11/11/01. </SPAN></P>
+<H2><A name=sol51></A><SPAN lang=EN-US>Solutions for Section 5.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 5.1.1(a)</SPAN></H3><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; 0S1 | 01</SPAN></PRE>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.1.1(b)</SPAN></H3><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; AB | CD</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A -&gt; aA | epsilon</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B -&gt; bBc | E | cD</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>C -&gt; aCb | E | aA</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>D -&gt; cD | epsilon</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>E -&gt; bE | b</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>To understand how this grammar works, observe the following: 
+</SPAN></P>
+<UL type=disc>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><I><SPAN 
+  lang=EN-US>A</SPAN></I><SPAN lang=EN-US> generates zero or more <I>a</I>'s. 
+  </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><I><SPAN 
+  lang=EN-US>D</SPAN></I><SPAN lang=EN-US> generates zero or more <I>c</I>'s. 
+  </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><I><SPAN 
+  lang=EN-US>E</SPAN></I><SPAN lang=EN-US> generates one or more <I>b</I>'s. 
+  </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><I><SPAN 
+  lang=EN-US>B</SPAN></I><SPAN lang=EN-US> first generates an equal number of 
+  <I>b</I>'s and <I>c</I>'s, then produces either one or more <I>b</I>'s (via 
+  <I>E</I>) or one or more <I>c</I>'s (via <I>cD</I>). That is, <I>B</I> 
+  generates strings in <I>b*c*</I> with an unequal number of <I>b</I>'s and 
+  <I>c</I>'s. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><SPAN 
+  lang=EN-US>Similarly, <I>C</I> generates unequal numbers of <I>a</I>'s then 
+  <I>b</I>'s. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><SPAN 
+  lang=EN-US>Thus, <I>AB</I> generates strings in <I>a*b*c*</I> with an unequal 
+  numbers of <I>b</I>'s and <I>c</I>'s, while <I>CD</I> generates strings in 
+  <I>a*b*c*</I> with an unequal number of <I>a</I>'s and <I>b</I>'s. 
+</SPAN></LI></UL>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.1.2(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Leftmost: S =&gt; A1B =&gt; 0A1B =&gt; 00A1B =&gt; 001B =&gt; 0010B 
+=&gt; 00101B =&gt; 00101 </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Rightmost: S =&gt; A1B =&gt; A10B =&gt; A101B =&gt; A101 =&gt; 0A101 
+=&gt; 00A101 =&gt; 00101 </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.1.5</SPAN></H3><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; S+S | SS | S* | (S) | 0 | 1 | phi | e</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The idea is that these productions for <I>S</I> allow any expression 
+to be, respectively, the sum (union) of two expressions, the concatenation of 
+two expressions, the star of an expression, a parenthesized expression, or one 
+of the four basis cases of expressions: 0, 1, phi, and epsilon. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol52></A><SPAN lang=EN-US>Solutions for Section 5.2</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.2.1(a)</SPAN></H3><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>/ | \</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>1<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>B</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>/ |<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>/ |</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>0<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>A<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>0<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>B</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>/ |<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>/ |</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>0<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>A<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>1<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>B</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>|<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>|</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>e<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>e</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>In the above tree, <I>e</I> stands for epsilon. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol53></A><SPAN lang=EN-US>Solutions for Section 5.3</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.3.2</SPAN></H3><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B -&gt; BB | (B) | [B] | epsilon</SPAN></PRE>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.3.4(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Change production (5) to: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>ListItem -&gt; &lt;LI&gt; Doc &lt;/LI&gt;</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol54></A><SPAN lang=EN-US>Solutions for Section 5.4</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.4.1</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Here are the parse trees: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN style="mso-spacerun: yes">&nbsp;</SPAN>S<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>/ |<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>/ / | \</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>S<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a S<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>b<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>S</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>/ | \ \<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>| \<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>|</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>S<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>b S<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>S<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>e</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>|<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>|<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>|</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>e<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>e<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>e</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The two leftmost derivations are: S =&gt; aS =&gt; aaSbS =&gt; aabS 
+=&gt; aab and S =&gt; aSbS =&gt; aaSbS =&gt; aabS =&gt; aab. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The two rightmost derivations are: S =&gt; aS =&gt; aaSbS =&gt; aaSb 
+=&gt; aab and S =&gt; aSbS =&gt; aSb =&gt; aaSb =&gt; aab. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.4.3</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The idea is to introduce another nonterminal <I>T</I> that cannot 
+generate an unbalanced <I>a</I>. That strategy corresponds to the usual rule in 
+programming languages that an ``else'' is associated with the closest previous, 
+unmatched ``then.'' Here, we force a <I>b</I> to match the previous unmatched 
+<I>a</I>. The grammar: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; aS | aTbS | epsilon</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>T -&gt; aTbT | epsilon</SPAN></PRE>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 5.4.6</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Alas, it is not. We need to have three nonterminals, corresponding to 
+the three possible ``strengths'' of expressions: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>A <I>factor</I> cannot be broken by any operator. These are the 
+  basis expressions, parenthesized expressions, and these expressions followed 
+  by one or more *'s. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>A <I>term</I> can be broken only by a *. For example, consider 01, 
+  where the 0 and 1 are concatenated, but if we follow it by a *, it becomes 
+  0(1*), and the concatenation has been ``broken'' by the *. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>An <I>expression</I> can be broken by concatenation or *, but not 
+  by +. An example is the expression 0+1. Note that if we concatenate (say) 1 or 
+  follow by a *, we parse the expression 0+(11) or 0+(1*), and in either case 
+  the union has been broken. </SPAN></LI></OL>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The grammar: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>E -&gt; E+T | T</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>T -&gt; TF | F</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>F -&gt; F* | (E) | 0 | 1 | phi | e</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A></SPAN></P></DIV></BODY></HTML>

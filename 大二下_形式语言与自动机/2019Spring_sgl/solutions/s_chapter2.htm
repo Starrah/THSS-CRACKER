@@ -1,0 +1,1373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter2.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol2.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 2</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter2.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>6</o:Revision>
+  <o:TotalTime>4</o:TotalTime>
+  <o:Created>2002-01-23T01:40:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:46:00Z</o:LastSaved>
+  <o:Pages>5</o:Pages>
+  <o:Words>1262</o:Words>
+  <o:Characters>7199</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>59</o:Lines>
+  <o:Paragraphs>14</o:Paragraphs>
+  <o:CharactersWithSpaces>8840</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+DIV.Section1 {
+	page: Section1
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 2</SPAN></H2>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<P><SPAN lang=EN-US>Revised 9/6/01. <A name=sol22></A></SPAN></P>
+<H2><SPAN lang=EN-US>Solutions for Section 2.2</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 2.2.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>States correspond to the eight combinations 
+of switch positions, and also must indicate whether the previous roll came out 
+at <I>D</I>, i.e., whether the previous input was accepted. Let 0 represent a 
+position to the left (as in the diagram) and 1 a position to the right. Each 
+state can be represented by a sequence of three 0's or 1's, representing the 
+directions of the three switches, in order from left to right. We follow these 
+three bits by either <I>a</I> indicating it is an accepting state or <I>r</I>, 
+indicating rejection. Of the 16 possible states, it turns out that only 13 are 
+accessible from the initial state, 000r. Here is the transition table: 
+</SPAN></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>A <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>B<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;000r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>100r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>011r</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*000a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>100r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>011r</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*001a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>101r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>000a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>010r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>110r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>001a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*010a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>110r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>001a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>011r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>111r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>010a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>100r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>010r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>111r</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*100a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>010r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>111r</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>101r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>011r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>100a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*101a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>011r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>100a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>110r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>000a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>101a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*110a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>000a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>101a</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>111r </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>001a </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN 
+lang=EN-US>110a</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H3><SPAN lang=EN-US>Exercise 2.2.2</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>In what follows, we use <I>dhat</I> for 
+``delta-hat.'' The statement to be proved is <I>dhat(q,xy) = 
+dhat(dhat(q,x),y)</I>, and we proceed by induction on the length of <I>y</I>. 
+</SPAN></P>
+<P><SPAN lang=EN-US>Basis: If <I>y = epsilon</I>, then the statement is 
+<I>dhat(q,x) = dhat(dhat(q,x),epsilon)</I>. This statement follows from the 
+basis in the definition of <I>dhat</I>. Note that in applying this definition, 
+we must treat <I>dhat(q,x)</I> as if it were just a state, say <I>p</I>. Then, 
+the statement to be proved is <I>p = dhat(p,epsilon)</I>, which is easy to 
+recognize as the basis in the definition of <I>dhat</I>. </SPAN></P>
+<P><SPAN lang=EN-US>Induction: Assume the statement for strings shorter than 
+<I>y</I>, and break <I>y = za</I>, where <I>a</I> is the last symbol of 
+<I>y</I>. The steps converting <I>dhat(dhat(q,x),y)</I> to <I>dhat(q,xy)</I> are 
+summarized in the following table: </SPAN></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>Expression <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>Reason<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN lang=EN-US>dhat(dhat(q,x),y)</SPAN></I><SPAN 
+      lang=EN-US> </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>Start</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN lang=EN-US>dhat(dhat(q,x),za)</SPAN></I><SPAN 
+      lang=EN-US> </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN lang=EN-US>y=za</SPAN></I><SPAN lang=EN-US> by 
+      assumption</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN 
+      lang=EN-US>delta(dhat(dhat(q,x),z),a)</SPAN></I><SPAN lang=EN-US> 
+      </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>Definition of <I>dhat</I>, treating 
+      <I>dhat(q,x)</I> as a state</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN lang=EN-US>delta(dhat(q,xz),a)</SPAN></I><SPAN 
+      lang=EN-US> </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>Inductive hypothesis</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN lang=EN-US>dhat(q,xza)</SPAN></I><SPAN 
+      lang=EN-US> </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>Definition of 
+  <I>dhat</I></SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN lang=EN-US>dhat(q,xy)</SPAN></I><SPAN 
+      lang=EN-US> </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><I><SPAN 
+lang=EN-US>y=za</SPAN></I></P></TD></TR></TBODY></TABLE></DIV>
+<H3><SPAN lang=EN-US>Exercise 2.2.4(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The intuitive meanings of states <I>A, 
+B</I>, and <I>C</I> are that the string seen so far ends in 0, 1, or at least 2 
+zeros. </SPAN></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H3><SPAN lang=EN-US>Exercise 2.2.6(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The trick is to realize that reading another 
+bit either multiplies the number seen so far by 2 (if it is a 0), or multiplies 
+by 2 and then adds 1 (if it is a 1). We don't need to remember the entire number 
+seen --- just its remainder when divided by 5. That is, if we have any number of 
+the form <I>5a+b</I>, where <I>b</I> is the remainder, between 0 and 4, then 
+<I>2(5a+b) = 10a+2b</I>. Since 10<I>a</I> is surely divisible by 5, the 
+remainder of <I>10a+2b</I> is the same as the remainder of 2b when divided by 5. 
+Since <I>b</I>, is 0, 1, 2, 3, or 4, we can tabulate the answers easily. The 
+same idea holds if we want to consider what happens to <I>5a+b</I> if we 
+multiply by 2 and add 1. </SPAN></P>
+<P><SPAN lang=EN-US>The table below shows this automaton. State <I>qi</I> means 
+that the input seen so far has remainder <I>i</I> when divided by 5. </SPAN></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;*q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q3</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q4 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q0</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q2</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q4 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN 
+lang=EN-US>q4</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P><SPAN lang=EN-US>There is a small matter, however, that this automaton 
+accepts strings with leading 0's. Since the problem calls for accepting only 
+those strings that begin with 1, we need an additional state <I>s</I>, the start 
+state, and an additional ``dead state'' <I>d</I>. If, in state <I>s</I>, we see 
+a 1 first, we act like <I>q0</I>; i.e., we go to state <I>q1</I>. However, if 
+the first input is 0, we should never accept, so we go to state <I>d</I>, which 
+we never leave. The complete automaton is: </SPAN></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;s </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>d </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q3</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q4 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q0</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q2</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q4 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q4</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>d </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>d </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>d</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H3><SPAN lang=EN-US>Exercise 2.2.9</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Part (a) is an easy induction on the length 
+of <I>w</I>, starting at length 1. </SPAN></P>
+<P><SPAN lang=EN-US>Basis: <I>|w|</I> = 1. Then <I>dhat(q_0,w) = 
+dhat(q_f,w)</I>, because <I>w</I> is a single symbol, and <I>dhat</I> agrees 
+with <I>delta</I> on single symbols. </SPAN></P>
+<P><SPAN lang=EN-US>Induction: Let <I>w = za</I>, so the inductive hypothesis 
+applies to <I>z</I>. Then <I>dhat(q_0,w) = dhat(q_0,za) = delta(dhat(q_0,z),a) = 
+delta(dhat(q_f,z),a)</I> [by the inductive hypothesis] = <I>dhat(q_f,za) = 
+dhat(q_f,w)</I>. </SPAN></P>
+<P><SPAN lang=EN-US>For part (b), we know that <I>dhat(q_0,x) = q_f</I>. Since 
+<I>x</I.>epsilon, we know by part (a) that dhat(q_f,x) = q_f. It is then a 
+simple induction on k to show that dhat(q_0,x^k) = q_f. 
+<o:p></o:p></I></SPAN></P>
+<P><I><SPAN lang=EN-US>Basis: For k=1 the statement is given. 
+<o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>Induction: Assume the statement for k-1; i.e., 
+dhat(q_0,x^{k-1}) = q_f. Using Exercise 2.2.2, dhat(q_0,x^k) = 
+dhat(dhat(q_0,x^{k-1}),x) = dhat(q_f,x) [by the inductive hypothesis] = q_f [by 
+(a)]. <o:p></o:p></SPAN></I></P>
+<H3><I><SPAN lang=EN-US>Exercise 2.2.10<o:p></o:p></SPAN></I></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>The automaton tells whether the number of 
+1's seen is even (state A) or odd (state B), accepting in the latter case. It is 
+an easy induction on |w| to show that dh(A,w) = A if and only if w has an even 
+number of 1's. <o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>Basis: |w| = 0. Then w, the empty string surely has an 
+even number of 1's, namely zero 1's, and dhat(A,w) = A. 
+<o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>Induction: Assume the statement for strings shorter than 
+w. Then w = za, where a is either 0 or 1. <o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>Case 1: a = 0. If w has an even number of 1's, so does z. 
+By the inductive hypothesis, dhat(A,z) = A. The transitions of the DFA tell us 
+dhat(A,w) = A. If w has an odd number of 1's, then so does z. By the inductive 
+hypothesis, dhat(A,z) = B, and the transitions of the DFA tell us dhat(A,w) = B. 
+Thus, in this case, dhat(A,w) = A if and only if w has an even number of 1's. 
+<o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>Case 2: a = 1. If w has an even number of 1's, then z has 
+an odd number of 1's. By the inductive hypothesis, dhat(A,z) = B. The 
+transitions of the DFA tell us dhat(A,w) = A. If w has an odd number of 1's, 
+then z has an even number of 1's. By the inductive hypothesis, dhat(A,z) = A, 
+and the transitions of the DFA tell us dhat(A,w) = B. Thus, in this case as 
+well, dhat(A,w) = A if and only if w has an even number of 1's. 
+<o:p></o:p></SPAN></I></P>
+<P><I><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></I></P>
+<H2><A name=sol23></A><I><SPAN lang=EN-US>Solutions for Section 
+2.3<o:p></o:p></SPAN></I></H2>
+<H3><I><SPAN lang=EN-US>Exercise 2.3.1<o:p></o:p></SPAN></I></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>Here are the sets of NFA states 
+represented by each of the DFA states A through H: A = {p}; B = {p,q}; C = 
+{p,r}; D = {p,q,r}; E = {p,q,s}; F = {p,q,r,s}; G = {p,r,s}; H = {p,s}. 
+<o:p></o:p></SPAN></I></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>E </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>F </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*E </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>F </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>G</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*F </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>F </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>G</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*G </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>E </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>H</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*H </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>E </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>H</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H3><I><SPAN lang=EN-US>Exercise 2.3.4(a)<o:p></o:p></SPAN></I></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>The idea is to use a state qi, for i = 
+0,1,...,9 to represent the idea that we have seen an input i and guessed that 
+this is the repeated digit at the end. We also have state qs, the initial state, 
+and qf, the final state. We stay in state qs all the time; it represents no 
+guess having been made. The transition table: <o:p></o:p></SPAN></I></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>... <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>9<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;qs </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{qs,q0} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{qs,q1} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{qs,q9}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{qf} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q0} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q0}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q1} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{qf} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q1}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>...</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q9 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q9} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q9} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{qf}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*qf </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>... </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN 
+lang=EN-US>{}</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P><I><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></I></P>
+<H2><A name=sol24></A><I><SPAN lang=EN-US>Solutions for Section 
+2.4<o:p></o:p></SPAN></I></H2>
+<H3><I><SPAN lang=EN-US>Exercise 2.4.1(a)<o:p></o:p></SPAN></I></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>We'll use q0 as the start state. q1, q2, 
+and q3 will recognize abc; q4, q5, and q6 will recognize abd, and q7 through q10 
+will recognize aacd. The transition table is: <o:p></o:p></SPAN></I></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>a <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>b <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>c <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>d<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q0,q1,q4,q7} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q0} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q0} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q0}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q2} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q3} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q4 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q5} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q5 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q6}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*q6 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q7 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q8} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q8 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q9} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>q9 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{q10}</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*q10 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>{} </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN 
+lang=EN-US>{}</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H3><I><SPAN lang=EN-US>Exercise 2.4.2(a)<o:p></o:p></SPAN></I></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>The subset construction gives us the 
+following states, each representing the subset of the NFA states indicated: A = 
+{q0}; B = {q0,q1,q4,q7}; C = {q0,q1,q4,q7,q8}; D = {q0,q2,q5}; E = {q0,q9}; F = 
+{q0,q3}; G = {q0,q6}; H = {q0,q10}. Note that F, G and H can be combined into 
+one accepting state, or we can use these three state to signal the recognition 
+of abc, abd, and aacd, respectively. <o:p></o:p></SPAN></I></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>a <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>b <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>c <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>d<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>E </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>F </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>G</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>E </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>H</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*F </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*G </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*H </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P><I><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></I></P>
+<H2><A name=sol25></A><I><SPAN lang=EN-US>Solutions for Section 
+2.5<o:p></o:p></SPAN></I></H2>
+<H3><I><SPAN lang=EN-US>Exercise 2.5.1<o:p></o:p></SPAN></I></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>For part (a): the closure of p is just 
+{p}; for q it is {p,q}, and for r it is {p,q,r}. <o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>For (b), begin by noticing that a always leaves the state 
+unchanged. Thus, we can think of the effect of strings of b's and c's only. To 
+begin, notice that the only ways to get from p to r for the first time, using 
+only b, c, and epsilon-transitions are bb, bc, and c. After getting to r, we can 
+return to r reading either b or c. Thus, every string of length 3 or less, 
+consisting of b's and c's only, is accepted, with the exception of the string b. 
+However, we have to allow a's as well. When we try to insert a's in these 
+strings, yet keeping the length to 3 or less, we find that every string of a's 
+b's, and c's with at most one a is accepted. Also, the strings consisting of one 
+c and up to 2 a's are accepted; other strings are rejected. 
+<o:p></o:p></SPAN></I></P>
+<P><I><SPAN lang=EN-US>There are three DFA states accessible from the initial 
+state, which is the epsilon closure of p, or {p}. Let A = {p}, B = {p,q}, and C 
+= {p,q,r}. Then the transition table is: <o:p></o:p></SPAN></I></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>a <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>b <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>c<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>A </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>B </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>C</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P><SPAN lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A><I><o:p></o:p></I></SPAN></P></DIV></BODY></HTML>

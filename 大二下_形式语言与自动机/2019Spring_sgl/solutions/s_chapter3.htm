@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter3.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol3.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 3</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter3.files/filelist.xml" rel=File-List><LINK 
+href="./s_chapter3.files/editdata.mso" rel=Edit-Time-Data><!--[if !mso]>
+<STYLE>v\:* {
+	BEHAVIOR: url(#default#VML)
+}
+o\:* {
+	BEHAVIOR: url(#default#VML)
+}
+w\:* {
+	BEHAVIOR: url(#default#VML)
+}
+.shape {
+	BEHAVIOR: url(#default#VML)
+}
+</STYLE>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>4</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2002-01-23T01:41:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:28:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>742</o:Words>
+  <o:Characters>4233</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>35</o:Lines>
+  <o:Paragraphs>8</o:Paragraphs>
+  <o:CharactersWithSpaces>5198</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+DIV.Section1 {
+	page: Section1
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 3</SPAN></H2>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<H2><A name=sol31></A><SPAN lang=EN-US>Solutions for Section 3.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 3.1.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The simplest approach is to consider those 
+strings in which the first <I>a</I> precedes the first <I>b</I> separately from 
+those where the opposite occurs. The expression: <B>c*a(a+c)*b(a+b+c)* + 
+c*b(b+c)*a(a+b+c)*</B> </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.1.2(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The trick is to start by writing an 
+expression for the set of strings that have no two adjacent 1's. Here is one 
+such expression: <B>(10+0)*(</B>epsilon<B>+1)</B> </SPAN></P>
+<P><SPAN lang=EN-US>To see why this expression works, the first part consists of 
+all strings in which every 1 is followed by a 0. To that, we have only to add 
+the possibility that there is a 1 at the end, which will not be followed by a 0. 
+That is the job os (epsilon+1). </SPAN></P>
+<P><SPAN lang=EN-US>Now, we can rethink the question as asking for strings that 
+have a prefix with no adjacent 1's followed by a suffix with no adjacent 0's. 
+The former is the expression we developed, and the latter is the same 
+expression, with 0 and 1 interchanged. Thus, a solution to this problem is 
+<B>(10+0)*(</B>epsilon<B>+1)(01+1)*(</B>epsilon<B>+0)</B> </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.1.4(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>This expression is another way to write ``no 
+adjacent 1's.'' You should compare it with the different-looking expression we 
+developed in the solution to Exercise 3.1.2(a). The argument for why it works is 
+similar. <B>(00*1)*</B> says every 1 is preceded by at least one 0. <B>0*</B> at 
+the end allows 0's after the final 1, and (epsilon+<B>1</B>) at the beginning 
+allows an initial 1, which must be either the only symbol of the string or 
+followed by a 0. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.1.5</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The language of the regular expression 
+epsilon. Note that epsilon* denotes the language of strings consisting of any 
+number of empty strings, concatenated, but that is just the set containing the 
+empty string. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol32></A><SPAN lang=EN-US>Solutions for Section 3.2</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 3.2.1</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Part (a): The following are all R^(0) 
+expressions; we list only the subscripts. R11 = epsilon+<B>1</B>; R12 = 
+<B>0</B>; R13 = phi; R21 = <B>1</B>; R22 = epsilon; R23 = <B>0</B>; R31 = phi; 
+R32 = <B>1</B>; R33 = epsilon+<B>0</B>. </SPAN></P>
+<P><SPAN lang=EN-US>Part (b): Here all expression names are R^(1); we again list 
+only the subscripts. R11 = <B>1</B>*; R12 = <B>1*0</B>; R13 = phi; R21 = 
+<B>11*</B>; R22 = epsilon+<B>11*0</B>; R23 = <B>0</B>; R31 = phi; R32 = 
+<B>1</B>; R33 = epsilon+<B>0</B>. </SPAN></P>
+<P><SPAN lang=EN-US>Part (e): Here is the transition diagram: </SPAN></P>
+<P><SPAN lang=EN-US><IMG id=_x0000_i1026 height=89 
+src="s_chapter3_files/321.gif" width=236 border=0></SPAN></P>
+<P><SPAN lang=EN-US>If we eliminate state <I>q2</I> we get: </SPAN></P>
+<P><SPAN lang=EN-US><IMG id=_x0000_i1027 height=94 
+src="s_chapter3_files/321a.gif" width=197 border=0></SPAN></P>
+<P><SPAN lang=EN-US>Applying the formula in the text, the expression for the 
+ways to get from <I>q1</I> to <I>q3</I> is: <B>[1 + 01 + 
+00(0+10)*11]*00(0+10)*</B> </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.2.4(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US><IMG id=_x0000_i1028 height=71 
+src="s_chapter3_files/324.gif" width=246 border=0></SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.2.6(a)</SPAN></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>L</SPAN></I><SPAN lang=EN-US>* 
+</SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.2.6(b)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The set of suffixes of strings in <I>L</I>. 
+</SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.2.8</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Let <I>R^(k)_ijm</I> be the number of paths 
+from state <I>i</I> to state <I>j</I> of length <I>m</I> that go through no 
+state numbered higher than <I>k</I>. We can compute these numbers, for all 
+states <I>i</I> and <I>j</I>, and for <I>m</I> no greater than <I>n</I>, by 
+induction on <I>k</I>. </SPAN></P>
+<P><SPAN lang=EN-US>Basis: <I>R^(0)_ij1</I> is the number of arcs (or more 
+precisely, arc labels) from state <I>i</I> to state <I>j</I>. <I>R^(0)_ii0</I> = 
+1, and all other <I>R^(0)_ijm</I>'s are 0. </SPAN></P>
+<P><SPAN lang=EN-US>Induction: <I>R^(k)_ijm</I> is the sum of <I>R^(k-1)_ijm</I> 
+and the sum over all lists <I>(p1,p2,...,pr)</I> of positive integers that sum 
+to <I>m</I>, of <I>R^(k-1)_ikp1 * R^(k-1)_kkp2 *R^(k-1)_kkp3 *...* 
+R^(k-1)_kkp(r-1) * R^(k-1)_kjpr</I>. Note <I>r</I> must be at least 2. 
+</SPAN></P>
+<P><SPAN lang=EN-US>The answer is the sum of <I>R^(k)_1jn</I>, where <I>k</I> is 
+the number of states, 1 is the start state, and <I>j</I> is any accepting state. 
+</SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol34></A><SPAN lang=EN-US>Solutions for Section 3.4</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 3.4.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Replace <I>R</I> by <I>{a}</I> and <I>S</I> 
+by <I>{b}</I>. Then the left and right sides become <I>{a} union {b} = {b} union 
+{a}</I>. That is, <I>{a,b} = {b,a}</I>. Since order is irrelevant in sets, both 
+languages are the same: the language consisting of the strings <I>a</I> and 
+<I>b</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.4.1(f)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Replace <I>R</I> by <I>{a}</I>. The right 
+side becomes <I>{a}*</I>, that is, all strings of <I>a</I>'s, including the 
+empty string. The left side is <I>({a}*)*</I>, that is, all strings consisting 
+of the concatenation of strings of <I>a</I>'s. But that is just the set of 
+strings of <I>a</I>'s, and is therefore equal to the right side. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.4.2(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Not the same. Replace <I>R</I> by <I>{a}</I> 
+and <I>S</I> by <I>{b}</I>. The left side becomes all strings of <I>a</I>'s and 
+<I>b</I>'s (mixed), while the right side consists only of strings of <I>a</I>'s 
+(alone) and strings of <I>b</I>'s (alone). A string like <I>ab</I> is in the 
+language of the left side but not the right. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 3.4.2(c)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Also not the same. Replace <I>R</I> by 
+<I>{a}</I> and <I>S</I> by <I>{b}</I>. The right side consists of all strings 
+composed of zero or more occurrences of strings of the form <I>a...ab</I>, that 
+is, one or more <I>a</I>'s ended by one <I>b</I>. However, every string in the 
+language of the left side has to end in <I>ab</I>. Thus, for instance, 
+<I>epsilon</I> is in the language on the right, but not on the left. </SPAN></P>
+<P><SPAN lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A></SPAN></P></DIV></BODY></HTML>

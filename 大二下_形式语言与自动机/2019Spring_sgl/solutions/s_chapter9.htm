@@ -1,0 +1,396 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter9.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol9.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 9</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter9.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>3</o:TotalTime>
+  <o:Created>2002-01-23T01:45:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:22:00Z</o:LastSaved>
+  <o:Pages>5</o:Pages>
+  <o:Words>1673</o:Words>
+  <o:Characters>9537</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>79</o:Lines>
+  <o:Paragraphs>19</o:Paragraphs>
+  <o:CharactersWithSpaces>11712</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+PRE {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Courier New"; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0cm
+}
+UL {
+	MARGIN-BOTTOM: 0cm
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 9</SPAN></H2>
+<P class=MsoNormal><SPAN lang=EN-US>Revised 5/2/01. </SPAN></P>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<H2><A name=sol91></A><SPAN lang=EN-US>Solutions for Section 9.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 9.1.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>37 in binary is 100101. Remove the leading 1 
+to get the string 00101, which is thus <I>w_37</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.1.3(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Suppose this language were accepted by some 
+TM <I>M</I>. We need to find an <I>i</I> such that <I>M = M_{2i}</I>. 
+Fortunately, since all the codes for TM's end in a 0, that is not a problem; we 
+just convert the specification for <I>M</I> to a code in the manner described in 
+the section. </SPAN></P>
+<P><SPAN lang=EN-US>We then ask if <I>w_i</I> is accepted by <I>M_{2i}</I>? If 
+so, then <I>w_i</I> is not accepted by <I>M</I>, and therefore not accepted by 
+<I>M_{2i}</I>, which is the same TM. Similarly, if <I>w_i</I> is not accepted by 
+<I>M_{2i}</I>, then <I>w_i</I> is accepted by <I>M</I>, and therefore by 
+<I>M_{2i}</I>. Either way, we reach a contradiction, and conclude that <I>M</I> 
+does not exist. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol92></A><SPAN lang=EN-US>Solutions for Section 9.2</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 9.2.2(a)</SPAN></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>A(2,1) = A(A(1,1),0)</SPAN></I><SPAN 
+lang=EN-US> [rule 4] = <I>A(A(A(0,1),0),0)</I> [rule 4] = <I>A(A(1,0),0)</I> 
+[rule 1] = <I>A(2,0)</I> [rule 2] = 4 [rule 3]. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.2.3(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Let's keep <I>i</I>, the integer in unary, 
+whose square we have most recently printed on the output tape, on tape 1, and 
+keep <I>i^2</I> on tape 2, also in unary. Initially, <I>i = 0</I>. Repeatedly do 
+the following: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l4 level1 lfo3"><SPAN 
+  lang=EN-US>Add 1 to tape 1; now we have <I>i+1</I> there. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l4 level1 lfo3"><SPAN 
+  lang=EN-US>Copy tape 1 to tape 2 twice, and remove one to change <I>i^2</I> to 
+  <I>i^2 + 2(i+1) - 1 = (i+1)^2</I>. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l4 level1 lfo3"><SPAN 
+  lang=EN-US>Copy tape 2 to the output as a block of 0's and append a 1. 
+  </SPAN></LI></OL>
+<H3><SPAN lang=EN-US>Exercise 9.2.4</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>By symmetry, if we can prove <I>L_1</I> is 
+recursive, we can prove any of the languages to be recursive. Take TM's <I>M_1, 
+M_2,...,M_k</I> for each of the languages <I>L_1, L_2,...,L_k</I>, respectively. 
+Design a TM <I>M</I> with <I>k</I> tapes that accepts <I>L_1</I> and always 
+halts. <I>M</I> copies its input to all the tapes and simulates <I>M_I</I> on 
+the <I>i</I>th tape. If <I>M_1</I> accepts, then <I>M</I> accepts. If any of the 
+other TM's accepts, <I>M</I> halts without accepting. Since exactly one of the 
+<I>M_i</I>'s will accept, <I>M</I> is sure to halt. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.2.5</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Note that the new language defined in the 
+displayed text should be <I>L'</I>; it is different from the given language 
+<I>L</I>, of course. Also, we'll use <I>-L</I> for the complement of <I>L</I> in 
+what follows. </SPAN></P>
+<P><SPAN lang=EN-US>Suppose <I>L'</I> were RE. Then we could design a TM 
+<I>M</I> for <I>-L</I> as follows. Given input <I>w, M</I> changes its input to 
+<I>1w</I> and simulates the hypothetical TM for <I>L'</I>. If that TM accepts, 
+then <I>w</I> is in <I>-L</I>, so <I>M</I> should accept. If the TM for 
+<I>L'</I> never accepts, then neither does <I>M</I>. Thus, <I>M</I> would accept 
+exactly <I>-L</I>, which contradicts the fact that <I>-L</I> is not RE. We 
+conclude that <I>L'</I> is not RE. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.2.6(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>To test whether an input <I>w</I> is in the 
+union of two recursive languages <I>L1</I> and <I>L2</I>, we design a TM to copy 
+its input <I>w</I> onto a second tape. It then simulates the halting TM for 
+<I>L1</I> on one tape and the halting TM for <I>L2</I> on the other. If either 
+accepts, then we accept. If both halt without accepting, we halt without 
+accepting. Thus, the union is accepted by a TM that always halts. </SPAN></P>
+<P><SPAN lang=EN-US>In the case where <I>L1</I> and <I>L2</I> are RE, do the 
+same, and accept if either accepts. The resulting TM accepts the union, although 
+it may not halt. We conclude that both the recursive languages and the RE 
+languages are closed under union. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.2.6(e)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Consider the case where <I>L</I> is RE. 
+Design a NTM <I>M</I> for <I>h(L)</I>, as follows. Suppose <I>w</I> is the input 
+to <I>M</I>. On a second tape, <I>M</I> guesses some string <I>x</I> over the 
+alphabet of <I>L</I>, checks that <I>h(x) = w</I>, and simulates the TM for 
+<I>L</I> on <I>x</I>, if so. If <I>x</I> is accepted, then <I>M</I> accepts 
+<I>w</I>. We conclude that the RE languages are closed under homomorphism. 
+</SPAN></P>
+<P><SPAN lang=EN-US>However, the recursive languages are not closed under 
+homomorphism. To see why, consider the particular language <I>L</I> consisting 
+of strings of the form <I>(M,w,c^i)</I>, where <I>M</I> is a coded Turing 
+machine with binary input alphabet, <I>w</I> is a binary string, and <I>c</I> is 
+a symbol not appearing elsewhere. The string is in <I>L</I> if and only if 
+<I>M</I> accepts <I>w</I> after making at most <I>i</I> moves. Clearly <I>L</I> 
+is recursive; we may simulate <I>M</I> on <I>w</I> for <I>i</I> moves and then 
+decide whether or not to accept. However, if we apply to <I>L</I> the 
+homomorphism that maps the symbols other than <I>c</I> to themselves, and maps 
+<I>c</I> to epsilon, we find that <I>h(L)</I> is the universal language, which 
+we called <I>L_u</I>. We know that <I>L_u</I> is not recursive. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol93></A><SPAN lang=EN-US>Solutions for Section 9.3</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 9.3.1</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The property of languages ``contains all the 
+palindromes'' is a nontrivial property, since some languages do and others 
+don't. Thus, by Rice's theorem, the question is undecidable. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.3.4(d)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>We shall reduce the problem <I>L_e</I> (does 
+a TM accept the empty language?) to the question at hand: does a TM accept a 
+language that is its own reverse? Given a TM <I>M</I>, we shall construct a 
+nondeterministic TM <I>M'</I>, which accepts either the empty language (which is 
+its own reverse), or the language {10} (which is not its own reverse). We shall 
+make sure that if <I>L(M)</I> is empty, then <I>L(M')</I> is its own reverse 
+(the emoty language, in particular), and if <I>L(M)</I> is not empty, then 
+<I>L(M')</I> is not its own reverse. <I>M'</I> works as follows: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>First, check that its input is 10, and reject if not. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>Guess an input <I>w</I> for <I>M</I>. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>Simulate <I>M</I> on <I>w</I>. If <I>M</I> accepts, then <I>M'</I> 
+  accepts its own input, 01. </SPAN></LI></OL>
+<P><SPAN lang=EN-US>Thus, if <I>L(M)</I> is nonempty, <I>M'</I> will guess some 
+string <I>M</I> accepts and therefore accept 01. If <I>L(M)</I> is empty, then 
+all guesses by <I>M'</I> fail to lead to acceptance by <I>M</I>, so <I>M'</I> 
+never accepts 01 or any other string. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.3.6(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>After making <I>m</I> transitions (not 
+<I>m+1</I> as suggested by the hint), the TM will have been in <I>m+1</I> 
+different states. These states cannot all be different. Thus, we can find some 
+repeating state, and the moves of the TM look like <I>[q_0] |-* q |-* q |-* 
+...</I>, where the central |-* represents at least one move. Note that we assume 
+the tape remains blank; if not then we know the TM eventually prints a nonblank. 
+However, if it enters a loop without printing a nonblank, then it will remain 
+forever in that loop and never print a nonblank. Thus, we can decide whether the 
+TM ever prints a nonblank by simulating it for <I>M</I> moves, and saying 
+``yes'' if and only if it prints a nonblank during that sequence of moves. 
+</SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.3.7(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>We reduce the complement of <I>L_u</I> to 
+this problem, which is the complement of the halting problem for Turing 
+Machines. The crux of the argument is that we can convert any TM <I>M</I> into 
+another TM <I>M'</I>, such that <I>M'</I> halts on input <I>w</I> if and only if 
+<I>M</I> accepts <I>w</I>. The construction of <I>M'</I> from <I>M</I> is as 
+follows: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l2 level1 lfo9"><SPAN 
+  lang=EN-US>Make sure that <I>M'</I> does not halt unless <I>M</I> accepts. 
+  Thus, add to the states of <I>M</I> a new state <I>p</I>, in which <I>M'</I> 
+  runs right, forever; i.e., <I>delta(p,X) = (p,X,R)</I> for all tape symbols 
+  <I>X</I>. If <I>M</I> would halt without accepting, say <I>delta(q,Y)</I> is 
+  undefined for some nonaccepting state <I>q</I>, then in <I>M'</I>, make 
+  <I>delta(q,Y) = (p,Y,R)</I>; i.e., enter the right-moving state and make sure 
+  <I>M'</I> does not halt. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l2 level1 lfo9"><SPAN 
+  lang=EN-US>If <I>M</I> accepts, then <I>M'</I> must halt. Thus, if <I>q</I> is 
+  an accepting state of <I>M</I>, then in <I>M'</I>, <I>delta(q,X)</I> is made 
+  undefined for all tape symbols <I>X</I>. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l2 level1 lfo9"><SPAN 
+  lang=EN-US>Otherwise, the moves of <I>M'</I> are the same as those of 
+  <I>M</I>. </SPAN></LI></OL>
+<P><SPAN lang=EN-US>The above construction reduces the complement of <I>L_u</I> 
+to the complement of the halting problem. That is, if <I>M</I> accepts <I>w</I>, 
+then <I>M'</I> halts on <I>w</I>, and if not, then not. Since the complement of 
+<I>L_u</I> is non-RE, so is the complement of the halting problem. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.3.8(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>We'll show this problem not to be RE by 
+reducing the problem of Exercise 9.3.7(a), the ``nonhalting'' problem to it. 
+Given a pair <I>(M,w)</I>, we must construct a TM <I>M'</I>, such that <I>M'</I> 
+halts on every input if and only if <I>M</I> does not halt on <I>w</I>. Here is 
+how <I>M'</I> works: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo12"><SPAN 
+  lang=EN-US>Given an input <I>x</I> of length <I>n</I>, <I>M'</I> simulates 
+  <I>M</I> on <I>w</I> for <I>n</I> steps. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo12"><SPAN 
+  lang=EN-US>If during that time, <I>M</I> halts, then <I>M'</I> enters a 
+  special looping state [as discussed in the solution to Exercise 9.3.7(a)] and 
+  <I>M'</I> does not halt on its own input <I>x</I>. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo12"><SPAN 
+  lang=EN-US>However, if <I>M</I> does not halt on <I>w</I> after <I>n</I> 
+  steps, then <I>M'</I> halts. </SPAN></LI></OL>
+<P><SPAN lang=EN-US>Thus, <I>M'</I> halts on all inputs if and only if <I>M</I> 
+does not halt on <I>w</I>. Since we proved in the solution to Exercise 9.3.7(a) 
+that the problem of telling whether <I>M</I> does not halt on <I>w</I> is 
+non-RE, it follows that the question at hand --- whether a given TM halts on all 
+inputs --- must not be RE either. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 9.3.8(d)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>This language is the complement of the 
+language of Exercise 9.3.8(a), so it is surely not recursive. But is it RE? We 
+can show it isn't by a simple reduction from the nonhalting problem. Given 
+<I>(M,w)</I>, construct <I>M'</I> as follows: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l3 level1 lfo15"><I><SPAN 
+  lang=EN-US>M'</SPAN></I><SPAN lang=EN-US> ignores its own input and simulates 
+  <I>M</I> on <I>w</I>. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l3 level1 lfo15"><SPAN 
+  lang=EN-US>If <I>M</I> halts, <I>M'</I> halts on its own input. However, if 
+  <I>M</I> never halts on <I>w</I>, then <I>M'</I> will never halt on its own 
+  input. </SPAN></LI></OL>
+<P><SPAN lang=EN-US>As a result, <I>M'</I> fails to halt on at least one input 
+(in fact, on all inputs) if <I>M</I> fails to halt on <I>w</I>. If <I>M</I> 
+halts on <I>w</I>, then <I>M'</I> halts on all inputs. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol94></A><SPAN lang=EN-US>Solutions for Section 9.4</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 9.4.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>There is no solution. First, a solution 
+would have to start with pair 1, because that is the only pair where one is a 
+prefix of the other. THus, our partial solution starts: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A: 01</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B: 011</SPAN></PRE>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Now, we need a pair whose <I>A</I>-string begins with 1, and that can 
+only be pair 3. The partial solution becomes </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A: 0110</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B: 01100</SPAN></PRE>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Now, we need a pair whose <I>A</I>-string begins with 0, and either 
+pair 1 or pair 2 might serve. However, trying to extend the solution with pair 1 
+gives us: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A: 011001</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B: 01100011</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>while extending by pair 2 yields: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A: 0110001</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B: 0110010</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>In both cases, there is a mismatch, and we conclude no solution 
+exists. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 9.4.3</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The problem is decidable by the following, fairly simple algorithm. 
+First, if all the <I>A</I>-strings are strictly longer than their corresponding 
+<I>B</I>-strings, then there is surely no solution. Neither is there a solution 
+in the opposite case, where all the <I>B</I>-strings are strictly longer than 
+their corresponding <I>A</I>-strings. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>We claim that in all other cases, there is a solution. If any 
+corresponding pair of strings are the same length, then they are identical, and 
+so just that pair is a solution. The only possibility remains has at least one 
+pair, say <I>i</I>, with the <I>A</I>-string longer than the <I>B</I>-string, 
+say by <I>m</I> symbols, and another pair, say <I>j</I>, where the 
+<I>B</I>-string is longer than the <I>A</I>-string, say by <I>n</I> symbols. 
+Then <I>i^nj^m</I>, i.e., <I>n</I> uses of pair <I>i</I> followed by <I>m</I> 
+uses of pair <I>j</I> is a solution. In proof, it is easy to check that both the 
+<I>A</I>- and <I>B</I>-strings that result have the same length. Since there is 
+only one symbol, these strings are therefore identical. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol95></A><SPAN lang=EN-US>Solutions for Section 9.5</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 9.5.1</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Given an instance <I>(A,B)</I> of PCP, construct the grammar 
+<I>G_A</I> as in the text. Also, construct a grammar <I>G_{BR}</I>, that is 
+essentially <I>G_B</I>, but with the bodies of all productions reversed, so its 
+language is the reverse of the language of <I>G_B</I>. Assume the start symbols 
+of these grammars are <I>A</I> and <I>B</I>, they contain no variables in 
+common, and that <I>c</I> is a terminal that does not appear in these grammars. 
+</SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Construct a new grammar <I>G</I> with all the productions of 
+<I>G_A</I> and <I>G_{BR}</I>, plus the production <I>S -&gt; AcB</I>. Then a 
+solution to the PCP instance yields a string <I>y</I> such that <I>y</I> is 
+generated by <I>G_A</I> and <I>y^R</I> is generated by <I>G_{BR}</I>. Thus, 
+<I>G</I> generates the palindrome <I>ycy^R</I>. However, any palindrome 
+generated by <I>G</I> must have the <I>c</I> in the middle and thus implies a 
+solution to the PCP instance, that is, a string <I>y</I> that appears in 
+<I>L(G_A)</I> while <I>y^R</I> appears in <I>L(G_{BR})</I> [and therefore 
+<I>y</I> appears in <I>L(G_B)</I>]. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to Home</A> 
+</SPAN></P></DIV></BODY></HTML>

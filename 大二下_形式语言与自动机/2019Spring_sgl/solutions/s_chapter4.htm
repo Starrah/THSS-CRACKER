@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter4.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol4.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 4</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter4.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2002-01-23T01:42:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:41:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>1120</o:Words>
+  <o:Characters>6388</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>53</o:Lines>
+  <o:Paragraphs>12</o:Paragraphs>
+  <o:CharactersWithSpaces>7844</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+PRE {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Courier New"; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0cm
+}
+UL {
+	MARGIN-BOTTOM: 0cm
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 4</SPAN></H2>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<H2><A name=sol41></A><SPAN lang=EN-US>Solutions for Section 4.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 4.1.1(c)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Let <I>n</I> be the pumping-lemma constant 
+(note this <I>n</I> is unrelated to the <I>n</I> that is a local variable in the 
+definition of the language <I>L</I>). Pick <I>w = 0^n10^n</I>. Then when we 
+write <I>w = xyz</I>, we know that <I>|xy| &lt;= n</I>, and therefore <I>y</I> 
+consists of only 0's. Thus, <I>xz</I>, which must be in <I>L</I> if <I>L</I> is 
+regular, consists of fewer than <I>n</I> 0's, followed by a 1 and exactly 
+<I>n</I> 0's. That string is not in <I>L</I>, so we contradict the assumption 
+that <I>L</I> is regular. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.1.2(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Let <I>n</I> be the pumping-lemma constant 
+and pick <I>w = 0^n^2</I>, that is, <I>n^2</I> 0's. When we write <I>w = 
+xyz</I>, we know that <I>y</I> consists of between 1 and <I>n</I> 0's. Thus, 
+<I>xyyz</I> has length between <I>n^2 + 1</I> and <I>n^2 + n</I>. Since the next 
+perfect square after <I>n^2</I> is <I>(n+1)^2 = n^2 + 2n + 1</I>, we know that 
+the length of <I>xyyz</I> lies strictly between the consecutive perfect squares 
+<I>n^2</I> and <I>(n+1)^2</I>. Thus, the length of <I>xyyz</I> cannot be a 
+perfect square. But if the language were regular, then <I>xyyz</I> would be in 
+the language, which contradicts the assumption that the language of strings of 
+0's whose length is a perfect square is a regular language. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.1.4(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>We cannot pick <I>w</I> from the empty 
+language. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.1.4(b)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>If the adversary picks <I>n = 3</I>, then we 
+cannot pick a <I>w</I> of length at least <I>n</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.1.4(c)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The adversary can pick an <I>n &gt; 0</I>, 
+so we have to pick a nonempty <I>w</I>. Since <I>w</I> must consist of pairs 00 
+and 11, the adversary can pick <I>y</I> to be one of those pairs. Then whatever 
+<I>i</I> we pick, <I>xy^iz</I> will consist of pairs 00 and 11, and so belongs 
+in the language. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol42></A><SPAN lang=EN-US>Solutions for Section 4.2</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 4.2.1(a)</SPAN></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>aabbaa</SPAN></I><SPAN lang=EN-US>. 
+</SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.1(c)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>The language of regular expression 
+<B>a(ab)*ba</B>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.1(e)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Each <I>b</I> must come from either 1 or 2. 
+However, if the first <I>b</I> comes from 2 and the second comes from 1, then 
+they will both need the <I>a</I> between them as part of <I>h(2)</I> and 
+<I>h(1)</I>, respectively. Thus, the inverse homomorphism consists of the 
+strings <I>{110, 102, 022}</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.2</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Start with a DFA <I>A</I> for <I>L</I>. 
+Construct a new DFA <I>B</I>, that is exactly the same as <I>A</I>, except that 
+state <I>q</I> is an accepting state of <I>B</I> if and only if 
+<I>delta(q,a)</I> is an accepting state of <I>A</I>. Then <I>B</I> accepts input 
+string <I>w</I> if and only if <I>A</I> accepts <I>wa</I>; that is, <I>L(B) = 
+L/a</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.5(b)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>We shall use <I>D_a</I> for ``the derivative 
+with respect to <I>a</I>.'' The key observation is that if <I>epsilon</I> is not 
+in <I>L(R)</I>, then the derivative of <I>RS</I> will always remove an <I>a</I> 
+from the portion of a string that comes from <I>R</I>. However, if 
+<I>epsilon</I> is in <I>L(R)</I>, then the string might have nothing from 
+<I>R</I> and will remove <I>a</I> from the beginning of a string in <I>L(S)</I> 
+(which is also a string in <I>L(RS)</I>. Thus, the rule we want is: </SPAN></P>
+<P><SPAN lang=EN-US>If <I>epsilon</I> is not in <I>L(R)</I>, then <I>D_a(RS) = 
+(D_a(R))S</I>. Otherwise, <I>D_a(RS) = D_a(R)S + D_a(S)</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.5(e)</SPAN></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>L</SPAN></I><SPAN lang=EN-US> may have no 
+string that begins with 0. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.5(f)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>This condition says that whenever <I>0w</I> 
+is in <I>L</I>, then <I>w</I> is in <I>L</I>, and vice-versa. Thus, <I>L</I> 
+must be of the form <I>L(0*)M</I> for some language <I>M</I> (not necessarily a 
+regular language) that has no string beginning with 0. </SPAN></P>
+<P><SPAN lang=EN-US>In proof, notice first that <I>D_0(L(0*)M = D_0(L(0*))M 
+union D_0(M) = L(0*)M</I>. There are two reasons for the last step. First, 
+observe that <I>D_0</I> applied to the language of all strings of 0's gives all 
+strings of 0's, that is, <I>L(0*)</I>. Second, observe that because <I>M</I> has 
+no string that begins with 0, <I>D_0(M)</I> is the empty set [that's part (e)]. 
+</SPAN></P>
+<P><SPAN lang=EN-US>We also need to show that every language <I>N</I> that is 
+unchanged by <I>D_0</I> is of this form. Let <I>M</I> be the set of strings in 
+<I>N</I> that do not begin with 0. If <I>N</I> is unchanged by <I>D_0</I>, it 
+follows that for every string <I>w</I> in <I>M</I>, <I>00...0w</I> is in 
+<I>N</I>; thus, <I>N</I> includes all the strings of <I>L(0*)M</I>. However, 
+<I>N</I> cannot include a string that is not in <I>L(0*)M</I>. If <I>x</I> were 
+such a string, then we can remove all the 0's at the beginning of <I>x</I> and 
+get some string <I>y</I> that is also in <I>N</I>. But <I>y</I> must also be in 
+<I>M</I>. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.8</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Let <I>A</I> be a DFA for <I>L</I>. We 
+construct DFA <I>B</I> for <I>half(L)</I>. The state of <I>B</I> is of the form 
+<I>[q,S]</I>, where: </SPAN></P>
+<UL type=disc>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><I><SPAN 
+  lang=EN-US>q</SPAN></I><SPAN lang=EN-US> is the state <I>A</I> would be in 
+  after reading whatever input <I>B</I> has read so far. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l1 level1 lfo3"><I><SPAN 
+  lang=EN-US>S</SPAN></I><SPAN lang=EN-US> is the set of states of <I>A</I> such 
+  that <I>A</I> can get from exactly these states to an accepting state by 
+  reading any input string whose length is the same as the length of the string 
+  <I>B</I> has read so far. </SPAN></LI></UL>
+<P><SPAN lang=EN-US>It is important to realize that it is not necessary for 
+<I>B</I> to know how many inputs it has read so far; it keeps this information 
+up-to-date each time it reads a new symbol. The rule that keeps things up to 
+date is: <I>delta_B([q,S],a) = [delta_A(q,a),T]</I>, where <I>T</I> is the set 
+of states <I>p</I> of <I>A</I> such that there is a transition from <I>p</I> to 
+any state of <I>S</I> on any input symbol. In this manner, the first component 
+continues to simulate <I>A</I>, while the second component now represents states 
+that can reach an accepting state following a path that is one longer than the 
+paths represented by <I>S</I>. </SPAN></P>
+<P><SPAN lang=EN-US>To complete the construction of <I>B</I>, we have only to 
+specify: </SPAN></P>
+<UL type=disc>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>The initial state is <I>[q_0,F]</I>, that is, the initial state of 
+  <I>A</I> and the accepting states of <I>A</I>. This choice reflects the 
+  situation when <I>A</I> has read 0 inputs: it is still in its initial state, 
+  and the accepting states are exactly the ones that can reach an accepting 
+  state on a path of length 0. </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo6"><SPAN 
+  lang=EN-US>The accepting states of <I>B</I> are those states <I>[q,S]</I> such 
+  that <I>q</I> is in <I>S</I>. The justification is that it is exactly these 
+  states that are reached by some string of length <I>n</I>, and there is some 
+  other string of length <I>n</I> that will take state <I>q</I> to an accepting 
+  state. </SPAN></LI></UL>
+<H3><SPAN lang=EN-US>Exercise 4.2.13(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Start out by complementing this language. 
+The result is the language consisting of all strings of 0's and 1's that are 
+<I>not</I> in O*1*, plus the strings in <I>L_0n1n</I>. If we intersect with 
+0*1*, the result is exactly <I>L_0n1n</I>. Since complementation and 
+intersection with a regular set preserve regularity, if the given language were 
+regular then so would be <I>L_0n1n</I>. Since we know the latter is false, we 
+conclude the given language is not regular. </SPAN></P>
+<H3><SPAN lang=EN-US>Exercise 4.2.14(c)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Change the accepting states to be those for 
+which the first component is an accepting state of <I>A_L</I> and the second is 
+a nonaccepting state of <I>A_M</I>. Then the resulting DFA accepts if and only 
+if the input is in <I>L - M</I>. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol43></A><SPAN lang=EN-US>Solutions for Section 4.3</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 4.3.1</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Let <I>n</I> be the pumping-lemma constant. 
+Test all strings of length between <I>n</I> and 2<I>n</I>-1 for membership in 
+<I>L</I>. If we find even one such string, then <I>L</I> is infinite. The reason 
+is that the pumping lemma applies to such a string, and it can be ``pumped'' to 
+show an infinite sequence of strings are in <I>L</I>. </SPAN></P>
+<P><SPAN lang=EN-US>Suppose, however, that there are no strings in <I>L</I> 
+whose length is in the range <I>n</I> to 2<I>n</I>-1. We claim there are no 
+strings in <I>L</I> of length 2<I>n</I> or more, and thus there are only a 
+finite number of strings in <I>L</I>. In proof, suppose <I>w</I> is a string in 
+<I>L</I> of length at least 2<I>n</I>, and <I>w</I> is as short as any string in 
+<I>L</I> that has length at least 2<I>n</I>. Then the pumping lemma applies to 
+<I>w</I>, and we can write <I>w = xyz</I>, where <I>xz</I> is also in <I>L</I>. 
+How long could <I>xz</I> be? It can't be as long as 2<I>n</I>, because it is 
+shorter than <I>w</I>, and <I>w</I> is as short as any string in <I>L</I> of 
+length 2<I>n</I> or more. <IT><I can?t be shorter than>n</I>, because <I>xz</I> 
+is at most <I>n</I> shorter than <I>w</I>. Thus, <I>xz</I> is of length between 
+<I>n</I> and 2<I>n</I>-1, which is a contradiction, since we assumed there were 
+no strings in <I>L</I> with a length in that range. </SPAN></P>
+<P><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol44></A><SPAN lang=EN-US>Solutions for Section 4.4</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 4.4.1</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>Revised 10/23/01. </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B|x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>C|x x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>D|x x x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>E|x x<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>F|x<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>x x x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>G|<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>x x x x x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>H|x x x x x x x</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>---------------</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A B C D E F G</SPAN></PRE>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><![if !supportEmptyParas]><![endif]>&nbsp;<B><SPAN 
+      lang=EN-US><o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>-&gt;AG </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>BF </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>AG</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>BF </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>AG </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>CE</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>CE </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>BF</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>*D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>D </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>AG</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: right" align=right><SPAN 
+      lang=EN-US>H </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>AG </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>D</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Note, however, that state <I>H</I> is inaccessible, so it should be 
+removed, leaving the first four states as the minimum-state DFA. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A></SPAN></P></DIV></BODY></HTML>

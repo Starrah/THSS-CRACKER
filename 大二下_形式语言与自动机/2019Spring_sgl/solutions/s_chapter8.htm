@@ -1,0 +1,589 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter8.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol8.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 8</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter8.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>4</o:Revision>
+  <o:TotalTime>3</o:TotalTime>
+  <o:Created>2002-01-23T01:45:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:23:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>1377</o:Words>
+  <o:Characters>7854</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>65</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>9645</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+TT {
+	mso-bidi-font-family: "Courier New"; mso-ansi-font-size: 12.0pt; mso-bidi-font-size: 12.0pt; mso-ascii-font-family: 宋体; mso-fareast-font-family: 宋体; mso-hansi-font-family: 宋体
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0cm
+}
+UL {
+	MARGIN-BOTTOM: 0cm
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 8</SPAN></H2>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<H2><A name=sol81></A><SPAN lang=EN-US>Solutions for Section 8.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 8.1.1(a)</SPAN></H3>
+<P class=MsoNormal><SPAN lang=EN-US>We need to take a program <I>P</I> and 
+modify it so it: </SPAN></P>
+<OL type=1>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>Never halts unless we explicitly want it to, and </SPAN>
+  <LI class=MsoNormal 
+  style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><SPAN 
+  lang=EN-US>Halts whenever it prints </SPAN><TT><SPAN lang=EN-US>hello, 
+  world.</SPAN></TT><SPAN lang=EN-US> </SPAN></LI></OL>
+<P><SPAN lang=EN-US>For (1), we can add a loop such as </SPAN><TT><SPAN 
+lang=EN-US>while(1){x=x;}</SPAN></TT><SPAN lang=EN-US> to the end of 
+</SPAN><TT><SPAN lang=EN-US>main, and also at any point where main returns. That 
+change catches the normal ways a program can halt, although it doesn't address 
+the problem of a program that halts because some exception such as division by 0 
+or an attempt to read an unavailable device. Technically, we'd have to replace 
+all of the exception handlers in the run-time environment to cause a loop 
+whenever an exception occurred. <o:p></o:p></SPAN></TT></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">For (2), we modify <I>P</I> to 
+record in an array the first 12 characters printed. If we find that they are 
+<TT>hello, world.</TT>, we halt by going to the end of <TT>main</TT> (past the 
+point where the while-loop has been installed). <o:p></o:p></SPAN></P>
+<H2><A name=sol82></A><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Solutions for Section 
+8.2<o:p></o:p></SPAN></H2>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.2.1(a)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>To make the ID's clearer in HTML, we'll 
+use <I>[q0]</I> for <I>q_0</I>, and similarly for the other states. 
+<o:p></o:p></SPAN></TT></P>
+<P style="MARGIN: 0cm 0cm 0pt"><I><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">[q0]00 |- X[q1]0 |- 
+X0[q1]</SPAN></I><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'"> 
+<o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">The TM halts at the above ID. 
+<o:p></o:p></SPAN></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.2.2(a)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>Here is the transition table for the TM: 
+<o:p></o:p></SPAN></TT></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>state <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>B <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>X <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>Y<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q2,X,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q1,X,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(qf,B,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q0,Y,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,Y,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q1,1,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q1,Y,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q2,0,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,Y,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q2,Y,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,0,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,1,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q0,X,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,Y,L)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>qf </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>-</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">In explanation, the TM makes 
+repeated excursions back and forth along the tape. The symbols <I>X</I> and 
+<I>Y</I> are used to replace 0's and 1's that have been cancelled one against 
+another. The difference is that an <I>X</I> guarantees that there are no 
+unmatched 0's and 1's to its left (so the head never moves left of an <I>X</I>), 
+while a <I>Y</I> may have 0's or 1's to its left. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Initially in state <I>q0</I>, the TM 
+picks up a 0 or 1, remembering it in its state (<I>q1</I> = found a 1; <I>q2</I> 
+= found a 0), and cancels what it found with an <I>X</I>. As an exception, if 
+the TM sees the blank in state <I>q0</I>, then all 0's and 1's have matched, so 
+the input is accepted by going to state <I>qf</I>. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">In state <I>q1</I>, the TM moves 
+right, looking for a 0. If it finds it, the 0 is replaced by <I>Y</I>, and the 
+TM enters state <I>q3</I> to move left an look for an <I>X</I>. Similarly, state 
+<I>q2</I> looks for a 1 to match against a 0. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">In state <I>q3</I>, the TM moves 
+left until it finds the rightmost <I>X</I>. At that point, it enters state 
+<I>q0</I> again, moving right over <I>Y</I>'s until it finds a 0, 1, or blank, 
+and the cycle begins again. <o:p></o:p></SPAN></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.2.4<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>These constructions, while they can be 
+carried out using the basic model of a TM are much clearer if we use some of the 
+tricks of Sect. 8.3. <o:p></o:p></SPAN></TT></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">For part (a), given an input 
+<I>[x,y]</I> use a second track to simulate the TM for <I>f</I> on the input 
+<I>x</I>. When the TM halts, compare what it has written with <I>y</I>, to see 
+if <I>y</I> is indeed <I>f(x)</I>. Accept if so. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">For part (b), given <I>x</I> on the 
+tape, we need to simulate the TM <I>M</I> that recognizes the graph of <I>f</I>. 
+However, since this TM may not halt on some inputs, we cannot simply try all 
+<I>[x,i}</I> to see which value of <I>i</I> leads to acceptance by <I>M</I>. The 
+reason is that, should we work on some value of <I>i</I> for which <I>M</I> does 
+not halt, we'll never advance to the correct value of <I>f(x)</I>. Rather, we 
+consider, for various combinations of <I>i</I> and <I>j</I>, whether <I>M</I> 
+accepts <I>[x,i]</I> in <I>j</I> steps. If we consider <I>(i,j)</I> pairs in 
+order of their sum (i.e., (0,1), (1,0), (0,2), (1,1), (2,0), (0,3),...) then 
+eventually we shall simulate <I>M</I> on <I>[x,f(x)]</I> for a sufficient number 
+of steps that <I>M</I> reaches acceptance. We need only wait until we consider 
+pairs whose sum is <I>f(x)</I> plus however many steps it takes <I>M</I> to 
+accept <I>[x,f(x)]</I>. In this manner, we can discover what <I>f(x)</I> is, 
+write it on the tape of the TM that we have designed to compute <I>f(x)</I>, and 
+halt. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Now let us consider what happens if 
+<I>f</I> is not defined for some arguments. Part (b) does not change, although 
+the constructed TM will fail to discover <I>f(x)</I> and thus will continue 
+searching forever. For part (a), if we are given <I>[x,y]</I>, and <I>f</I> is 
+not defined on <I>x</I>, then the TM for <I>f</I> will never halt on <I>x</I>. 
+However, there is nothing wrong with that. Since <I>f(x)</I> is undefined, 
+surely <I>y</I> is not <I>f(x)</I>. Thus, we do not want the TM for the graph of 
+<I>f</I> to accept <I>[x,y]</I> anyway. <o:p></o:p></SPAN></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.2.5(a)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>This TM only moves right on its input. 
+Moreover, it can only move right if it sees alternating 010101... on the input 
+tape. Further, it alternates between states <I>q_0</I> and <I>q_1</I> and only 
+accepts if it sees a blank in state <I>q_1</I>. That in turn occurs if it has 
+just seen 0 and moved right, so the input must end in a 0. That is, the language 
+is that of regular expression <B>(01)*0</B>. <o:p></o:p></SPAN></TT></P>
+<H2><A name=sol83></A><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Solutions for Section 
+8.3<o:p></o:p></SPAN></H2>
+<P class=MsoNormal><TT><SPAN lang=EN-US>Here is the subroutine. Note that 
+because of the technical requirements of the subroutine, and the fact that a TM 
+is not allowed to keep its head stationary, when we see a non-0, we must enter 
+state <I>q3</I>, move right, and then come back left in state <I>q4</I>, which 
+is the ending state for the subroutine. <o:p></o:p></SPAN></TT></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>state <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>B<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q1 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q2,0,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>-</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q2 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q2,0,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,1,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q3,B,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q3 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q4,0,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q4,1,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN 
+lang=EN-US>(q4,B,L)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Now, we can use this subroutine in a 
+TM that starts in state <I>q0</I>. If this TM ever sees the blank, it accepts in 
+state <I>qf</I>. However, whenever it is in state <I>q0</I>, it knows only that 
+it has not seen a 1 immediately to its right. If it is scanning a 0, it must 
+check (in state <I>q5</I>) that it does not have a blank immediately to its 
+right; if it does, it accepts. If it sees 0 in state <I>q5</I>, it comes back to 
+the previous 0 and calls the subroutine to skip to the next non-0. If it sees 1 
+in state <I>q5</I>, then it has seen 01, and uses state <I>q6</I> to check that 
+it doesn't have another 1 to the right. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">In addition, the TM in state 
+<I>q4</I> (the final state of the subroutine), accepts if it has reached a 
+blank, and if it has reached a 1 enters state <I>q6</I> to make sure there is a 
+0 or blank following. Note that states <I>q4</I> and <I>q5</I> are really the 
+same, except that in <I>q4</I> we are certain we are not scanning a 0. They 
+could be combined into one state. Notice also that the subroutine is not a 
+perfect match for what is needed, and there is some unnecessary jumping back and 
+forth on the tape. Here is the remainder of the transition table. 
+<o:p></o:p></SPAN></P>
+<DIV align=center>
+<TABLE 
+style="BORDER-RIGHT: 4.5pt outset; BORDER-TOP: 4.5pt outset; BORDER-LEFT: 4.5pt outset; BORDER-BOTTOM: 4.5pt outset; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>state <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>0 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>1 <o:p></o:p></SPAN></B></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US>B<o:p></o:p></SPAN></B></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q0 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q5,0,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q5,1,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(qf,B,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q5 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q1,0,L) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q6,1,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(qf,B,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q6 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q0,0,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(qf,B,R)</SPAN></P></TD></TR>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>q4 </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>- </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN lang=EN-US>(q6,1,R) </SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><SPAN 
+lang=EN-US>(qf,B,R)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P style="MARGIN: 0cm 0cm 0pt; tab-stops: 119.25pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'"><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2><A name=sol84></A><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Solutions for Section 
+8.4<o:p></o:p></SPAN></H2>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.4.2(a)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>For clarity, we put the state in square 
+brackets below. Notice that in this example, we never branch. <I>[q_0]01 |- 
+1[q_0]1 |- 10[q_1] |- 10B[q_2]</I> <o:p></o:p></SPAN></TT></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.4.3(a)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>We'll use a second tape, on which the 
+guess <I>x</I> is stored. Scan the input from left yo right, and at each cell, 
+guess whether to stay in the initial state (which does the scanning) or go to a 
+new state that copies the next 100 symbols onto the second tape. The copying is 
+done by a sequence of 100 state, so exactly 100 symbols can be placed on tape 2. 
+<o:p></o:p></SPAN></TT></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Once the copying is done, retract 
+the head of tape 2 to the left end of the 100 symbols. Then, continue moving 
+right on tape 1, and at each cell guess either to continue moving right or to 
+guess that the second copy of <I>x</I> begins. In the latter case, compare the 
+next 100 symbols on tape 1 with the 100 symbols on tape 2. If they all match, 
+then move right on tape 1 and accept as soon as a blank is seen. 
+<o:p></o:p></SPAN></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.4.5<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>For part (a), guess whether to move left 
+or right, entering one of two different states, each responsible for moving in 
+one direction. Each of these states proceeds in its direction, left or right, 
+and if it sees a $ it enters state <I>p</I>. Technically, the head has to move 
+off the $, entering another state, and then move back to the $, entering state 
+<I>p</I> as it does so. <o:p></o:p></SPAN></TT></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Part (b), doing the same thing 
+deterministically, is trickier, since we might start off in the wrong direction 
+and travel forever, never seeing the $. Thus, we have to oscillate, using left 
+and right endmarkers <I>X</I> and <I>Y</I>, respectively, to mark how far we 
+have traveled on a second track. Start moving one cell left and leave the 
+<I>X</I>. Then, move two cells right and leave the <I>Y</I>. Repeatedly move 
+left to the <I>X</I>, move the <I>X</I> one more cell left, go right to the 
+<I>Y</I>, move it once cell right, and repeat. <o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Eventually, we shall see the $. At 
+this time, we can move left or right to the other endmarker, erase it, move back 
+to the end where the $ was found, erase the other endmarker, and wind up at the 
+$. <o:p></o:p></SPAN></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.4.8(a)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>There would be 10 tracks. Five of the 
+tracks hold one of the symbols from the tape alphabet, so there are 7^5 ways to 
+select these tracks. The other five tracks hold either <I>X</I> or blank, so 
+these tracks can be selected in 2^5 ways. The total number of symbols is thus 
+7^5 * 2^5 = 537,824. <o:p></o:p></SPAN></TT></P>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.4.8(b)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>The number of symbols is the same. The 
+five tracks with tape symbols can still be chosen in 5^7 ways. The sixth track 
+has to tell which subset of the five tapes have their head at that position. 
+There are 2^5 possible subsets, and therefore 32 symbols are needed for the 6th 
+track. Again the number of symbols is 7^5 * 2^5. <o:p></o:p></SPAN></TT></P>
+<H2><A name=sol85></A><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'">Solutions for Section 
+8.5<o:p></o:p></SPAN></H2>
+<H3><SPAN lang=EN-US style="mso-bidi-font-family: 'Courier New'">Exercise 
+8.5.1(c)<o:p></o:p></SPAN></H3>
+<P class=MsoNormal><TT><SPAN lang=EN-US>In principle, any language that is 
+recursively enumerable can be recognized by a 2-counter machine, but how do we 
+design a comprehensible answer for a particular case? As the <I>a</I>'s are 
+read, count them with both counters. Then, when <I>b</I>'s enter, compare them 
+with one counter, and accept if they are the same. Continue accepting as long as 
+<I>c</I>'s enter. If the numbers of <I>a</I>'s and <I>b</I>'s differ, then 
+compare the second counter with the number of <I>c</I>'s, and accept if they 
+match. <o:p></o:p></SPAN></TT></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A></SPAN><SPAN lang=EN-US 
+style="mso-bidi-font-family: 'Courier New'"><o:p></o:p></SPAN></P></DIV></BODY></HTML>

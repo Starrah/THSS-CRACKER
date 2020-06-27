@@ -1,0 +1,535 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://learn.tsinghua.edu.cn/homepage/S01122/s_chapter7.htm -->
+<!-- saved from url=(0053)http://www-db.stanford.edu/~ullman/ialcsols/sol7.html --><HTML 
+xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Introduction to Automata Theory, Languages, and Computation: Solutions for Chapter 7</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 6.00.2800.1264" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./s_chapter7.files/filelist.xml" rel=File-List><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>wang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>wang</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2002-01-23T01:44:00Z</o:Created>
+  <o:LastSaved>2002-01-23T04:42:00Z</o:LastSaved>
+  <o:Pages>6</o:Pages>
+  <o:Words>2009</o:Words>
+  <o:Characters>11452</o:Characters>
+  <o:Company>wyy</o:Company>
+  <o:Lines>95</o:Lines>
+  <o:Paragraphs>22</o:Paragraphs>
+  <o:CharactersWithSpaces>14063</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: 宋体;
+}
+@font-face {
+	font-family: @宋体;
+}
+@page  {mso-page-border-surround-header: no; mso-page-border-surround-footer: no; }
+@page Section1 {size: 595.3pt 841.9pt; margin: 72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin: 42.55pt; mso-footer-margin: 49.6pt; mso-paper-source: 0; }
+P.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-style-parent: ""; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+P {
+	FONT-SIZE: 12pt; MARGIN-LEFT: 0cm; MARGIN-RIGHT: 0cm; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Times New Roman"; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto
+}
+PRE {
+	FONT-SIZE: 12pt; MARGIN: 0cm 0cm 0pt; FONT-FAMILY: 宋体; mso-pagination: widow-orphan; mso-bidi-font-family: "Courier New"; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0cm
+}
+UL {
+	MARGIN-BOTTOM: 0cm
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=ZH-CN style="tab-interval: 21.0pt" vLink=blue link=blue 
+bgColor=#e0f7f0>
+<DIV class=Section1>
+<DIV align=center>
+<TABLE style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal><![if !supportEmptyParas]><![endif]>&nbsp;<SPAN 
+      lang=EN-US><o:p></o:p></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US style="FONT-SIZE: 24pt">Introduction to Automata Theory, 
+      Languages, and Computation</SPAN><SPAN lang=EN-US> 
+  </SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<H2 style="TEXT-ALIGN: center" align=center><A name=top></A><SPAN 
+lang=EN-US>Solutions for Chapter 7</SPAN></H2>
+<P class=MsoNormal><SPAN lang=EN-US>Revised 3/11/01. </SPAN></P>
+<P><SPAN lang=EN-US><SPAN style="mso-spacerun: yes"></SPAN></SPAN>&nbsp;</P>
+<H2><A name=sol71></A><SPAN lang=EN-US>Solutions for Section 7.1</SPAN></H2>
+<H3><SPAN lang=EN-US>Exercise 7.1.1</SPAN></H3>
+<P class=MsoNormal><I><SPAN lang=EN-US>A</SPAN></I><SPAN lang=EN-US> and 
+<I>C</I> are clearly generating, since they have productions with terminal 
+bodies. Then we can discover <I>S</I> is generating because of the production 
+<I>S-&gt;CA</I>, whose body consists of only symbols that are generating. 
+However, <I>B</I> is not generating. Eliminating <I>B</I>, leaves the grammar 
+</SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; CA</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A -&gt; a</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>C -&gt; b</SPAN></PRE>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Since <I>S, A</I>, and <I>C</I> are each reachable from <I>S</I>, all 
+the remaining symbols are useful, and the above grammar is the answer to the 
+question. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.1.2</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Revised 10/28/01. </SPAN></P>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>a) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>It is easy to check that each of <I>S, A</I>, and <I>B</I> has a 
+production with a terminal body (remember epsilon is, strictly speaking, a 
+string of only terminals), and so each is generating. Moreover, the production 
+<I>S -&gt; ASB</I> shows each variable is reachable from <I>S</I>, so there are 
+no useless symbols. </SPAN></P>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>b) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Only <I>S</I> is nullable, so we must choose, at each point where 
+<I>S</I> occurs in a body, to eliminate it or not. Since there is no body that 
+consists only of <I>S</I>'s, we do not have to invoke the rule about not 
+eliminating an entire body. The resulting grammar: </SPAN></P><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; ASB | AB</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A -&gt; aAS | aA | a</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B -&gt; SbS | bS | Sb | b | A | bb</SPAN></PRE>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>c) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The only unit production is <I>B -&gt; A</I>. Thus, it suffices to 
+replace this body <I>A</I> by the bodies of all the <I>A</I>-productions. The 
+result: </SPAN></P><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; ASB | AB</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A -&gt; aAS | aA | a</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B -&gt; SbS | bS | Sb | b | aAS | aA | a | bb</SPAN></PRE>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>d) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Introduce variables and productions <I>C -&gt; a</I> and <I>D -&gt; 
+b</I>, and use the new variables in all bodies that are not a single terminal: 
+</SPAN></P><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; ASB | AB</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A -&gt; CAS | CA | a</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B -&gt; SDS | DS | SD | b | CAS | CA | a | DD</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>C -&gt; a</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>D -&gt; b</SPAN></PRE>
+<P 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Finally, there are bodies of length 3; one, <I>CAS</I>, appears 
+twice. Introduce new variables <I>E, F</I>, and <I>G</I> to split these bodies, 
+yielding the CNF grammar: </SPAN></P><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>S -&gt; AE | AB</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>A -&gt; CF | CA | a</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>B -&gt; SG | DS | SD | b | CF | CA | a | DD</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>C -&gt; a</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>D -&gt; b</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>E -&gt; SB</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>F -&gt; AS</SPAN></PRE><PRE style="MARGIN-LEFT: 36pt"><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>G -&gt; DS</SPAN></PRE>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.1.10</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>It's not possible. The reason is that an easy induction on the number 
+of steps in a derivation shows that every sentential form has odd length. Thus, 
+it is not possible to find such a grammar for a language as simple as {00}. 
+</SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>To see why, suppose we begin with start symbol <I>S</I> and try to 
+pick a first production. If we pick a production with a single terminal as body, 
+we derive a string of length 1 and are done. If we pick a body with three 
+variables, then, since there is no way for a variable to derive epsilon, we are 
+forced to derive a string of length 3 or more. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.1.11(b)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The statement of the entire construction may be a bit tricky, since 
+you need to use the construction of part (c) in (b), although we are not 
+publishing the solution to (c). The construction for (b) is by induction on 
+<I>i</I>, but it needs to be of the stronger statement that if an 
+<I>A_i</I>-production has a body beginning with <I>A_j</I>, then <I>j &gt; i</I> 
+(i.e., we use part (c) to eliminate the possibility that <I>i=j</I>). 
+</SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Basis: For <I>i</I> = 1 we simply apply the construction of (c) for 
+<I>i = 1</I>. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Induction: If there is any production of the form <I>A_i -&gt; 
+A_1...</I>, use the construction of (a) to replace <I>A_1</I>. That gives us a 
+situation where all <I>A_i</I> production bodies begin with at least <I>A_2</I> 
+or a terminal. Similarly, replace initial <I>A_2</I>'s using (a), to make 
+<I>A_3</I> the lowest possible variable beginning an <I>A_i</I>-production. In 
+this manner, we eventually guarantee that the body of each <I>A_i</I>-production 
+either begins with a terminal or with <I>A_j</I>, for some <I>j &gt;= i</I>. A 
+use of the construction from (c) eliminates the possibility that <I>i = j</I>. 
+</SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.1.11(d)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>As per the hint, we do a backwards induction on <I>i</I>, that the 
+bodies of <I>A_i</I> productions can be made to begin with terminals. 
+</SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Basis: For <I>i = k</I>, there is nothing to do, since there are no 
+variables with index higher than <I>k</I> to begin the body. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Induction: Assume the statement for indexes greater than <I>i</I>. If 
+an <I>A_i</I>-production begins with a variable, it must be <I>A_j</I> for some 
+<I>j &gt; i</I>. By the induction hypothesis, the <I>A_j</I>-productions all 
+have bodies beginning with terminals now. Thus, we may use the construction (a) 
+to replace the initial <I>A_j</I>, yielding only <I>A_i</I>-productions whose 
+bodies begin with terminals. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>After fixing all the <I>A_i</I>-productions for all <I>i</I>, it is 
+time to work on the <I>B_i</I>-productions. Since these have bodies that begin 
+with either terminals or <I>A_j</I> for some <I>j</I>, and the latter variables 
+have only bodies that begin with terminals, application of construction (a) 
+fixes the <I>B_j</I>'s. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol72></A><SPAN lang=EN-US>Solutions for Section 7.2</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.2.1(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Let <I>n</I> be the pumping-lemma constant and consider string <I>z = 
+a^nb^{n+1}c^{n+2}</I>. We may write <I>z = uvwxy</I>, where <I>v</I> and 
+<I>x</I>, may be ``pumped,'' and <I>|vwx| &lt;= n</I>. If <I>vwx</I> does not 
+have <I>c</I>'s, then <I>uv^3wx^3y</I> has at least <I>n+2</I> <I>a</I>'s or 
+<I>b</I>'s, and thus could not be in the language. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>If <I>vwx</I> has a <I>c</I>, then it could not have an <I>a</I>, 
+because its length is limited to <I>n</I>. Thus, <I>uwy</I> has <I>n</I> 
+<I>a</I>'s, but no more than <I>2n+2</I> <I>b</I>'s and <I>c</I>'s in total. 
+Thus, it is not possible that <I>uwy</I> has more <I>b</I>'s than <I>a</I>'s and 
+also has more <I>c</I>'s than <I>b</I>'s. We conclude that <I>uwy</I> is not in 
+the language, and now have a contradiction no matter how <I>z</I> is broken into 
+<I>uvwxy</I>. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.2.1(d)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Let <I>n</I> be the pumping-lemma constant and consider <I>z = 
+0^n1^n^2</I>. We break <I>Z = uvwxy</I> according to the pumping lemma. If 
+<I>vwx</I> consists only of 0's, then <I>uwy</I> has <I>n^2</I> 1's and fewer 
+than <I>n</I> 0's; it is not in the language. If <I>vwx</I> has only 1's, then 
+we derive a contradiction similarly. If either <I>v</I> or <I>x</I> has both 0's 
+and 1's, then <I>uv^2wx^2y</I> is not in <I>0*1*</I>, and thus could not be in 
+the language. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Finally, consider the case where <I>v</I> consists of 0's only, say 
+<I>k</I> 0's, and <I>x</I> consists of <I>m</I> 1's only, where <I>k</I> and 
+<I>m</I> are both positive. Then for all <I>i</I>, <I>uv^{i+1}wx^{i+1}y</I> 
+consists of <I>(n+ik)^2 = n^2 + 2ink + i^2k^2</I> 0's and <I>n^2 + im</I> 1's. 
+If the number of 1's is always to be the square of the number of 0's, we must 
+have, for some positive <I>k</I> and <I>m</I>: <I>2ink + i^2k^2 = im</I>. But 
+the left side grows quadratically in <I>i</I>, while the right side grows 
+linearly, and so this equality for all <I>i</I> is impossible. We conclude that 
+for at least some <I>i</I>, <I>uv^{i+1}wx^{i+1}y</I> is not in the language and 
+have thus derived a contradiction in all cases. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.2.2(b)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>It could be that, when the adversary breaks <I>z = uvwxy</I>, <I>v = 
+0^k</I> and <I>x = 1^k</I>. Then, for all <I>i</I>, <I>uv^iwx^iy</I> is in the 
+language. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.2.2(c)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The adversary could choose <I>z = uvwxy</I> so that <I>v</I> and 
+<I>x</I> are single symbols, on either side of the center. That is, <I>|u| = 
+|y|</I>, and <I>w</I> is either epsilon (if <I>z</I> is of even length) or the 
+single, middle symbol (if <I>z</I> is of odd length). Since <I>z</I> is a 
+palindrome, <I>v</I> and <I>x</I> will be the same symbol. Then <I>uv^iwx^iy</I> 
+is always a palindrome. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.2.4</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The hint turns out to be a bad one. The easiest way to prove this 
+result starts with a string <I>z = 0^n1^n0^n1^n</I> where the middle two blocks 
+are distinguished. Note that <I>vwx</I> cannot include 1's from the second block 
+and also 1's from the fourth block, because then <I>vwx</I> would have all 
+<I>n</I> distinguished 0's and thus at least <I>n+1</I> distinguished symbols. 
+Likewise, it cannot have 0's from both blocks of 0's. Thus, when we pump 
+<I>v</I> and <I>x</I>, we must get an imbalance between the blocks of 1's or the 
+blocks of 0's, yielding a string not in the language. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol73></A><SPAN lang=EN-US>Solutions for Section 7.3</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.3.1(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>For each variable <I>A</I> of the original grammar <I>G</I>, let 
+<I>A'</I> be a new variable that generates <I>init</I> of what <I>A</I> 
+generates. Thus, if <I>S</I> is the start symbol of <I>G</I>, we make <I>S'</I> 
+the new start symbol. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>If <I>A -&gt; BC</I> is a production of <I>G</I>, then in the new 
+grammar we have <I>A -&gt; BC</I>, <I>A' -&gt; BC'</I>, and <I>A' -&gt; B'</I>. 
+If <I>A -&gt; a</I> is a production of <I>G</I>, then the new grammar has <I>A 
+-&gt; a</I>, <I>A' -&gt; a</I>, and <I>A' -&gt; epsilon</I>. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.3.1(b)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The construction is similar to that of part (a), but now <I>A'</I> 
+must be designed to generate string <I>w</I> if and only if <I>A</I> generates 
+<I>wa</I>. That is, <I>A'</I>'s language is the result of applying <I>/a</I> to 
+<I>A</I>'s language. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>If <I>G</I> has production <I>A -&gt; BC</I>, then the new grammar 
+has <I>A -&gt; BC</I> and <I>A' -&gt; BC'</I>. If <I>G</I> has <I>A -&gt; b</I> 
+for some <I>b != a</I>, then the new grammar has <I>A -&gt; b</I>, but we do not 
+add any production for <I>A'</I>. If <I>G</I> has <I>A -&gt; a</I>, then the new 
+grammar has <I>A -&gt; a</I> and <I>A' -&gt; epsilon</I>. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.3.3(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Consider the language <I>L = {a^ib^jc^k | i &lt;= k</I> or <I>j &lt;= 
+k}</I>. <I>L</I> is easily seen to be a CFL; you can design a PDA that guesses 
+whether to compare the <I>a</I>'s or <I>b</I>'s with the <I>c</I>'s. However, 
+<I>min(L) = {a^ib^jc^k | k = min(i,j)}</I>. It is also easy to show, using the 
+pumping lemma, that this language is not a CFL. Let <I>n</I> be the 
+pumping-lemma constant, and consider <I>Z = a^nb^nc^n</I>. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.3.4(b)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>If we start with a string of the form <I>0^n1^n</I> and intersperse 
+any number of 0's, we can obtain any string of 0's and 1's that begins with at 
+least as many 0's as there are 1's in the entire string. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.3.4(c)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Given DFA's for <I>L_1</I> and <I>L_2</I>, we can construct an NFA 
+for their shuffle by using the product of the two sets of states, that is, all 
+states <I>[p,q]</I> such that <I>p</I> is a state of the automaton for 
+<I>L_1</I>, and <I>q</I> is a state of the automaton for <I>L_2</I>. The start 
+state of the automaton for the shuffle consists of the start states of the two 
+automata, and its accepting states consist of pairs of accepting states, one 
+from each DFA. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The NFA for the shuffle guesses, at each input, whether it is from 
+<I>L_1</I> or <I>L_2</I>. More formally, <I>delta([p,q],a) = {[delta_1(p,a),q], 
+[p,delta_2(q,a)]}</I>, where <I>delta_i</I> is the transition function for the 
+DFA for <I>L_i</I> (<I>i</I> = 1 or 2). It is then an easy induction on the 
+length of <I>w</I> that <I>delta-hat([p_0,q_0],w)</I> contains <I>[p,q]</I> if 
+and only if <I>w</I> is the shuffle of some <I>x</I> and <I>y</I>, where 
+<I>delta_1-hat(p_0,x) = p</I> and <I>delta_2-hat(q_0,y) = q</I>. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.3.5</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>a) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Consider the language of regular expression <B>(0l)*</B>. Its 
+permutations consist of all strings with an equal number of 0's and 1's, which 
+is easily shown not regular. In proof, use the pumping lemma for regular 
+languages, let <I>n</I> be the pumping-lemma constant, and consider string 
+<I>0^n1^n</I>. </SPAN></P>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>b) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The language of <B>(012)*</B> serves. Its permutations are all 
+strings with an equal number of 0's 1's, and 2's. We can prove this language not 
+to be a CFL by using the pumping lemma on <I>0^n1^n2^n</I>, where <I>n</I> is 
+the pumping-lemma constant. </SPAN></P>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>c) </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Assume the alphabet of regular language <I>L</I> is {0,1}. We can 
+design a PDA <I>P</I> to recognize <I>perm(L)</I>, as follows. <I>P</I> 
+simulates the DFA <I>A</I> for <I>L</I> on an input string that it guesses. 
+However, <I>P</I> must also check that its own input is a permutation of the 
+guessed string. Thus, each time <I>P</I> guesses an input for <I>A</I>, it also 
+reads one of its own symbols. <I>P</I> uses its stack to remember whether it has 
+seen more 0's than it has guessed, or seen more 1's than it has guessed. It does 
+so by keeping a stack string with a bottom-of-stack marker and either as many 
+more 0's as it has seen than guessed, or as many more 1's as it has seen than 
+guessed. </SPAN></P>
+<P 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>For instance, if <I>P</I> guesses 0 as an input for <I>A</I> but sees 
+a 1 on its own input, then <I>P</I>: </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 72pt; TEXT-INDENT: -18pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo2"><![if !supportLists]><SPAN 
+lang=EN-US>1.<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]><SPAN lang=EN-US>If 0 is the top stack symbol, then push 
+another 0. </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 72pt; TEXT-INDENT: -18pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo2"><![if !supportLists]><SPAN 
+lang=EN-US>2.<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]><SPAN lang=EN-US>If 1 is the top stack symbol, then pop 
+the stack. </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 72pt; TEXT-INDENT: -18pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list 36.0pt; mso-list: l0 level1 lfo2"><![if !supportLists]><SPAN 
+lang=EN-US>3.<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]><SPAN lang=EN-US>If <I>Z_0</I>, the bottom-of-stack 
+marker is on top, push a 0. </SPAN></P>
+<P class=MsoNormal 
+style="MARGIN-LEFT: 36pt; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>In addition, if <I>P</I> exposes the bottom-of-stack marker, then it 
+has guessed, as input to <I>A</I>, a permutation of the input <I>P</I> has seen. 
+Thus, if <I>A</I> is in an accepting state, <I>P</I> has a choice of move to pop 
+its stack on epsilon input, thus accepting by empty stack. </SPAN></P>
+<H2 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><A 
+name=sol74></A><SPAN lang=EN-US>Solutions for Section 7.4</SPAN></H2>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.4.1(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>If there is any string at all that can be ``pumped,'' then the 
+language is infinite. Thus, let <I>n</I> be the pumping-lemma constant. If there 
+are no strings as long as <I>n</I>, then surely the language is finite. However, 
+how do we tell if there is some string of length <I>n</I> or more? If we had to 
+consider all such strings, we'd never get done, and that would not give us a 
+decision algorithm. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The trick is to realize that if there is any string of length 
+<I>n</I> or more, then there will be one whose length is in the range <I>n</I> 
+through <I>2n-1</I>, inclusive. For suppose not. Let <I>z</I> be a string that 
+is as short as possible, subject to the constraint that <I>|z| &gt;= n</I>. If 
+<I>|z| &lt; 2n</I>, we are done; we have found a string in the desired length 
+range. If <I>|z| &gt;= 2n</I>, use the pumping lemma to write <I>z = uvwxy</I>. 
+We know <I>uwy</I> is also in the language, but because <I>|vwx| &lt;= n</I>, we 
+know <I>|z| &gt; |uwy| &gt;= n</I>. That contradicts our assumption that 
+<I>z</I> was as short as possible among strings of length <I>n</I> or more in 
+the language. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>We conclude that <I>|z| &lt; 2n</I>. Thus, our algorithm to test 
+finiteness is to test membership of all strings of length between <I>n</I> and 
+<I>2n-1</I>. If we find one, the language is infinite, and if not, then the 
+language is finite. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.4.3(a)</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Here is the table: </SPAN></P><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{S,A,C}</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{B}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>{B}</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{B}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>{S,C}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{B}</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{S,C}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{S,A}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{S,C}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{S,A}</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{A,C}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{B}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>{A,C}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>{B}<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>{A,C}</SPAN></PRE><PRE><SPAN lang=EN-US>------------------------------------------</SPAN></PRE><PRE><SPAN lang=EN-US><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>b<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>b<SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>a</SPAN></PRE>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Since <I>S</I> appears in the upper-left corner, <I>ababa</I> is in 
+the language. </SPAN></P>
+<H3 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Exercise 7.4.4</SPAN></H3>
+<P class=MsoNormal 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>The proof is an induction on <I>n</I> that if <I>A =&gt;* w</I>, for 
+any variable <I>A</I>, and <I>|w| = n</I>, then all parse trees with <I>A</I> at 
+the root and yield <I>w</I> have <I>2n-1</I> interior nodes. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Basis: <I>n = 1</I>. The parse tree must have a root with variable 
+<I>A</I> and a leaf with one terminal. This tree has <I>2n-1 = 1</I> interior 
+node. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Induction: Assume the statement for strings of length less than 
+<I>n</I>, and let <I>n &gt; 1</I>. Then the parse tree begins with <I>A</I> at 
+the root and two children labeled by variables <I>B</I> and <I>C</I>. Then we 
+can write <I>w = xy</I>, where <I>B =&gt;* x</I> and <I>C =&gt;* y</I>. Also, 
+<I>x</I> and <I>y</I> are each shorter than length <I>n</I>, so the inductive 
+hypothesis applies to them, and we know that the parse trees for these 
+derivations have, respectively, <I>2|x|-1</I> and <I>2|y|-1</I> interior nodes. 
+</SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US>Thus, the parse tree for <I>A =&gt;* w</I> has one (for the root) 
+plus the sum of these two quantities number of interior nodes, or 
+<I>2(|x|+|y|-1)</I> interior nodes. Since <I>|x|+|y| = |w| = n</I>, we are done; 
+the parse tree for <I>A =&gt;* w</I> has <I>2n-1</I> interior nodes. </SPAN></P>
+<P 
+style="tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt"><SPAN 
+lang=EN-US><A 
+href="http://learn.tsinghua.edu.cn/homepage/S01122/index.htm">Return to 
+Home</A></SPAN></P></DIV></BODY></HTML>
