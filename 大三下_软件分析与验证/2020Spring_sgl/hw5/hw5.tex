@@ -1,0 +1,246 @@
+%% compile with pdflatex or xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{homework}
+\usepackage[inference]{semantic}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\setmainfont[Mapping=tex-text]{KaiTi}
+\title{Homework 5}
+\duedate{May 12, 2020}
+
+% TODO your name and ID
+\studentname{沈冠霖}
+\studentid{2017013569}
+
+\newcommand{\pair}[1]{\langle #1 \rangle}
+\newcommand{\evalA}[2]{{\mathcal{A}\llbracket #1 \rrbracket}_{#2}}
+\newcommand{\evalB}[2]{{\mathcal{B}\llbracket #1 \rrbracket}_{#2}}
+\newcommand{\evalC}[3]{\pair{#1, #2} \Downarrow #3}
+\newcommand{\evalCsig}[4]{\pair{#1, #2} \Downarrow \pair{#3, #4}}
+\newcommand{\evalAS}[3]{\pair{#1, #2} \rightarrow_{\mathcal{A}} #3}
+\newcommand{\evalBS}[3]{\pair{#1, #2} \rightarrow_{\mathcal{B}} #3}
+\newcommand{\evalCS}[4]{\pair{#1, #2} \rightarrow \pair{#3, #4}}
+\newcommand{\evalCSM}[4]{\pair{#1, #2} \rightarrow_{*} \pair{#3, #4}}
+
+\newcommand{\kword}[1]{{\color{blue} \textsf{#1}}}
+\newcommand{\True}{\kword{true}}
+\newcommand{\False}{\kword{false}}
+\newcommand{\Skip}{\kword{skip}}
+\newcommand{\If}{\kword{if}}
+\newcommand{\Then}{\kword{then}}
+\newcommand{\Else}{\kword{else}}
+\newcommand{\Fi}{\kword{fi}}
+\newcommand{\While}{\kword{while}}
+\newcommand{\Do}{\kword{do}}
+\newcommand{\End}{\kword{end}}
+\newcommand{\Havoc}{\kword{havoc}}
+\newcommand{\Assume}{\kword{assume}}
+\newcommand{\Assert}{\kword{assert}}
+\newcommand{\Repeat}{\kword{repeat}}
+\newcommand{\Until}{\kword{until}}
+
+\let\implies\twoheadrightarrow
+\newcommand{\wlp}[2]{\textsf{wlp}(#1, #2)}
+\newcommand{\norm}[1]{\textsf{norm}(#1)}
+\newcommand{\err}{\textsf{err}}
+
+\begin{document}
+
+\maketitle
+
+\textit{Read the instructions below carefully before you start working on the assignment:}
+\begin{itemize}
+    \item Please typeset your answers in the attached \LaTeX~source file, compile it to a PDF,
+    and finally hand the PDF to Tsinghua Web Learning \emph{before the due date}.
+    \item Make sure you fill in your \emph{name} and \emph{Tsinghua ID},
+    and replace all ``\texttt{TODO}''s with your solutions.
+    \item Any kind of dishonesty is \emph{strictly prohibited} in the full semester.
+    If you refer to any material that is not provided by us, you \emph{must cite} it.
+\end{itemize}
+
+\problem{Hoare Triples}
+
+Are the following Hoare triples valid? And why?
+Be careful to distinguish between partial correctness and total correctness.
+
+\subproblem $\{X = 0 \land Y = 1\}~X := X + 1; Y := Y + 1~\{X = 1 \land Y = 2\}$
+
+\begin{solution}
+    Valid.\\
+    当初始状态为X=0,Y=1时，执行C必然终止，并且assertion变为$\{X = 1 \land Y = 2\}$
+\end{solution}
+
+\subproblem $\{\top\}~\While~X \le 0~\Do~X := X + 1~\End~\{X \ge 0\}$
+
+\begin{solution}
+    Valid.\\
+    当初始状态为$X \leq 0$时，会一直执行循环，直到$X > 0$跳出循环终止，此时满足条件。\\
+    当初始状态为X>0时，会直接结束，此时满足条件。
+\end{solution}
+
+\subproblem $[\top]~\While~X > 0~\Do~X := X - 1~\End~[X \le 0]$
+
+\begin{solution}
+    Valid.\\
+    当初始状态为X>0时，会一直执行循环，直到$X \leq 0$终止。而因为X每次减1，所以必定终止。\\
+    当初始状态为$X \leq 0$时，会直接退出循环。\\
+    无论如何,这个程序必定终止，而且终止状态必然满足$X \leq 0$
+\end{solution}
+
+\subproblem $\{\top\}~\While~X > 0~\Do~X := X - 1~\End~\{X = 0\}$
+
+\begin{solution}
+    Invalid\\
+    当X初值为-1时，会直接跳出循环，最终状态为$\{X = -1\}$。此时程序终止，而且最终状态不符合条件，因此invalid.
+\end{solution}
+
+\newpage
+\problem{Weakest Liberal Precondition}
+
+\subproblem Compute $\wlp{\If~X > 0~\Then~Y := X~\Else~Y := -X}{Y > 5}$.
+
+\begin{solution}
+    定义整个程序为c,$b: X > 0,c1: Y:=X, c2:Y := -X, Q:Y>5$\\
+    $wlp(c, Q) = (b \to wlp(c1, Q)) \land (\lnot b \to wlp(c2, Q))$\\
+    $wlp(c1, Q) = X > 5$\\
+    $wlp(c2, Q) = X < -5$\\
+    $wlp(c, Q) = (X > 0 \to X > 5) \land (X \leq 0 \to X < -5)$
+\end{solution}
+
+\subproblem Compute $\wlp{\While~X > 0~\Do~X := X + 1~\End}{X \le 0}$.
+
+\begin{solution}
+    循环的循环不变式为$X > 0$\\
+    证明：只需要证明$\{X > 0 \land X > 0\}X:=X+1\{X > 0\}$成立即可\\
+    而当X>0时，执行$X:=X+1$，得到的结果必然也有X>0，成立。\\
+    利用该循环不变式，可得整体的wlp为X > 0。\\
+    但是还要引入vc1:$X>0 \land \lnot(X > 0) \Rightarrow X \leq 0$\\
+    vc2:$X >0 \land X > 0 \Rightarrow wlp(X:=X+1, X >0)$\\
+    化简vc1，可得$\bot \Rightarrow X \leq 0$，valid\\
+    化简vc2，可得$X > 0 \Rightarrow X > -1$， valid\\
+    综上，$\wlp{\While~X > 0~\Do~X := X + 1~\End}{X \le 0} = X > 0$
+\end{solution}
+
+\newpage
+\problem{Decorated Programs}
+
+The beauty of Hoare logic is that it is \emph{compositional}:
+the structure of proofs exactly follows the structure of programs.
+This suggests that we can record the essential ideas of a proof (leaving out some low-level calculational details)
+by ``decorating'' a program with appropriate assertions on each of its commands.
+Such a \emph{decorated program} carries within it an argument for its own correctness.
+
+For example, consider the program (where $m$ and $p$ denote two constant integers):
+\begin{align*}
+    & X := m; \\
+    & Z := p; \\
+    & \While~\lnot(X = 0)~\Do \\
+    &\quad Z := Z - 1; \\
+    &\quad X := X - 1 \\
+    &\End
+\end{align*}
+To show that the above program satisfies precondition $\top$ and postcondition $Z = p - m$,
+we decorate the above as the following:
+\begin{align*}
+    & \{\top\} \implies \{m=m\} \\
+    & X := m; \\
+    & \{X=m\} \implies \{X = m \land p = p\} \\
+    & Z := p; \\
+    & \{X = m \land Z = p \} \implies \{Z - X = p - m\} \\
+    & \While~\lnot(X = 0)~\Do \\
+    & \{Z - X = p - m \land X \not= 0\} \implies \{(Z - 1) - (X - 1) = p - m\} \\
+    &\quad Z := Z - 1; \\
+    &\quad \{Z - (X - 1) = p - m\} \\
+    &\quad X := X - 1 \\
+    &\quad \{Z - X = p - m\} \\
+    &\End \\
+    &\{Z - X = p - m \land \lnot(X \not= 0)\} \implies \{Z = p - m\}
+\end{align*}
+
+Concretely, a decorated program consists of the program commands interleaved with assertions --
+either a single assertion, or possibly two assertions separated by an implication ``$\implies$''
+(we use this strange notation to distinguish from our reduction relation $\to$).
+To check that a decorated program represents a valid proof,
+we check that each individual command is \emph{locally consistent} with its nearby assertions,
+following the standard Hoare rules, e.g. $$\{m=m\}~X := m~\{X=m\}$$ is valid by rule Asgn.
+Note that this hoare triple must not only be valid, but also be an \emph{instantiation} of some Hoare rule.
+To convince yourself, carefully check that every such triples are indeed valid, and they are instantiations of
+the standard Hoare rules.
+
+Now, it's your turn. Here is a program $P$ that squares $X$ by repeated addition:
+\begin{align*}
+& Y := 0; \\
+& Z := 0; \\
+& \While~\lnot(Y = X)~\Do \\
+&\quad Z := Z + X; \\
+&\quad Y := Y + 1 \\
+& \End
+\end{align*}
+
+We expect $P$ to satisfy precondition $X = m$ and postcondition $X = m \times m$ for an arbitrary \emph{natural number} $m$.
+Please write the corresponding decorated program which represents a valid proof of it.
+
+\emph{Hint: you may need a ``good'' loop invariant.}
+
+\begin{solution}
+\begin{align*}
+&\{X = m\} \implies \{0X = 0 \land X = m\}\\
+&  Y := 0; \\
+&\{X = m \land Y = 0\} \implies \{YX = 0 \land X = m\}\\
+&Z := 0; \\
+&\{X = m \land Y = 0 \land Z = 0\} \implies \{YX = Z  \land X = m\}\\
+&\While~\lnot(Y = X)~\Do \\
+&\{X = m \land Y = 0 \land Z = 0 \land \lnot(X = Y)\} \implies \{X(Y + 1) = Z + X \land X = m\}\\
+&\quad Z := Z + X; \\
+&\{X(Y + 1) = Z  \land X = m\}\\
+&\quad Y := Y + 1 \\
+&\{XY = Z \land X = m\}\\
+& \End\\
+&\{XY = Z \land X = m \land X = Y\} \implies \{Z = m^{2}\}\\
+\end{align*}
+\end{solution}
+
+\newpage
+\problem{Hoare Rules}
+
+The Hoare rules we have seen from lectures are \emph{verification-friendly}, say they are strong enough to reason about almost all IMP programs.
+Suppose we add more extensions to IMP, which is our favorite thing, new Hoare rules need be specified to support these features.
+Again, these new rules should be verification-friendly.
+In this problem, you are asked to \emph{design} (you do NOT need to proof your rule is sound) a couple of new Hoare rules that describe \emph{partial correctness}.
+
+\subproblem Design a new Hoare rule for \Havoc~(defined in the last homework).
+
+\begin{solution}
+	\begin{align*}
+    &\inference[(havoc)]{}{ \{Q\}\Havoc~ X\{Q[n/X]\} }
+	\end{align*}
+n为任意数
+\end{solution}
+
+\subproblem Design a new Hoare rule for repeat-loop:
+$$\Repeat~c~\Until~b~\End,$$
+which behaves like a while-loop, except that the loop guard $b$ is checked after each execution of the body $c$,
+with the loop repeating as long as the guard stays false.
+Because of this, the body will always execute at least once.
+Formally, the evaluation rules (of big-step operational semantics) are given by:
+\begin{align*}
+	&\inference[(RepeatTrue)]{\evalC{\sigma}{c}{\sigma'} & \evalB{b}{\sigma'}=\top}
+		{\evalC{\sigma}{\Repeat~c~\Until~b~\End}{\sigma'}} \\
+	&\inference[(RepeatFalse)]{\evalC{\sigma}{c}{\sigma'} & \evalB{b}{\sigma'}=\bot &
+		\evalC{\sigma'}{\Repeat~c~\Until~b~\End}{\sigma''}}
+		{\evalC{\sigma}{\Repeat~c~\Until~b~\End}{\sigma''}}
+\end{align*}
+
+\emph{Hint: ``adapt'' the Hoare rule for while-loops so that it works on repeat-loops.}
+
+\begin{solution}
+	\begin{align*}
+	&\inference[(Repeat)]{\{P \land \lnot b\}c\{P\}}
+	{\{P\}\Repeat~c~\Until~b~\End\{P\land b\}}
+	\end{align*}
+\end{solution}
+
+%% problem ends
+
+\end{document}

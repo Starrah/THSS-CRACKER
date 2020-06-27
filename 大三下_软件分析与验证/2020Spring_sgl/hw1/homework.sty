@@ -1,0 +1,74 @@
+\ProvidesPackage{homework}[2020/02/24]
+
+% page
+\RequirePackage[inner=2.0cm,outer=2.0cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage{fancyhdr}
+
+% fonts
+\RequirePackage[T1]{fontenc}
+\RequirePackage{zi4} % ttfamily
+
+% items
+\RequirePackage{enumitem}
+\setitemize[1]{itemsep=0pt,partopsep=0pt}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt}
+
+% meta info
+\def\homework@duedate{!missing duedate}
+\def\homework@studentname{!missing studentname}
+\def\homework@studentid{!missing studentid}
+\newcommand{\duedate}[1]{\def\homework@duedate{#1}}
+\newcommand{\studentname}[1]{\def\homework@studentname{#1}}
+\newcommand{\studentid}[1]{\def\homework@studentid{#1}}
+
+% set up page style
+\pagestyle{fancy}
+\lhead{\homework@studentname}
+\chead{\@title}
+\setlength{\headheight}{25pt}
+
+% title box
+\renewcommand{\maketitle}{
+   \thispagestyle{plain}
+   \begin{center}
+   \framebox{\vbox{
+      \vspace{2mm}
+      \hbox to 6.28in { {\bf Software Analysis \& Verification \hfill {Due: \homework@duedate}} }
+      \vspace{6mm}
+      \hbox to 6.28in { {\Large\bf \hfill \@title \hfill} }
+      \vspace{6mm}
+      \hbox to 6.28in { {\it Instructor: Fei He \hfill \normalfont \homework@studentname~(\homework@studentid)} }
+      \hbox to 6.28in { {\it TA: Jianhui Chen, Fengmin Zhu \hfill } }
+      \vspace{2mm}
+   }}
+   \end{center}
+   \vspace{4mm}
+}
+
+
+% problems and solutions
+\newcounter{problem}
+\newcommand{\problem}[1]{\stepcounter{problem}\section*{Problem \theproblem: #1}}
+\newcommand{\optionalproblem}[1]{\stepcounter{problem}\section*{Problem \theproblem: #1 (Optional)}}
+\newcounter{subproblem}[problem]
+\newcommand{\subproblem}{\stepcounter{subproblem}\paragraph*{\theproblem-\thesubproblem}}
+\newcommand{\optionalsubproblem}{\stepcounter{subproblem}\paragraph*{\theproblem-\thesubproblem~(Optional)}}
+\newcommand{\hint}[1]{\paragraph*{Hint} #1}
+\newenvironment{solution}{\paragraph*{Solution}}{$\blacksquare$}
+
+% maths
+\RequirePackage{amsmath,amsfonts,amssymb,stmaryrd}
+
+% theorems
+\RequirePackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\RequirePackage{proof}
+
+% other useful packages
+\RequirePackage{hyperref}
+\RequirePackage{graphics}
+\RequirePackage{booktabs}
+\RequirePackage[capitalise,noabbrev]{cleveref}
+% end of file

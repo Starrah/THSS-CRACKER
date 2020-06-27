@@ -1,0 +1,228 @@
+%% compile with pdflatex or xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{homework}
+\usepackage[inference]{semantic}
+\usepackage{xcolor}
+
+\title{Homework 6}
+\duedate{Jun 3, 2020}
+
+% TODO your name and ID
+\studentname{SHEN GUANLIN}
+\studentid{2017013569}
+
+\newcommand{\pair}[1]{\langle #1 \rangle}
+\newcommand{\evalA}[2]{{\mathcal{A}\llbracket #1 \rrbracket}_{#2}}
+\newcommand{\evalB}[2]{{\mathcal{B}\llbracket #1 \rrbracket}_{#2}}
+\newcommand{\evalC}[3]{\pair{#1, #2} \Downarrow #3}
+\newcommand{\evalCsig}[4]{\pair{#1, #2} \Downarrow \pair{#3, #4}}
+\newcommand{\evalAS}[3]{\pair{#1, #2} \rightarrow_{\mathcal{A}} #3}
+\newcommand{\evalBS}[3]{\pair{#1, #2} \rightarrow_{\mathcal{B}} #3}
+\newcommand{\evalCS}[4]{\pair{#1, #2} \rightarrow \pair{#3, #4}}
+\newcommand{\evalCSM}[4]{\pair{#1, #2} \rightarrow_{*} \pair{#3, #4}}
+
+\let\implies\twoheadrightarrow
+\newcommand{\norm}[1]{\textsf{norm}(#1)}
+\newcommand{\err}{\textsf{err}}
+
+\newcommand{\kword}[1]{{\color{blue} \textsf{#1}}}
+\newcommand{\True}{\kword{true}}
+\newcommand{\False}{\kword{false}}
+\newcommand{\Skip}{\kword{skip}}
+\newcommand{\If}{\kword{if}}
+\newcommand{\Then}{\kword{then}}
+\newcommand{\Else}{\kword{else}}
+\newcommand{\Fi}{\kword{fi}}
+\newcommand{\While}{\kword{while}}
+\newcommand{\Do}{\kword{do}}
+\newcommand{\End}{\kword{end}}
+\newcommand{\Havoc}{\kword{havoc}}
+\newcommand{\Assume}{\kword{assume}}
+\newcommand{\Assert}{\kword{assert}}
+\newcommand{\Repeat}{\kword{repeat}}
+\newcommand{\Until}{\kword{until}}
+
+\newcommand{\wlp}[2]{\textsf{wlp}(#1, #2)}
+
+\begin{document}
+
+\maketitle
+
+\textit{Read the instructions below carefully before you start working on the assignment:}
+\begin{itemize}
+    \item Please typeset your answers in the attached \LaTeX~source file, compile it to a PDF,
+    and finally hand the PDF to Tsinghua Web Learning \emph{before the due date}.
+    \item Make sure you fill in your \emph{name} and \emph{Tsinghua ID},
+    and replace all ``\texttt{TODO}''s with your solutions.
+    \item Any kind of dishonesty is \emph{strictly prohibited} in the full semester.
+    If you refer to any material that is not provided by us, you \emph{must cite} it.
+\end{itemize}
+
+\problem{Multiple Choice}
+
+For each of questions below, four choices marked (A), (B), (C) and (D) are provided.
+ONLY ONE of them is correct. Read the questions carefully and choose the correct answers.
+
+\subproblem Which of the following is \emph{not} a loop invariant for the following IMP loop? $$\While~Y>0~\Do~Y:=Y-1;X:=X+1~\End$$
+
+\begin{enumerate}[label=(\Alph*)]
+    \item $X>10$.
+    \item $Y>10$.
+    \item $X+Y=Z$.
+    \item $Z+Y<X$.
+\end{enumerate}
+
+\begin{solution}
+    B
+\end{solution}
+
+\subproblem Which of the following is \emph{false} about the IMP program shown below?
+\begin{align*}
+    & X := 1; \\
+    & \While~X > 0~\Do \\
+	&\quad \If~N \le 100~\Then \\
+	&\qquad N := N + 11; \\
+	&\qquad X := X + 1 \\
+	&\quad \Else \\
+	&\qquad N := N - 10; \\
+	&\qquad X := X - 1 \\
+	&\quad \Fi \\
+    & \End
+\end{align*}
+
+\begin{enumerate}[label=(\Alph*)]
+    \item $X=0$ is a post condition.
+    \item $X \ge 0$ is a loop invariant (for the while-loop).
+    \item $N \le 111$ is a loop invariant (for the while-loop).
+    \item The program may not terminate.
+\end{enumerate}
+
+\begin{solution}
+    D
+\end{solution}
+
+\subproblem Let $[X=0]~\While~b~\Do~c~\End~[X=1]$ be a Hoare triple.
+Which of the following is \emph{true}?
+
+\begin{enumerate}[label=(\Alph*)]
+    \item If $c$ is $X:=1$, then the Hoare triple is valid for some $b$.
+    \item If $b$ is $\True$, then the Hoare triple is valid for some $c$.
+    \item If $b$ is $X\not=1$, then the Hoare triple is valid no matter what $c$ is.
+    \item The Hoare triple is always invalid no matter what $b$ and $c$ are.
+\end{enumerate}
+
+\begin{solution}
+    A
+\end{solution}
+
+\subproblem Recall that two IMP programs (with havoc) $c_1$ and $c_2$ are \emph{behaviorally equivalent},
+if for every states $\sigma$ and $\sigma'$, their big-step operational semantic evaluation relations satisfy $\evalC{\sigma}{c_1}{\sigma'} \iff \evalC{\sigma}{c_2}{\sigma'}$.
+In which of the following are $c_1$ and $c_2$ behaviorally equivalent?
+
+\begin{enumerate}[label=(\Alph*)]
+    \item $c_1: X:=Y; Y:=X \qquad c_2: Y:=X; X:=Y$
+    \item $c_1: \Skip \qquad c_2: \If~X>10~\Then~X:=0~\Else~\Skip~\Fi$
+    \item $c_1: \Havoc~X; X:=10 \qquad c_2: X:=10$
+    \item $c_1: \Havoc~X; \Havoc~Y \qquad c_2: \Havoc~Y$
+\end{enumerate}
+
+\begin{solution}
+   C
+\end{solution}
+
+\subproblem Let $F$ be a CNF with four variables $x_1, x_2, x_3, x_4$.
+We apply the DPLL algorithm (without backjump) on $F$ and the following operations are done:
+decide $x_1$, propagate $x_2$, propagate $x_3$.
+Which of the following operations will be possibly done in the next step?
+
+\begin{enumerate}[label=(\Alph*)]
+    \item Decide $\lnot x_3$.
+    \item Backtrack and decide $\lnot x_1$.
+    \item Backtrack and decide $\lnot x_2$.
+    \item Backtrack and decide $\lnot x_3$.
+\end{enumerate}
+
+\begin{solution}
+   C
+\end{solution}
+
+\newpage
+\problem{Assumptions \& Assertions}
+
+We consider two kinds of commands which indicate a certain statement should hold any time this part of the program is reached -- the assumption statement ``$\Assume~b$'', and the assertion statement ``$\Assert~b$'':
+\begin{itemize}
+	\item If an assertion statement fails, it causes the program to go into an \emph{error state} and exit (or abort).
+	\item If an assumption statement fails, the program fails to evaluate at all.
+	In other words, the program gets \emph{stuck} and has no final state.
+\end{itemize}
+To formally express the program may go into an error state, we have to change the evaluation relation (of big-step operational semantics) from ``$\evalC{\sigma}{c}{\sigma'}$'' into ``$\evalC{\sigma}{c}{r}$'', where the evaluation \emph{result}
+$$r ::= \norm{\sigma} \mid \err$$
+can state two possible cases: $\norm{\sigma}$ for normally execution with ending state $\sigma$,
+or $\err$ for reaching the error state.
+The inference rules for the original IMP commands need be modified and we should handle errors carefully (read and think about the differences):
+\begin{align*}
+	&\inference[(Skip)]{}{\evalC{\sigma}{\Skip}{\norm{\sigma}}}
+	&\inference[(Ass)]{\evalA{a}{\sigma}=n}{\evalC{\sigma}{x:=a}{\norm{\sigma[x\mapsto n]}}} \\
+	&\inference[(Seq)]{\evalC{\sigma}{c_1}{\norm{\sigma'}} & \evalC{\sigma'}{c_2}{r}}
+		{\evalC{\sigma}{c_1;c_2}{r}}
+	&\inference[(SeqErr)]{\evalC{\sigma}{c_1}{\err}}{\evalC{\sigma}{c_1;c_2}{\err}} \\
+	&\inference[(IfTrue)]{\evalB{b}{\sigma}=\top & \evalC{\sigma}{c_1}{r}}
+		{\evalC{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{r}}
+	&\inference[(IfFalse)]{\evalB{b}{\sigma}=\bot & \evalC{\sigma}{c_2}{r}}
+		{\evalC{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{r}} \\
+	&\inference[(WhileFalse)]{\evalB{b}{\sigma}=\bot}
+		{\evalC{\sigma}{\While~b~\Do~c~\End}{\norm{\sigma}}}
+	&\inference[(WhileTrue)]{\evalB{b}{\sigma}=\top & \evalC{\sigma}{c}{\norm{\sigma'}} \\
+		\evalC{\sigma'}{\While~b~\Do~c~\End}{r}}{\evalC{\sigma}{\While~b~\Do~c~\End}{r}} \\
+	&\inference[(WhileTrueErr)]{\evalB{b}{\sigma}=\top & \evalC{\sigma}{c}{\err}}
+		{\evalC{\sigma}{\While~b~\Do~c~\End}{\err}} \\
+\end{align*}
+
+We redefine Hoare triples ``$\{P\}~c~\{Q\}$'' to mean that, whenever $c$ is started in a state satisfying $P$, and terminates with result $r$, then $r=\norm{\sigma}$ (and hence $r\not=\err$) where the state $\sigma$ satisfies $Q$.
+
+\subproblem Give the evaluation rules for assumption and assertion statements.
+
+\begin{solution}
+    \begin{align*}
+        &\inference[(Assume)]{\evalB{b}{\sigma}=\top}{\evalC{\sigma}{\Assume~b}{\norm{\sigma}}} \\	
+        &\inference[(AssertTrue)]{\evalB{b}{\sigma}=\top}{\evalC{\sigma}{\Assert~b}{\norm{\sigma}}} \\
+        &\inference[(AssertFalse)]{\evalB{b}{\sigma}=\bot}{\evalC{\sigma}{\Assert~b}{err}} \\	
+    \end{align*}
+\end{solution}
+
+\subproblem Design Hoare rules for assumption and assertion statements.
+
+\begin{solution}
+   \begin{align*}
+	&\inference[(Assume)]{\exists A. A \vDash P \land b}
+	{\{P\}\Assume~b\{P\land b\}}
+	&\inference[(Assert)]{P \Rightarrow b}
+		{\{P\}\Assert~b\{P\}}
+   \end{align*}
+\end{solution}
+
+\subproblem Compute $\wlp{X := X + 1; \Assume~X > 0; Y := Y + X}{X + Y + Y \ge 3}$.
+
+\begin{solution}
+    $\wlp{X := X + 1; \Assume~X > 0; Y := Y + X}{X + Y + Y \ge 3}$\\
+     $=\wlp{X := X + 1; \Assume~X > 0}{\wlp{Y := Y + X}{X + Y + Y \ge 3}}$\\
+     \\
+    $\wlp{Y := Y + X}{X + Y + Y \ge 3} = {X + Y + X + Y + X\ge 3} $\\
+    \\
+    $\wlp{X := X + 1; \Assume~X > 0}{\wlp{Y := Y + X}{X + Y + Y \ge 3}}$\\
+    $=\wlp{X := X + 1; \Assume~X > 0}{X + Y + X + Y + X\ge 3}$\\
+     $=\wlp{X := X + 1} {\wlp{\Assume~X > 0}{X + Y + X + Y + X\ge 3}}$\\
+     \\
+     $\wlp{\Assume~X > 0}{X + Y + X + Y + X\ge 3} = X > 0 \to X + Y + X + Y + X\ge 3$\\
+     \\
+     $\wlp{X := X + 1} {\wlp{\Assume~X > 0}{X + Y + X + Y + X\ge 3}}$\\
+     $=\wlp{X := X + 1}{ X > 0 \to X + Y + X + Y + X\ge 3}$\\
+     $=(X+1) > 0 \to (X+1) + Y + (X+1) + Y + (X+1) \ge 3$\\\
+     To sum up, the wlp is  $=(X+1) > 0 \to (X+1) + Y + (X+1) + Y + (X+1) \ge 3$
+     
+\end{solution}
+
+%% problem ends
+
+\end{document}

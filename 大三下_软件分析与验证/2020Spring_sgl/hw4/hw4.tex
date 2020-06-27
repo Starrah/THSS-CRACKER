@@ -1,0 +1,399 @@
+%% compile with pdflatex or xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{homework}
+\usepackage[inference]{semantic}
+\usepackage{xcolor}
+
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize\ttfamily,frame=lines}
+\usepackage{fontspec}
+\setmainfont[Mapping=tex-text]{KaiTi}
+\title{Homework 4}
+\duedate{Apr 28, 2020}
+
+% TODO your name and ID
+\studentname{YOUR NAME}
+\studentid{YOUR TSINGHUA ID}
+
+\let\t\texttt
+\let\defas\triangleq
+\let\emptyset\varnothing
+\renewcommand{\iff}{\leftrightarrow}
+\let\sCont\triangleright
+\let\sBreak\ntriangleright
+\newcommand{\toM}{\to_{*}}
+
+\newcommand{\pair}[1]{\langle #1 \rangle}
+\newcommand{\evalA}[2]{{\mathcal{A}\llbracket #1 \rrbracket}_{#2}}
+\newcommand{\evalB}[2]{{\mathcal{B}\llbracket #1 \rrbracket}_{#2}}
+\newcommand{\evalC}[3]{\pair{#1, #2} \Downarrow #3}
+\newcommand{\evalCsig}[4]{\pair{#1, #2} \Downarrow \pair{#3, #4}}
+\newcommand{\evalAS}[3]{\pair{#1, #2} \rightarrow_{\mathcal{A}} #3}
+\newcommand{\evalBS}[3]{\pair{#1, #2} \rightarrow_{\mathcal{B}} #3}
+\newcommand{\evalCS}[4]{\pair{#1, #2} \rightarrow \pair{#3, #4}}
+\newcommand{\evalCSM}[4]{\pair{#1, #2} \rightarrow_{*} \pair{#3, #4}}
+
+\newcommand{\kword}[1]{{\color{blue} \textsf{#1}}}
+\newcommand{\True}{\kword{true}}
+\newcommand{\False}{\kword{false}}
+\newcommand{\Skip}{\kword{skip}}
+\newcommand{\If}{\kword{if}}
+\newcommand{\Then}{\kword{then}}
+\newcommand{\Else}{\kword{else}}
+\newcommand{\Fi}{\kword{fi}}
+\newcommand{\While}{\kword{while}}
+\newcommand{\Do}{\kword{do}}
+\newcommand{\End}{\kword{end}}
+\newcommand{\Havoc}{\kword{havoc}}
+\newcommand{\Break}{\kword{break}}
+\newcommand{\Par}{\kword{par}}
+\newcommand{\With}{\kword{with}}
+
+\begin{document}
+
+\maketitle
+
+\textit{Read the instructions below carefully before you start working on the assignment:}
+\begin{itemize}
+    \item Please typeset your answers in the attached \LaTeX~source file, compile it to a PDF,
+    and finally hand the PDF to Tsinghua Web Learning \emph{before the due date}.
+    \item Make sure you fill in your \emph{name} and \emph{Tsinghua ID},
+    and replace all ``\texttt{TODO}''s with your solutions.
+    \item Any kind of dishonesty is \emph{strictly prohibited} in the full semester.
+    If you refer to any material that is not provided by us, you \emph{must cite} it.
+    \item Unlike previous assignments, in this one, you will do more reading (and also thinking) than writing.
+\end{itemize}
+
+\section*{IMP, Revisited}
+Before getting start, let's first revisit IMP, \emph{a simple IMPerative programming language}, we have introduced in the lectures. We now present all necessary notations we need in the problems.
+Some of them may look different from the lectures.
+We will keep using them in the subsequent assignments and possibly also in the final examination.
+
+Above all, let's specify the syntax:
+\begin{align*}
+	\text{Arithmetic expression}~a &::= n \mid x \mid a_1 + a_2 \mid a_1 - a_2 \mid a_1 \times a_2 \\
+	\text{Boolean expression}~b &::= \True \mid \False \mid a_1 = a_2 \mid a_1 \le a_2 \mid \neg b \mid b_1 \land b_2 \\
+	\text{Command/Statement}~c &::= \Skip \mid x:=a \mid c_1;c_2 \mid \If~b~\Then~c_1~\Else~c_2~\Fi \\
+	&\mid \While~b~\Do~c~\End
+\end{align*}
+where $n$ denotes a constant integer and $x$ denotes a variable.
+At the top level, an IMP \emph{program} is simply a command.
+
+We put the assignments of variables in a \emph{total map}, i.e. a mapping from variables to integers.
+Initially, the total map is \emph{empty}, denoted by $\emptyset$, and every variable is mapped to 0, by default.
+We use the notion $\sigma(x)$ to obtain the integer that variable $x$ maps to.
+Besides, we can update a total map $\sigma$, by letting the variable $x$ map to integer $n$, yielding a new total map $\sigma[x \mapsto n]$.
+Trivially, you see $(\sigma[x \mapsto n])(x) = n$ must hold.
+This total map is usually called a \emph{state}, when we will later talk about program semantics.
+
+\paragraph{Big-step Operational Semantics}
+
+In the first pass, let's define the semantics of IMP, using big-step operational semantics.
+For arithmetic expressions, we specify a semantic function $\evalA{a}{\sigma}$, which sends an arithmetic expression to its value, i.e. a constant integer, in the state $\sigma$:
+\begin{align*}
+	\evalA{n}{\sigma} &\defas n \\
+	\evalA{x}{\sigma} &\defas \sigma(x) \\
+	\evalA{a_1 + a_2}{\sigma} &\defas \evalA{a_1}{\sigma} + \evalA{a_2}{\sigma} \\
+	\evalA{a_1 - a_2}{\sigma} &\defas \evalA{a_1}{\sigma} - \evalA{a_2}{\sigma} \\
+	\evalA{a_1 \times a_2}{\sigma} &\defas \evalA{a_1}{\sigma} \times \evalA{a_2}{\sigma}
+\end{align*}
+Note that in the right hand side, we also use the standard arithmetic operators $+,-,\times$ for integers.
+
+\emph{Remark:}
+By the way, the ``$+$'' appeared in ``$a_1 + a_2$'' is a \emph{syntactic symbol} (part of the syntax of an arithmetic expression), whereas the ``$+$'' appeared in ``$\evalA{a_1}{\sigma} + \evalA{a_2}{\sigma}$'' is a \emph{semantic symbol} (the integer addition operation).
+To be honest, here we make a ``harmless abuse of notations'', as human beings can understand them.
+
+For boolean expressions, we specify a semantic function $\evalB{b}{\sigma}$, which sends a boolean expression to its value, i.e. a constant boolean value (either $\top$ for true, or $\bot$ for false), in the state $\sigma$:
+\begin{align*}
+	\evalB{\True}{\sigma} &\defas \top \\
+	\evalB{\False}{\sigma} &\defas \bot \\
+	\evalB{a_1 = a_2}{\sigma} &\defas \evalA{a_1}{\sigma} = \evalA{a_2}{\sigma} \\
+	\evalB{a_1 \le a_2}{\sigma} &\defas \evalA{a_1}{\sigma} \le \evalA{a_2}{\sigma} \\
+	\evalB{\neg b}{\sigma} &\defas \neg \evalB{b}{\sigma} \\
+	\evalB{b_1 \land b_2}{\sigma} &\defas \evalB{b_1}{\sigma} \land \evalB{b_2}{\sigma}
+\end{align*}
+Note that in the right hand side, we also use the standard comparison operators $=$/$\le$ for comparing if two integers are equal/one is less greater than or equal to the other, as well as the standard logical operators $\neg$/$\land$ for computing negation/conjunction.
+
+Finally, for commands (or statements), the evaluation relation is denoted by $\evalC{\sigma}{c}{\sigma'}$, meaning that executing a command $c$ in a starting state $\sigma$ results in an ending state $\sigma'$.
+This can also be pronounced ``$c$ takes state $\sigma$ to $\sigma'$''.
+Inference rules are as follows:
+\begin{align*}
+	&\inference[(Skip)]{}{\evalC{\sigma}{\Skip}{\sigma}} \\
+	&\inference[(Ass)]{\evalA{a}{\sigma}=n}{\evalC{\sigma}{x:=a}{\sigma[x\mapsto n]}} \\
+	&\inference[(Seq)]{\evalC{\sigma}{c_1}{\sigma'} & \evalC{\sigma'}{c_2}{\sigma''}}
+		{\evalC{\sigma}{c_1;c_2}{\sigma''}} \\
+	&\inference[(IfTrue)]{\evalB{b}{\sigma}=\top & \evalC{\sigma}{c_1}{\sigma'}}
+		{\evalC{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{\sigma'}} \\
+	&\inference[(IfFalse)]{\evalB{b}{\sigma}=\bot & \evalC{\sigma}{c_2}{\sigma'}}
+		{\evalC{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{\sigma'}} \\
+	&\inference[(WhileFalse)]{\evalB{b}{\sigma}=\bot}
+		{\evalC{\sigma}{\While~b~\Do~c~\End}{\sigma}} \\
+	&\inference[(WhileTrue)]{\evalB{b}{\sigma}=\top & \evalC{\sigma}{c}{\sigma'} \\
+		\evalC{\sigma'}{\While~b~\Do~c~\End}{\sigma''}}{\evalC{\sigma}{\While~b~\Do~c~\End}{\sigma''}}
+\end{align*}
+
+\paragraph{Small-step Operational Semantics}
+
+Alternatively, we could use small-step operational semantics to repeat the things we have just done.
+To follow a ``pure small-step'' style, you may redefine the semantics of arithmetic expressions and boolean expressions in the style of small-step, the evaluation relations may be denoted by $\evalAS{\sigma}{a}{a'}$ and $\evalBS{\sigma}{b}{b'}$, respectively.
+If you attempt this, you will realize that more inference rules are needed than before.
+
+To make our life easier, we could simply reuse the semantic functions $\evalA{a}{\sigma}$ and $\evalB{b}{\sigma}$.
+We are now only interested in how to describe the semantics for commands, using small-step operational semantics.
+The evaluation relation has the form $\evalCS{\sigma}{c}{\sigma'}{c'}$, meaning that executing a command $c$, just ``one step'', from a starting state $\sigma$, results in an ending state $\sigma'$, and the remaining command we need to execute later is denoted by $c'$.
+Inference rules are as follows:
+\begin{align*}
+	& \inference[(Ass)]{\evalA{a}{\sigma}=n}{\evalCS{\sigma}{x:=a}{\sigma[x\mapsto n]}{\Skip}} \\
+	& \inference[(SeqStep)]{\evalCS{\sigma}{c_1}{\sigma'}{c_1'}}{\evalCS{\sigma}{c_1;c_2}{\sigma'}{c_1';c_2}} \\
+	& \inference[(SeqFinish)]{}{\evalCS{\sigma}{\Skip;c_2}{\sigma}{c_2}} \\
+	& \inference[(IfTrue)]{\evalB{b}{\sigma}=\top}{\evalCS{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{\sigma}{c_1}} \\
+	& \inference[(IfFalse)]{\evalB{b}{\sigma}=\bot}{\evalCS{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{\sigma}{c_2}} \\
+	& \inference[(While)]{}
+		{\evalCS{\sigma}{\While~b~\Do~c~\End}{\sigma}{\If~b~\Then~(c; \While~b~\Do~c~\End)~\Else~\Skip~\Fi}}
+\end{align*}
+Note that when we have reached $\pair{\sigma,\Skip}$ (for an arbitrary state $\sigma$), no rules are applicable and hence we are done.
+If you wish, we can call this the \emph{normal form}.
+The so-called ``multiple step'' relation $\toM$ is the reflexive and transitive closure of the ``one step'' relation $\to$.
+
+Now, let's dive into the exercises.
+
+%% problem begins
+\problem{Nondeterministic IMP}
+
+IMP's evaluation relation is deterministic.
+However, nondeterminism is an important part of the definition of many real-world programming languages.
+For example, in many imperative languages (such as C and its relatives), the order in which function arguments are evaluated is unspecified.
+The program fragment
+\begin{lstlisting}[language=C]
+x = 0;
+f(++x, x)
+\end{lstlisting}
+might call \t{f} with arguments \t{(1, 0)} or \t{(1, 1)}, depending how the compiler chooses to order things.
+This can be a little confusing for programmers, but it gives the compiler writer useful freedom.
+Apart from this, non-determinism is unsurprisingly seen in real-world embedded systems and it can model the unspecified behaviors of complicated network protocols, outside physical environment, etc.
+
+In this exercise, we will extend IMP with a simple nondeterministic command and study how this change affects program equivalence.
+The new command has the syntax $\Havoc~x$, where $x$ is a variable.
+The effect of executing $\Havoc~x$ is to assign an arbitrary integer to the variable $x$, nondeterministically.
+For example, after executing the program
+$$\Havoc~Y;Z:=Y\times 2,$$
+the value of $Y$ could be any integer, while the value of $Z$ is twice that of $Y$ (so $Z$ is always even).
+Note that we are not saying anything about the \emph{probabilities} of the outcomes -- just that there are (infinitely) many different outcomes that can possibly happen after executing this nondeterministic code.
+
+In a sense, a variable on which we do \Havoc~roughly corresponds to an uninitialized variable in a low-level language like C.
+After the \Havoc, the variable holds a fixed but arbitrary number.
+Most sources of nondeterminism in language definitions are there precisely because programmers don't care which choice is made (and so it is good to leave it open to the compiler to choose whichever will run faster).
+
+\subproblem Based upon the big-step operational semantics of IMP, we need to add \emph{ONE} inference rule for $\Havoc$.
+Please find it out.
+
+\begin{solution}
+\begin{align*}
+&\inference[(havoc)]{}{\evalC{\sigma}{\Havoc Z}{\sigma[Z \mapsto n]}} \\
+\end{align*}
+其中，n可以为任意可行的数。
+\end{solution}
+
+\subproblem Show that the following evaluation relation can hold:
+$$\evalC{\emptyset}{\Skip;\Havoc~Z}{\emptyset[Z \mapsto 42]}.$$
+\begin{proof}
+1.$\evalC{\emptyset}{\Skip}{\emptyset}.$(skip)\\
+2.$\evalC{\emptyset}{\Havoc~Z}{\emptyset[Z \mapsto 42]}.$(havoc)\\
+3.$\evalC{\emptyset}{\Skip;\Havoc~Z}{\emptyset[Z \mapsto 42]}$(seq)
+\end{proof}
+
+\newpage
+\problem{Don't Loop Forever! Take a Break!}
+
+Imperative languages like C and Java often include a break or similar statement for interrupting the execution of loops.
+In this exercise we consider how to add break to IMP.
+First, we need to enrich the language of commands with an additional command \Break.
+
+Next, we need to define the behavior of \Break.
+Informally, whenever \Break~is executed in a sequence of commands, it stops the execution of that sequence and signals that the innermost enclosing loop should terminate.
+If there aren't any enclosing loops, then the whole program simply terminates.
+The final state should be the same as the one in which the \Break~statement was executed.
+One important point is what to do when there are multiple loops enclosing a given \Break.
+In those cases, \Break~should only terminate the \emph{innermost} loop. 
+Thus, after executing the following program
+\begin{align*}
+	& X:=0;Y:=1; \\
+	& \While~\neg (Y = 0)~\Do \\
+	& \quad \While~\True~\Do~\Break~\End; \\
+	& \quad X:=1;Y:=Y-1 \\
+	& \End
+\end{align*}
+The value of $X$ should be 1, and not 0.
+
+One way of expressing this behavior is to add another parameter, namely \emph{signal},
+which is either $\sBreak$ (``break'') or $\sCont$ (``continue''),
+to the (big-step) evaluation relation that specifies whether evaluation of a command executes a \Break~statement.
+In this way, the evaluation relation now has the form $\evalCsig{\sigma}{c}{\sigma'}{s}$, meaning that,
+if $c$ is started in state $\sigma$, then it terminates in state $\sigma'$ and either signals that the innermost surrounding loop (or the whole program) should exit immediately (when $s=\sBreak$),
+or that execution should continue normally (when $s=\sCont$).
+
+The definition of the ``$\evalCsig{\sigma}{c}{\sigma'}{s}$'' relation is very similar to the regular one ``$\evalC{\sigma}{c}{\sigma'}$'' -- we just need to handle the termination signals appropriately:
+\begin{itemize}
+	\item If the command is \Skip, then the state doesn't change and execution of any enclosing loop can continue normally.
+	\item If the command is \Break, the state stays unchanged but we signal a $\sBreak$.
+	\item If the command is an assignment, then we update the binding for that variable in the state accordingly and signal that execution can continue normally.
+	\item If the command is a if-statement, then the state is updated as in the original semantics,
+	except that we also propagate the signal from the execution of whichever branch was taken.
+	\item If the command is a sequence $c_1;c_2$, we first execute $c_1$.
+	If this yields a $\sBreak$, we skip the execution of $c_2$ and propagate the $\sBreak$ signal to the surrounding context;
+	the resulting state is the same as the one obtained by executing $c_1$ alone.
+	Otherwise, we execute $c_2$ on the state obtained after executing $c_1$,
+	and propagate the signal generated there.
+	\item Finally, for a loop of the form $\While~b~\Do~c~\End$, the semantics is almost the same as before.
+	The only difference is that, when the condition $b$ evaluates to true, we execute the body $c$ and check the signal that it raises.
+	If that signal is $\sCont$, then the execution proceeds as in the original semantics.
+	Otherwise, we stop the execution of the loop,
+	and the resulting state is the same as the one resulting from the execution of the current iteration.
+	In either case, since \Break~only terminates the innermost loop, the entire loop signals $\sCont$.
+\end{itemize}
+
+\subproblem Based on the above description, write a \emph{complete} definition (i.e. inference rules) of the evaluation relation ``$\evalCsig{\sigma}{c}{\sigma'}{s}$''.
+Or, you may read this problem as: ``translate the above natural language into formal language''.
+% Hint: copy-paste the old rules and modify on them, and then add new one(s) for break.
+
+\begin{solution}
+\begin{align*}
+&\inference[(Skip)]{}{\evalCsig{\sigma}{\Skip}{\sigma}{\sCont}} \\
+&\inference[(Break)]{}{\evalCsig{\sigma}{break}{\sigma}{\sBreak}} \\
+&\inference[(Ass)]{\evalA{a}{\sigma}=n}{\evalCsig{\sigma}{x:=a}{\sigma[x\mapsto n]}{\sCont}} \\
+&\inference[(IfTrue)]{\evalB{b}{\sigma}=\top & \evalCsig{\sigma}{c_1}{\sigma'}{s}}
+{\evalCsig{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{\sigma'}{s}} \\
+&\inference[(IfFalse)]{\evalB{b}{\sigma}=\bot & \evalCsig{\sigma}{c_2}{\sigma'}{s}}
+{\evalCsig{\sigma}{\If~b~\Then~c_1~\Else~c_2~\Fi}{\sigma'}{s}} \\
+&\inference[(Seq1)]{\evalCsig{\sigma}{c_1}{\sigma'}{\sCont} & \evalCsig{\sigma'}{c_2}{\sigma''}{s}}
+{\evalCsig{\sigma}{c_1;c_2}{\sigma''}{s}} \\
+&\inference[(Seq2)]{\evalCsig{\sigma}{c_1}{\sigma'}{\sBreak}}
+{\evalCsig{\sigma}{c_1;c_2}{\sigma'}{\sBreak}} \\
+&\inference[(WhileFalse)]{\evalB{b}{\sigma}=\bot}
+{\evalCsig{\sigma}{\While~b~\Do~c~\End}{\sigma}{\sCont}} \\
+	&\inference[(WhileTrue1)]{\evalB{b}{\sigma}=\top & \evalCsig{\sigma}{c}{\sigma'}{\sCont} \\
+	\evalCsig{\sigma'}{\While~b~\Do~c~\End}{\sigma''}{s}}{\evalCsig{\sigma}{\While~b~\Do~c~\End}{\sigma''}{s}}\\
+	&\inference[(WhileTrue2)]{\evalB{b}{\sigma}=\top & \evalCsig{\sigma}{c}{\sigma'}{\sBreak}}{\evalCsig{\sigma}{\While~b~\Do~c~\End}{\sigma'}{\sCont}}
+\end{align*}
+\end{solution}
+
+\subproblem Show that for every command $c$, states $\sigma$ and $\sigma'$, and signal $s$,
+if $$\evalCsig{\sigma}{\Break;c}{\sigma'}{s},$$ then $\sigma=\sigma'$.
+
+\begin{proof}
+    1.$\evalCsig{\sigma}{break}{\sigma}{\sBreak}(break)$\\
+    2.$\evalCsig{\sigma}{\Break;c}{\sigma}{\sBreak}(seq2)$\\
+    so $\sigma = \sigma '$holds for every command $c$, states $\sigma$ and $\sigma'$.
+\end{proof}
+
+\subproblem Show that for every command $c$, states $\sigma$ and $\sigma'$, and boolean expression $b$,
+if $$\evalCsig{\sigma}{\While~b~\Do~c~\End}{\sigma'}{\sCont}$$ and $\evalB{\sigma'}{b}=\top$,
+then there exists a state $\sigma''$ s.t. $\evalCsig{\sigma''}{c}{\sigma'}{\sBreak}$.
+\textit{Hint: you may need induction in your proof.}
+
+\begin{proof}
+    定义 $\sigma_i$,使得 $\sigma_0 = \sigma,\evalCsig{\sigma_i}{c}{\sigma_{i+1}}{s}$ \\
+    假设k步推断能得到最后的结果：$\evalCsig{\sigma}{\While~b~\Do~c~\End}{\sigma'}{\sCont}$\\
+    如果k = 1，则必须满足以下两种情况之一\\
+情况1: 
+$\evalB{\sigma}{b}=\bot$，此时 $\evalCsig{\sigma}{c}{\sigma}{\sBreak}$，$ \sigma = \sigma', \evalB{\sigma'}{b}=\bot$
+，与题设矛盾，因此$\evalB{\sigma_0}{b} = \top$\\
+情况2：$\evalB{\sigma_0}{b} = \top$,且 $\evalCsig{\sigma_0}{c}{\sigma'}{\sBreak}$，此时要找的$\sigma'' = \sigma$，结论成立\\
+如果k > 1,则有$\evalCsig{\sigma_{k - 1}}{\While~b~\Do~c~\End}{\sigma'}{\sCont}$，而且经过一步推断就能得到结果，则必须满足以下两种情况之一\\
+情况1: 
+$\evalB{\sigma_{k - 1}}{b} = \bot$，
+此时 
+$\evalCsig{\sigma_{k - 1}}{c}{\sigma_{k - 1}}{\sBreak}$， $\sigma_{k - 1} = \sigma'$， $\evalB{\sigma'}{b}=\bot$，与题设矛盾，因此
+$\evalB{\sigma_{k - 1}}{b} = \top$\\
+情况2：$\evalB{\sigma_{k - 1}}{b} = \top$,且 $\evalCsig{\sigma_{k - 1}}{c}{\sigma'}{\sBreak}$，此时要找的$\sigma'' = \sigma_{k - 1}$，结论成立\\
+    
+\end{proof}
+
+\newpage
+\problem{Concurrent IMP}
+
+So far, we have done two interesting extensions to IMP: nondeterminism and breaks.
+Finally, we will see one more -- concurrency.
+At a glance, we will invent a new parallel command $$\Par~c_1~\With~c_2~\End$$ that runs two subcommands $c_1$ and $c_2$ in parallel and terminates when both have terminated.
+To reflect the unpredictability of scheduling, the actions of the subcommands may be interleaved in any order, but they share the same memory and can communicate by reading and writing the same variables.
+
+Unfortunately, the previous elegant big-step operational semantics cannot work in this case.
+Instead, we use small-step operational semantics and add the following new inference rules:
+\begin{align*}
+	& \inference[(Par1)]{\evalCS{\sigma}{c_1}{\sigma'}{c_1'}}
+		{\evalCS{\sigma}{\Par~c_1~\With~c_2~\End}{\sigma'}{\Par~c_1'~\With~c_2~\End}} \\
+	& \inference[(Par2)]{\evalCS{\sigma}{c_2}{\sigma'}{c_2'}}
+		{\evalCS{\sigma}{\Par~c_1~\With~c_2~\End}{\sigma'}{\Par~c_1~\With~c_2'~\End}} \\
+	& \inference[(ParDone)]{}{\evalCS{\sigma}{\Par~\Skip~\With~\Skip~\End}{\sigma}{\Skip}}
+\end{align*}
+
+Obviously, we define the binary relation $\toM$ as the reflexive and transitive closure of $\to$,
+the one that has included the above three new rules.
+
+Using the above definitions, we can evaluate the program
+$$\Par~(\If~\True~\Then~X:=1~\Else~X:=0~\Fi)~\With~(\If~\True~\Then~Y:=0~\Else~Y:=1~\Fi)~\End$$
+on a starting state $\sigma$, which yields a \emph{derivation trace} (until we reach the normal form):
+\begin{align*}
+	&    \pair{\sigma,\Par~(\If~\True~\Then~X:=1~\Else~X:=0~\Fi)~\With~(\If~\True~\Then~Y:=0~\Else~Y:=1~\Fi)~\End} & \\
+	&\to \pair{\sigma,\Par~(X:=1)~\With~(\If~\True~\Then~Y:=0~\Else~Y:=1~\Fi)~\End} & \text{by (Par1)} \\
+	&\to \pair{\sigma,\Par~(X:=1)~\With~(Y:=0)~\End} & \text{by (Par2)} \\
+	&\to \pair{\sigma[X \mapsto 1],\Par~\Skip~\With~(Y:=0)~\End} & \text{by (Par1)} \\
+	&\to \pair{\sigma[X \mapsto 1][Y \mapsto 0],\Par~\Skip~\With~\Skip~\End} & \text{by (Par2)} \\
+	&\to \pair{\sigma[X \mapsto 1][Y \mapsto 0],\Skip} & \text{by (ParDone)}
+\end{align*}
+
+\subproblem Give a different derivation trace for the above program.
+Remember to mention the name of the rule you applied, like we have done above.
+
+\begin{solution}
+\begin{align*}
+&    \pair{\sigma,\Par~(\If~\True~\Then~X:=1~\Else~X:=0~\Fi)~\With~(\If~\True~\Then~Y:=0~\Else~Y:=1~\Fi)~\End} & \\
+&\to \pair{\sigma,(\If~\True~\Then~X:=1~\Else~X:=0~\Fi)~\With~(Y:=0)~\End} & \text{by (Par2)} \\
+&\to \pair{\sigma,\Par~(X:=1)~\With~(Y:=0)~\End} & \text{by (Par1)} \\
+&\to \pair{\sigma[X \mapsto 1],\Par~\Skip~\With~(Y:=0)~\End} & \text{by (Par1)} \\
+&\to \pair{\sigma[X \mapsto 1][Y \mapsto 0],\Par~\Skip~\With~\Skip~\End} & \text{by (Par2)} \\
+&\to \pair{\sigma[X \mapsto 1][Y \mapsto 0],\Skip} & \text{by (ParDone)}
+\end{align*}
+
+\end{solution}
+
+\subproblem Let's now consider a more interesting parallel program involving a loop:
+$$P: \Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End$$
+Find a property that the above program holds.
+You are encouraged to propose a property that is as general as possible, but you are \emph{not} asked to do so.
+However, your property \emph{must} be somehow related to the semantic of $P$.
+
+\begin{solution}
+    $\forall n \geq 0$,n为自然数,$\exists \sigma$，使得$\pair{\emptyset, \Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End} \to* \pair{\sigma}{skip}$，且$\sigma(X) = n$\\
+    证明：\\
+    引理1：    $\forall n \geq 0$,n为自然数,$\exists \sigma$，使得\\$\pair{\emptyset, \Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End} \\ \to* \pair{\sigma,\Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End}$，且\\$\sigma(X) = n, \sigma(Y) = 0$\\
+    证明：首先，对于n = 0,不进行任何小步推导，结论就成立。\\
+    其次，假设对于某自然数n成立，设让n成立的环境为$\sigma_n$,即\\$\pair{\emptyset,\Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End} \\ \to* \pair{\sigma_n,\Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End}$，且\\$\sigma_n(X) = n, \sigma_n(Y) = 0$\\
+    则对于n + 1,有
+    \\$\pair{\sigma_n,\Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End}$
+    \\ $\to \pair{\sigma_n,\Par~(Y:=1)~\With~(\If~Y=0~ \Then~(X:=X+1;\While~Y=0~\Do~X:=X+1~\End)~ \Else~skip~\Fi)~\End}$(Par2, while)
+        \\ $\to \pair{\sigma_n,\Par~(Y:=1)~\With~(X:=X+1;\While~Y=0~\Do~X:=X+1~\End)~\End}$(Par2, if true)
+                \\ $\to \pair{\sigma_n[X \mapsto n+1],\Par~(Y:=1)~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End}$(Par2, assign)\\
+                此时，状态$\sigma_n[X \mapsto n+1]$满足条件，引理得证。\\
+     从引理1继续推导，有\\
+     $\to \pair{\sigma_n[Y \mapsto 1],\Par~skip~\With~(\While~Y=0~\Do~X:=X+1~\End)~\End}$(Par1, assign)\\
+     $\to \pair{\sigma_n[Y \mapsto 1],\Par~skip~\With~(\If~Y=0~ \Then~(X:=X+1;\While~Y=0~\Do~X:=X+1~\End)~ \Else~skip~\Fi))~\End}$(Par2, while)\\
+     $\to\pair{\sigma_n[Y \mapsto 1],\Par~skip~\With~skip~\End}$(Par2, if false)\\
+     $\to\pair{\sigma_n[Y \mapsto 1],skip}$(ParDone)\\
+     因为此时$\sigma_n(X) = n$，所以结论得证。
+                
+\end{solution}
+
+\subproblem We said that big-step operational semantics cannot work in this parallel case. Why?
+Briefly explain the reason in \emph{ONE or TWO} sentences.
+
+\begin{solution}
+    一种可能是在并行情况下，程序是否终止不确定。\\
+    考虑$X:=1$和$\While~X=1 ~\Do~ Y:=0~\End$并行，程序初始环境为$\emptyset$，如果第一步先执行第二个到skip再执行第一个，\\程序会立刻跳出while循环，然后终止。\\如果先执行第一个，则不会终止\\
+    因为在程序不终止的情况下，使用大步语义并不好，因此不能在并行用大步语句。
+\end{solution}
+
+%% problem ends
+
+\end{document}

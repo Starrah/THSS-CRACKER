@@ -1,0 +1,214 @@
+%% compile with pdflatex or xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{homework}
+
+\title{Homework 3}
+\duedate{Mar 31, 2020}
+
+
+\studentname{Guanlin Shen}
+\studentid{2017013569}
+
+\usepackage{tikz}
+
+%% logical symbols
+% \land     /\
+% \lor      \/
+% \lnor     ¬
+% \to       ->
+% \lequiv   <->
+% \exists   ∃
+% \forall   ∀
+% \models   |=
+\newcommand{\lequiv}{\leftrightarrow}
+
+\newcommand{\nat}{\mathbb{N}}
+\renewcommand{\int}{\mathbb{Z}}
+\newcommand{\upd}[2]{\langle #1 \triangleleft #2 \rangle}
+
+\begin{document}
+
+\maketitle
+
+\textit{Read the instructions below carefully before you start working on the assignment:}
+\begin{itemize}
+    \item Please typeset your answers in the attached \LaTeX~source file, compile it to a PDF,
+    and finally hand the PDF to Tsinghua Web Learning \emph{before the due date}.
+    \item Make sure you fill in your \emph{name} and \emph{Tsinghua ID},
+    and replace all ``\texttt{TODO}''s with your solutions.
+    \item Any kind of dishonesty is \emph{strictly prohibited} in the full semester.
+    If you refer to any material that is not provided by us, you \emph{must cite} it.
+\end{itemize}
+
+%% problem begins
+
+\problem{Short-Answered Questions}
+
+\subproblem First-order logic is ``semidecidable'' -- which half is decidable?
+
+\begin{solution}
+    When F is valid/ not satisfiable, its validity/satisfiability is decidable.
+\end{solution}
+
+\subproblem Are the following statements about $T_\int$ true? Briefly explain the reason (you may use conclusions from lectures).
+
+\begin{enumerate}[label=(\alph*)]
+    \item $T_\int$ is decidable.
+    \item $T_\int$ is complete.
+    \item If a formula $\phi$ is both a $\Sigma_\int$-formula and a $\Sigma_\nat$-formula, then: $\phi$ is $T_\nat$-valid if and only if $\phi$ is $T_\int$-valid.
+\end{enumerate}
+
+\begin{solution}
+    (a):True\\
+    (b):True\\
+    Since $T_{N}$ us decidable and complete, and $T_\int$ can be reduced to $T_{N}$,$T_\int$ is decidable and complete.  \\
+    (c):False\\
+    $(x + y = 0) \to (x = 0 \land y = 0)$ is valid in $T_{N}$  but not valid in $T_{\int}$ .
+
+\end{solution}
+
+\subproblem Is the following formula $T_A$-valid? Briefly explain the reason:
+$$(a[i] = x \land x = y) \to a \upd{i}{y} = a$$
+
+\begin{solution}
+	valid\\
+	1.$I \not \models F$,assumption\\
+    2.$I \models (a[i] = x \land x = y)$,1\\
+    3.$I \not \models a \upd{i}{y} = a$,1\\
+    4.$I \models a[i] = x$, 2\\
+    5.$I \models x = y$, 2\\
+    6.$a[i] = y$, 4,5,equality\\
+    7.$I \not \models \forall j(a \upd{i}{y}[j] = a[j])$, 2\\
+    8.$I[j \mapsto c_j] \not\models a \upd{i}{y}[j] = a[j]$,1,$\forall$\\    
+    9.$I[j \mapsto c_j] \models a \upd{i}{y}[j] \neq a[j])$,8\\
+    10.$I[j \mapsto c_j] \models i = j$,9,r.o.w,2\\
+    11.$I[j \mapsto c_j] \models a[i] = a[j]$,10, congruence\\
+    12.$I[j \mapsto c_j] \models a\upd{i}{y}[j] = y$,11, r.o.w,1\\
+    13.$I[j \mapsto c_j] \models a\upd{i}{y}[j] = a[j]$,5,12, equality\\
+    14.$\perp$,8,13
+\end{solution}
+
+\subproblem $T_A$ is not convex -- show that by providing a counterexample.
+
+\begin{solution}
+   $F:a\upd{i}{v}[j] = u$\\
+   $F \Rightarrow u = v \lor u = a[j]$\\
+   neither $F \Rightarrow u = v$ nor $F \Rightarrow u = a[j]$\\
+\end{solution}
+
+\newpage
+\problem{Semantic Argument}
+
+Use the semantic method to check the validity of the following formulas.
+If not valid, please find a counterexample (a falsifying interpretation in its theory).
+
+\subproblem In $T_E$: $f(f(f(a))) = f(f(a)) \land f(f(f(f(a)))) = a \to (f(a) = a)$
+
+\begin{solution}
+	valid\\
+   1.$I \not \models F$,assumption\\
+   2.$I \models f(f(f(a))) = f(f(a)) \land f(f(f(f(a)))) = a$,1\\
+   3.$I \not \models f(a) = a$,1\\
+   4.$I \models f(f(f(a))) = f(f(a))$, 2\\
+   5.$I \models f(f(f(f(a)))) = a$, 2\\
+   6.$I \models f(f(f(f(a)))) = f(f(f(a)))$, 4,function congruence\\
+   7.$I \models f(f(f(f(a)))) = f(f(a))$,4,6,transitivity\\
+   8.$I \models a = f(f(a))$,5,7,transitivity\\
+   9.$I \models f(a) = f(f(f(a)))$, 8, function congruence\\
+   10.$I \models f(f(f(a))) = a$, 4,8,transitivity\\
+   11.$I \models a = f(a)$, 9,10,transitivity\\
+   12.$\perp$,3,11\\
+\end{solution}
+
+\subproblem In $T_\int$: $(1 \le x \land x \le 2) \to (x = 1 \lor x = 2)$
+
+\begin{solution}
+    valid\\
+    1.$I \not \models F$,assumption\\
+    2.$I \models 1 \le x \land x \le 2$, 1\\
+    3.$I \not \models (x = 1 \lor x = 2)$, 1\\
+    4.$I \models 1 \le x $, 2\\
+    5.$I \models x \le 2$, 2\\
+    6.$I \not \models x = 1$, 3\\
+    7.$I \not \models x = 2$, 3\\
+    8.$\perp$,2,6,7,$T_\int$\\
+\end{solution}
+
+\subproblem In $T_A$: $a \upd{i}{e} [j]= e \to a[j] = e$
+
+\begin{solution}
+not valid:\\
+e.g:$i = 1, j = 1, a[1] = 2, e = 3$\\
+$a \upd{i}{e} [j] = 3 = e$,but $a[j] = a[1] = 2 \neq e$,invalid
+\end{solution}
+
+\newpage
+\problem{Decision Procedure for Theories}
+
+\subproblem Apply the decision procedure for quantifier-free $T_E$ to the following $\Sigma_E$-formula:
+$$p(x) \land f(f(x)) = x \land f(f(f(x))) = x \land \lnot p(f(x))$$
+
+\begin{solution}
+    First, eliminate the quantifier p(x).
+    $$F : g(x) = \cdot \land f(f(x)) = x \land f(f(f(x))) = x \land g(f(x)) \neq \cdot$$
+    Then, build the subterm set $$S_{F} = \{x, f(x),f^{2}(x),f^3(x),g(x),g(f(x)),\cdot\}$$
+    Then, initialize the congruence relation of $S_F$:
+    $$\{\{x\}, \{ f(x) \},\{ f^{2}(x)\},\{f^3(x)\},\{g(x)\},\{g(f(x))\},\{\cdot \}\} $$
+    Then,merge $g(x)$ and $\cdot$, merge $f^3(x)$ and $x$, merge $f^2(x)$ and $x$, you can get
+    $$\{\{f(x)\},\{x, f^{2}(x), f^3(x)\},\{g(f(x))\},\{g(x), \cdot\}\} $$
+    Then, from $x = f^{2}(x)$, propagate $f(x) = f^{3}(x)$, merge $f(x)$ to get 
+     $$\{\{x, f(x), f^{2}(x), f^3(x)\},\{g(f(x))\},\{g(x), \cdot\}\} $$
+     Then, from $x = f^(x)$, propagate $g(x) = g(f(x))$, merge $f(f(x))$ to get 
+  $$\{\{x, f(x), f^{2}(x), f^3(x)\},\{g(x),g(f(x)), \cdot\}\} $$   
+  Since $g(f(x)) \neq \cdot$, unsat.
+\end{solution}
+
+\subproblem Apply the decision procedure for quantifier-free $T_A$ to the following $\Sigma_A$-formula:
+$$a\upd{i}{e}\upd{j}{f}[k]=g \land j\not=k \land i=j \land a[k]\not=g$$
+
+\begin{solution}
+    First, eliminate the quantifier.Since $j \neq k$,we can get\\
+    $$a\upd{i}{e}[k]=g \land j\not=k \land i=j \land a[k]\not=g$$
+    Then, it can be splited into 2 cases
+ $$i = k:     e=g \land i = k \land j\not=k \land i=j \land a[k]\not=g$$
+  $$i \neq k:     a[k]=g \land i \neq k \land j\not=k \land i=j \land a[k]\not=g$$
+  Use $f(k)$ to subtitude $a[k]$, we get
+ $$i = k:     e=g \land i = k \land j\not=k \land i=j \land f(k) \not=g$$
+$$i \neq k:     f(k)=g \land i \neq k \land j\not=k \land i=j \land f(k) \not=g$$
+For case 1, build the subterm set $$S_{F} = \{i, j, k,e, g, f(k)\}$$
+Merge the equalities, we get $$\{ \{i, j, k\}, \{e, g\}, \{f(k)\} \}$$
+Since $j \neq k$, it reaches a contradiction.\\
+For case 2, $f(k) \not=g$ and $f(k) = g$ suddenly reachs a contradiction, unsat.
+\end{solution}
+
+\subproblem Apply the Nelson-Oppen method to the following formula in $T_\int \cup T_A$:
+$$a[i] \ge 1 \land a[i]+x \le 2 \land x>0 \land x=i \land a\upd{x}{2}[i]\not=1$$
+Do it first using the nondeterministic version (i.e. guess and check), and then the deterministic version (i.e. equality propagation).
+
+\begin{solution}
+ 
+ First, purify the formula, use $w_1,w_2$ to replace 1,2,use v to replace a[i]
+ $$F_Z:x > 0 \land w_1 = 1 \land w_2 = 2 \land v \geq 1 \land v + x \leq 2 $$
+ $$F_A:a\upd{x}{w_2}[i]\not=w_1 \land x = i \land a[i] = v$$
+ Shared variables:$\{w_1,w_2,x,v\}$\\
+ \paragraph{guess and check}
+ For convenience, since $w_1 = 1, w_2 = 2$, it is impossible that $w_1 = w_2$.\\
+ Since $v \geq 1, w_1 = 1$, it is impossible that $v = w_1$\\
+ Since $v \geq 1, x > 0, v + x \leq 2$, The only possibility is that $v = x = 1$.We can get that the only case satisfying $F_Z$ is $$\{{w_1,v,x},{w_2}\}$$
+ First, eliminate the predicates of $F_A$:
+ Consider x = i, and use f(i) to subtitude a[i],$$F_A:w_2\not=w_1 \land x = i \land f(i) = v$$
+ Then the subterm set 
+ $$S_E = \{w_2, w_1, x, i, f(i), v\}$$
+ Accoring to the result of guess and check, we get
+ $$\{\{w_2\}, \{w_1, x, v\}, \{i\}, \{f(i)\}\}$$
+Merging the equalities, we get
+   $$\{\{w_2\}, \{w_1, x, v, i, f(i)\} \}$$
+   It satisfies $w_2 \neq w_1$, the formula is satisfiable.
+ \paragraph{equality propagation}
+ From $F_Z$, you can get $x = w_1$. Then you can get $x = w_1 = v$, then you can get no conflicts in $F_A,F_Z$, and no more equalities will be get.Satisfiable.
+\end{solution}
+
+%% problem ends
+
+\end{document}
