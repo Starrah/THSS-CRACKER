@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PictureEditor", "PictureEditor\PictureEditor.vcxproj", "{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Debug|Win32.Build.0 = Debug|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Debug|x64.ActiveCfg = Debug|x64
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Debug|x64.Build.0 = Debug|x64
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Debug|x86.ActiveCfg = Debug|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Debug|x86.Build.0 = Debug|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Release|Win32.ActiveCfg = Release|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Release|Win32.Build.0 = Release|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Release|x64.ActiveCfg = Release|x64
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Release|x64.Build.0 = Release|x64
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Release|x86.ActiveCfg = Release|Win32
+		{FDBFE3DC-EDB4-4A8B-B20E-5AE4A729EADA}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9BB961E-C4EA-4757-B6F8-1F29DF0FDDE6}
+	EndGlobalSection
+EndGlobal
