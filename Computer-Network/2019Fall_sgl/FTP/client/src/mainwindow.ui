@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>637</width>
+    <height>888</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>351</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="ServerLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Server</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="ServerText">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="UserLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Username</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="UserText">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="PathLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Path</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="PathText">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="QuitButton">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>30</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Disconnect</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="FileListTable">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>160</y>
+      <width>571</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>150</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>100</number>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Last Modify</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Size</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>70</y>
+      <width>213</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <widget class="QToolButton" name="NewButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>New</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QToolButton" name="BackButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QToolButton" name="GoToButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>GoTo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QToolButton" name="UploadButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Upload</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QToolButton" name="RefreshButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QToolButton" name="RootButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>MainMenu</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="DownloadTable">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>400</y>
+      <width>571</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>130</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Pause</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Process</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="DownloadLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>370</y>
+      <width>221</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Download</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="UploadTable">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>630</y>
+      <width>571</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>130</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Pause</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Process</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="UploadLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>600</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Upload</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>637</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMain">
+    <property name="title">
+     <string>Main</string>
+    </property>
+   </widget>
+   <addaction name="menuMain"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
