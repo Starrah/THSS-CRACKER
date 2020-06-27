@@ -1,0 +1,106 @@
+# Execution begins at address 0
+.pos 0
+init:
+irmovl Stack, %esp
+# Set up stack pointer
+irmovl Stack, %ebp
+# Set up base pointer
+call Main
+# Execute main program
+halt
+# Terminate program
+
+
+# Sample linked list
+.align 4
+ele1:
+.long 0x00a
+.long ele2
+ele2:
+.long 0x0b0
+.long ele3
+ele3:
+.long 0xc00
+.long 0
+
+Main:
+pushl %ebp
+rrmovl %esp,%ebp
+pushl %ebx
+irmovl ele1,%ebx
+pushl %esi
+pushl %edi
+pushl %ebx
+call Rsum
+popl %ebx
+popl %edi
+popl %esi
+popl %ebx
+#rrmovl %ebp,%esp
+popl %ebp
+ret
+
+Rsum:
+#初始化:更新esp,ebp,存储寄存器
+pushl %ebp
+rrmovl %esp,%ebp
+pushl %edx
+pushl %ecx
+
+
+#读取参数,ls = ecx
+mrmovl 8(%ebp),%ecx
+
+#if(!ls)
+andl %ecx,%ecx
+jne Else
+
+#return 0
+irmovl $0,%eax
+jmp End
+
+Else:
+#存储ls->val,ls->next
+#ebx = ls.val,esi = ls.next
+mrmovl (%ecx),%ebx
+mrmovl 4(%ecx),%esi
+
+#val = ls->val
+#edx = val
+rrmovl %ebx,%edx
+
+#rest = rsum_list(ls->next)
+#push 寄存器
+pushl %ebx
+pushl %edi
+
+#放置参数
+pushl %esi
+call Rsum
+
+#回收寄存器
+popl %esi
+popl %edi
+popl %ebx
+
+
+
+#edi = val + rest
+#return edi
+irmovl $0,%edi
+addl %eax,%edi
+addl %edx,%edi
+rrmovl %edi,%eax
+jmp End
+
+#退出程序
+End:
+#恢复寄存器,esp,ebp,返回
+popl %ecx
+popl %edx
+#rrmovl %ebp,%esp
+popl %ebp
+ret
+
+.pos 0x500
+Stack:

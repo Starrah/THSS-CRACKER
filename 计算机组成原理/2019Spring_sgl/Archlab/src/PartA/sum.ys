@@ -1,0 +1,70 @@
+# Execution begins at address 0
+.pos 0
+init:
+irmovl Stack, %esp
+# Set up stack pointer
+irmovl Stack, %ebp
+# Set up base pointer
+call Main
+# Execute main program
+halt
+# Terminate program
+
+
+# Sample linked list
+.align 4
+ele1:
+.long 0x00a
+.long ele2
+ele2:
+.long 0x0b0
+.long ele3
+ele3:
+.long 0xc00
+.long 0
+
+Main:
+pushl %ebp
+rrmovl %esp,%ebp
+pushl %ebx
+irmovl ele1,%ebx
+pushl %esi
+pushl %edi
+pushl %ebx
+call Sum
+popl %ebx
+popl %edi
+popl %esi
+popl %ebx
+rrmovl %ebp,%esp
+popl %ebp
+ret
+
+Sum:
+pushl %ebp
+rrmovl %esp,%ebp
+pushl %edx
+pushl %ecx
+mrmovl 8(%ebp),%ecx
+irmovl $0,%edx
+andl %ecx,%ecx
+je End
+
+Loop:
+mrmovl (%ecx),%ebx
+mrmovl 4(%ecx),%esi
+addl %ebx,%edx
+rrmovl %esi,%ecx
+andl %ecx,%ecx
+jne Loop
+
+End:
+rrmovl %edx,%eax
+popl %ecx
+popl %edx
+rrmovl %ebp,%esp
+popl %ebp
+ret
+
+.pos 0x100
+Stack:

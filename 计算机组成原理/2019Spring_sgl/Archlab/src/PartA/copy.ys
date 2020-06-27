@@ -1,0 +1,105 @@
+# Execution begins at address 0
+.pos 0
+init:
+irmovl Stack, %esp
+# Set up stack pointer
+irmovl Stack, %ebp
+# Set up base pointer
+call Main
+# Execute main program
+halt
+# Terminate program
+
+.align 4
+# Source block
+src:
+.long 0x00a
+.long 0x0b0
+.long 0xc00
+# Destination block
+dest:
+.long 0x111
+.long 0x222
+.long 0x333
+
+
+Main:
+pushl %ebp
+rrmovl %esp,%ebp
+pushl %ebx
+pushl %esi
+pushl %edi
+#初始化参数
+irmovl src,%ebx
+irmovl dest,%esi
+irmovl $3,%edi
+pushl %ebx
+pushl %esi
+pushl %edi
+call Copy
+popl %edi
+popl %esi
+popl %ebx
+popl %edi
+popl %esi
+popl %ebx
+popl %ebp
+ret
+
+Copy:
+#初始阶段:存储ebp和寄存器
+pushl %ebp
+rrmovl %esp,%ebp
+pushl %edx
+pushl %ecx
+
+#读取参数
+#edx = src, ebx = dest, ecx = len
+mrmovl 16(%ebp),%edx
+mrmovl 12(%ebp),%ebx
+mrmovl 8(%ebp),%ecx
+
+#eax = result
+#result = 0
+irmovl $0,%eax
+
+//循环初始判断
+//if(len == 0)
+andl %ecx,%ecx
+jle End
+
+//循环
+Loop:
+#edi = val,val = *src
+mrmovl (%edx),%edi
+
+#src+=4,esi = 4
+irmovl $0x04,%esi
+addl %esi,%edx
+
+#*dest = val
+rmmovl %edi,(%ebx)
+
+#dest +=4
+addl %esi,%ebx
+
+#result ^= val
+xorl %edi,%eax
+
+#len --,esi = 1
+irmovl $0x01,%esi
+subl %esi,%ecx
+
+#循环退出判断
+andl %ecx,%ecx
+jg Loop
+
+
+End:
+popl %ecx
+popl %edx
+popl %ebp
+ret
+
+.pos 0x500
+Stack:
