@@ -1,0 +1,64 @@
+# wujialong 2018013418
+    .pos 0
+init:
+    irmovl Stack,%esp
+    irmovl Stack,%ebp
+    call Main
+    halt
+
+    .align 4
+ele1:
+    .long 0x00a
+    .long ele2
+ele2:
+    .long 0x0b0
+    .long ele3
+ele3:
+    .long 0xc00 
+    .long 0
+
+Main:
+    pushl %ebp
+    rrmovl %esp,%ebp
+    irmovl ele1,%edx
+    pushl %edx                      # prepare parameters
+    call rsum_list                  # call function
+    rrmovl %ebp,%esp
+    popl %ebp  
+    ret
+
+rsum_list:
+    pushl %ebp
+    rrmovl %esp,%ebp
+    irmovl $0x18,%edx
+    subl %edx,%esp
+    irmovl $0x0,%edx
+    mrmovl 0x8(%ebp),%eax           # %eax = ls
+    xorl %edx,%eax
+    jne else                        # else
+    irmovl $0x0,%eax
+    jmp return                      # if (!ls) return 0
+else:
+    mrmovl 0x8(%ebp),%eax           # %eax = ls
+    mrmovl (%eax),%eax
+    rmmovl %eax,0xfffffff0(%ebp)    # -0xf(%ebp) = val = ls->val
+
+    mrmovl 0x8(%ebp),%eax           # %eax = ls
+    mrmovl 0x4(%eax),%eax           # %eax = ls->next
+    irmovl $0xc,%edx
+    subl %edx,%esp
+    pushl %eax                      # prepare parameter = ls->next
+    call rsum_list                  # recursive, %eax = rest
+
+    irmovl $0x10,%edx               
+    addl %edx,%esp                  # restore the stack
+    mrmovl 0xfffffff0(%ebp),%edx    # %edx = -0xf(%ebp) = val
+    addl %edx,%eax                  # %eax = val + rest
+return:
+    rrmovl %ebp,%esp
+    popl %ebp  
+    ret 
+
+    .pos 0x500
+Stack:  
+    

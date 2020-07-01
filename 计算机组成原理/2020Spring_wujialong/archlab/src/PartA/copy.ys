@@ -1,0 +1,80 @@
+# wujialong 2018013418
+    .pos 0
+init:
+    irmovl Stack,%esp
+    irmovl Stack,%ebp
+    call Main
+    halt
+
+    .align 4
+# Source block 
+src:
+    .long 0x00a
+    .long 0x0b0
+    .long 0xc00
+# Destination block 
+dest:
+    .long 0x111
+    .long 0x222
+    .long 0x333
+
+Main:
+    pushl %ebp
+    rrmovl %esp,%ebp
+    irmovl 0x3,%edx
+    pushl %edx
+    irmovl dest,%edx
+    pushl %edx
+    irmovl src,%edx
+    pushl %edx                      # preparing paramters
+    call copy_block                 # call function
+    rrmovl %ebp,%esp
+    popl %ebp  
+    ret
+
+copy_block:
+    pushl %ebp
+    rrmovl %esp,%ebp
+    irmovl $0x10,%ecx
+    subl %ecx,%esp
+    irmovl $0x0,%ecx                # result = 0
+    rmmovl %ecx,0xfffffff8(%ebp)    # -8(%ebp) = result
+    jmp end
+loop:
+    mrmovl 0x8(%ebp),%eax           # %eax = src
+    mrmovl (%eax),%eax              # %eax = val
+
+    mrmovl 0xc(%ebp),%edx           # %edx = dest
+    rmmovl %eax,(%edx)              # *dest = val
+
+    mrmovl 0xfffffff8(%ebp),%ecx    # %ecx = result
+    xorl %eax,%ecx                  
+    rmmovl %ecx,0xfffffff8(%ebp)    # result ^= val
+
+    mrmovl 0x10(%ebp),%ecx          
+    irmovl $0x1,%edx
+    subl %edx,%ecx                  
+    rmmovl %ecx,0x10(%ebp)          # len--
+
+    mrmovl 0x8(%ebp),%eax           # %eax = src
+    irmovl 0x4,%edx
+    addl %eax,%edx
+    rmmovl %edx,0x8(%ebp)           # src++
+
+    mrmovl 0xc(%ebp),%eax           # %eax = dest
+    irmovl 0x4,%edx
+    addl %eax,%edx
+    rmmovl %edx,0xc(%ebp)           # dest++
+end:
+    mrmovl 0x10(%ebp),%ecx
+    irmovl $0x0,%edx
+    subl %edx,%ecx
+    jg loop                         # while(len>0)
+    mrmovl 0xfffffff8(%ebp),%eax
+    rrmovl %ebp,%esp
+    popl %ebp  
+    ret 
+
+    .pos 0x500
+Stack:  
+    
